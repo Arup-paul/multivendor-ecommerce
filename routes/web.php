@@ -22,3 +22,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+Route::prefix('/admin')->as('admin.')->namespace('App\Http\Controllers\Admin')->group(function () {
+    Route::match(['get','post'],'login', 'AdminController@login')->name('login');
+    Route::get('dashboard', 'AdminController@dashboard')->name('dashboard');
+});
+
