@@ -9,10 +9,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="{{ asset('admin/plugins/toastifyjs/toastify.css') }}">
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{asset('/admin/assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('/admin/assets/css/components.css')}}">
+
 </head>
 
 <body>
@@ -29,10 +31,16 @@
                         <div class="card-header"><h4>Login</h4></div>
 
                         <div class="card-body">
-                            <form method="POST" action="#" class="needs-validation" novalidate="">
+                            @if(Session::has('error'))
+                                <div class="alert alert-danger">
+                                    {{Session::get('error')}}
+                                </div>
+                            @endif
+                            <form method="POST" action="{{route('admin.login')}}" class="auth-form" >
+                                @csrf
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
+                                    <input id="email" type="email" class="form-control" name="email"    >
                                     <div class="invalid-feedback">
                                         Please fill in your email
                                     </div>
@@ -47,7 +55,7 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
+                                    <input id="password" type="password" class="form-control" name="password"   >
                                     <div class="invalid-feedback">
                                         please fill in your password
                                     </div>
@@ -61,9 +69,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                        Login
-                                    </button>
+                                    <button class="btn btn-primary w-100 basicbtn">{{ __('Login') }}</button>
                                 </div>
                             </form>
                             <div class="text-center mt-4 mb-3">
@@ -97,6 +103,9 @@
 </div>
 
 
+<script src="{{ asset('admin/assets/js/jquery.min.js') }}"></script>
+<script src="{{ asset('admin/plugins/toastifyjs/toastify.js') }}"></script>
+<script src="{{ asset('admin/plugins/Notify.js') }}"></script>
 <script src="{{asset('admin/assets/js/stisla.js')}}"></script>
 <script src="{{asset('admin/assets/js/scripts.js')}}"></script>
 <script src="{{asset('admin/assets/js/custom.js')}}"></script>
