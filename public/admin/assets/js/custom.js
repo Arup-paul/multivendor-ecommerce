@@ -1,40 +1,25 @@
+$(document).ready(function () {
+    $("#current_password").keyup(function () {
+       var current_password = $("#current_password").val();
 
+         $.ajax({
+             headers: {
+                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+             },
+             type: "POST",
+             url:'/admin/check-current-password',
+             data: {current_password:current_password},
+             success: function (response) {
+                 console.log(response);
+                 if(response== 1){
+                     $("#chkCurrentPassword").html("<font color='green'>Current Password is correct</font>");
+                 }else{
+                     $("#chkCurrentPassword").html("<font color='red'>Current Password is incorrect</font>");
+                 }
+             },error: function (xhr, status, error) {
+                 alert('err')
+             }
+         });
 
-"use strict";
-$(document).on("submit", ".auth-form", function (e) {
-    e.preventDefault();
-
-
-    var $this = $(this);
-    var basicBtnHtml = $this.find(".basicbtn").html();
-
-    $.ajax({
-        type: "POST",
-        url: this.action,
-        data: new FormData(this),
-        dataType: "json",
-        contentType: false,
-        cache: false,
-        processData: false,
-        beforeSend: function () {
-            $this.find(".basicbtn").html("Please Wait....");
-            $this.find(".basicbtn").attr("disabled", "");
-        },
-        success: function (response) {
-            $this.find(".basicbtn").removeAttr("disabled");
-            $this.find(".basicbtn").html(basicBtnHtml);
-            Notify("success", response);
-
-            if (response.redirect) {
-                setTimeout(function () {
-                    location.href = response.redirect;
-                },1000);
-            }
-        },
-        error: function (xhr, status, error) {
-            $this.find(".basicbtn").html(basicBtnHtml);
-            $this.find(".basicbtn").removeAttr("disabled");
-            Notify("error", xhr);
-        },
     });
-});
+})
