@@ -9,6 +9,7 @@
 
 <!-- JS Libraies -->
 <script src="{{ asset('admin/assets/js/jquery.min.js') }}"></script>
+<script src="{{ asset('admin/plugins/nicescroll/jquery.nicescroll.min.js') }}"></script>
 <script src="{{ asset('admin/plugins/toastifyjs/toastify.js') }}"></script>
 <script src="{{ asset('admin/plugins/Notify.js') }}"></script>
 <script src="{{asset('admin/assets/js/stisla.js')}}"></script>

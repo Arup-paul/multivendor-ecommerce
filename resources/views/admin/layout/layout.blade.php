@@ -22,6 +22,12 @@
 
         <!-- Main Content -->
         <div class="main-content">
+            @hasSection('title')
+                <section class="section">
+                    @include('admin.layout.headersection')
+                </section>
+            @endif
+
             @yield('content')
         </div>
 
