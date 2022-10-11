@@ -21,8 +21,8 @@ function Notify(type, res, msg = null) {
         text: message,
         duration: 3000,
         close: true,
-        gravity: "bottom",
-        position: "center",
+        gravity: "top",
+        position: "right",
         style: {
             background: background,
         }
