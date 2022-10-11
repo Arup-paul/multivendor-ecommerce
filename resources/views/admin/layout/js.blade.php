@@ -14,7 +14,7 @@
 <script src="{{ asset('admin/plugins/Notify.js') }}"></script>
 <script src="{{asset('admin/assets/js/stisla.js')}}"></script>
 <script src="{{asset('admin/assets/js/scripts.js')}}"></script>
-
+@stack('script')
 <!-- Custome -->
 <script src="{{asset('admin/assets/js/custom.js')}}"></script>
 <script src="{{asset('admin/assets/js/form.js')}}"></script>

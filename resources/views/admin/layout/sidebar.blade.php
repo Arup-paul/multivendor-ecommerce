@@ -21,6 +21,12 @@
                     <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
                 </ul>
             </li>
+            <li class="{{ Request::is('admin/media*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.media.list') }}">
+                    <i class="far fa-file-image"></i>
+                    <span>{{ __('Media') }}</span>
+                </a>
+            </li>
 
         </ul>
 

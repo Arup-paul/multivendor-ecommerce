@@ -66,6 +66,31 @@ class AdminController extends Controller
         }
     }
 
+    public function updateAdminDetails(Request $request){
+        if($request->isMethod('post')){
+            $data = $request->all();
+            $validate = $request->validate([
+                'name' => 'required|regex:/^[\pL\s\-]+$/u',
+                'mobile' => 'required|numeric|unique:admins,mobile,'.auth()->guard('admin')->user()->id,
+                'email' => 'required|email|unique:admins,email,'.auth()->guard('admin')->user()->id,
+            ]);
+
+            $admin = Admin::find(auth()->guard('admin')->user()->id);
+            $admin->name = $data['name'];
+            $admin->mobile = $data['mobile'];
+            $admin->email = $data['email'];
+            $admin->image = $data['preview'];
+            $admin->save();
+
+               return  response()->json([
+                    'message' => __('Admin Details Updated Successfully'),
+                    'redirect' => url()->previous()
+                ]);
+        }
+        return view('admin.profile.profile_details');
+
+    }
+
 
     public function logout() {
         auth()->guard('admin')->logout();

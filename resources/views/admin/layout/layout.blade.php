@@ -8,6 +8,7 @@
 
     <!-- General CSS Files -->
      @include('admin.layout.css')
+
 </head>
 
 <body>

@@ -14,8 +14,16 @@ Route::group(['middleware' => ['admin']],function (){
         //check Admin Password
         Route::post('check-current-password', 'AdminController@checkCurrentPassword')->name('check-current-password');
 
+        //update admin details
+       Route::match(['get','post'],'update-profile-details','AdminController@updateAdminDetails')->name('update-profile-details');
 
     Route::get('update-profile', 'AdminController@updateProfile')->name('update-profile');
+
+
+    //media controller
+    Route::resource('media', 'MediaController');
+    Route::get('medias/list', 'MediaController@list')->name('media.list');
+    Route::post('medias/delete', 'MediaController@destroy')->name('medias.delete');
 });
 
 
