@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use DB;
 
 class AdminController extends Controller
 {
@@ -69,7 +71,7 @@ class AdminController extends Controller
     public function updateAdminDetails(Request $request){
         if($request->isMethod('post')){
             $data = $request->all();
-            $validate = $request->validate([
+            $request->validate([
                 'name' => 'required|regex:/^[\pL\s\-]+$/u',
                 'mobile' => 'required|numeric|unique:admins,mobile,'.auth()->guard('admin')->user()->id,
                 'email' => 'required|email|unique:admins,email,'.auth()->guard('admin')->user()->id,
@@ -90,6 +92,8 @@ class AdminController extends Controller
         return view('admin.profile.profile_details');
 
     }
+
+
 
 
     public function logout() {

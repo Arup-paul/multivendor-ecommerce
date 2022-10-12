@@ -13,14 +13,16 @@
 
             </li>
             <li class="menu-header">Starter</li>
+            @if(auth()->guard('admin')->user()->type == 'vendor')
             <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Vendor Details</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="layout-default.html">Default Layout</a></li>
-                    <li><a class="nav-link" href="layout-transparent.html">Transparent Sidebar</a></li>
-                    <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
+                    <li><a class="nav-link" href="{{route('admin.update-vendor-details','personal')}}">Personal Details</a></li>
+                    <li><a class="nav-link" href="{{route('admin.update-vendor-details','business')}}">Business Details</a></li>
+                    <li><a class="nav-link" href="{{route('admin.update-vendor-details','personal')}}">Bank Details</a></li>
                 </ul>
             </li>
+            @endif
             <li class="{{ Request::is('admin/media*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.media.list') }}">
                     <i class="far fa-file-image"></i>

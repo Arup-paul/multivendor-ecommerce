@@ -17,7 +17,10 @@ Route::group(['middleware' => ['admin']],function (){
         //update admin details
        Route::match(['get','post'],'update-profile-details','AdminController@updateAdminDetails')->name('update-profile-details');
 
-    Route::get('update-profile', 'AdminController@updateProfile')->name('update-profile');
+       //update vendor details
+        Route::match(['get','post'],'update-vendor-details/{slug}','VendorController@updateVendorDetails')->name('update-vendor-details');
+
+       Route::get('update-profile', 'AdminController@updateProfile')->name('update-profile');
 
 
     //media controller

@@ -30,7 +30,7 @@
                                 <input type="text" name="name" id="name" class="form-control" min="8" placeholder="Enter Name" value="{{auth()->guard('admin')->user()->name}}" required="" >
                              </div>
                             <div class="form-group">
-                                <label for="mobile" class="required">Name</label>
+                                <label for="mobile" class="required">Mobile</label>
                                 <input type="text" name="mobile" id="mobile" class="form-control" min="8" placeholder="Enter Mobile Number" value="{{auth()->guard('admin')->user()->mobile}}" required="" >
                             </div>
 
