@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('type');
-            $table->integer('vendor_id');
+            $table->foreignId('vendor_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('mobile');
             $table->string('email')->unique();
             $table->string('password');
