@@ -14,7 +14,7 @@
             <div class="dropdown-menu dropdown-menu-right">
                 @if(auth()->guard('admin')->user()->type == 'superadmin')
                 <a href="{{route('admin.update-profile-details')}}" class="dropdown-item has-icon">
-                    <i class="far fa-user"></i> Profile
+                    <i class="far fa-user"></i> {{ __('Profile') }}
                 </a>
                 @endif
 

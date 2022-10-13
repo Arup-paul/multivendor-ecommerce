@@ -19,7 +19,7 @@
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{route('admin.update-vendor-details','personal')}}">Personal Details</a></li>
                     <li><a class="nav-link" href="{{route('admin.update-vendor-details','business')}}">Business Details</a></li>
-                    <li><a class="nav-link" href="{{route('admin.update-vendor-details','personal')}}">Bank Details</a></li>
+                    <li><a class="nav-link" href="{{route('admin.update-vendor-details','bank')}}">Bank Details</a></li>
                 </ul>
             </li>
             @endif
