@@ -29,5 +29,11 @@
     "Account Number": "Account Number",
     "Bank Name": "Bank Name",
     "Bank IFSC Code": "Bank IFSC Code",
-    "Save": "Save"
+    "Save": "Save",
+    "Admin Type": "Admin Type",
+    "Admin Email": "Admin Email",
+    "Name2": "Name",
+    "Current Password": "Current Password",
+    "New Password": "New Password",
+    "Confirm Password": "Confirm Password"
 }
