@@ -153,19 +153,19 @@
 
                                 <div class="form-group">
                                     <label for="account_holder_name" class="required">{{ __('Account Holder Name') }}</label>
-                                    <input type="text" name="account_holder_name" id="account_holder_name" class="form-control"  placeholder="Enter Account Holder Name" value="{{$vendorDetails['account_holder_name']}}" required="" >
+                                    <input type="text" name="account_holder_name" id="account_holder_name" class="form-control"  placeholder="Enter Account Holder Name" value="{{$vendorDetails['account_holder_name'] ?? ''}}" required="" >
                                 </div>
                                 <div class="form-group">
                                     <label for="account_number" class="required">{{ __('Account Number') }}</label>
-                                    <input type="text" name="account_number" id="account_number"   class="form-control" placeholder="Enter Account Number" value="{{$vendorDetails['account_number']}}"  >
+                                    <input type="text" name="account_number" id="account_number"   class="form-control" placeholder="Enter Account Number" value="{{$vendorDetails['account_number'] ?? ''}}"  >
                                 </div>
                                 <div class="form-group">
                                     <label for="bank_name" class="required">{{ __('Bank Name') }}</label>
-                                    <input type="text" name="bank_name" id="bank_name"   class="form-control" placeholder="Enter Bank Name" value="{{$vendorDetails['bank_name']}}"  >
+                                    <input type="text" name="bank_name" id="bank_name"   class="form-control" placeholder="Enter Bank Name" value="{{$vendorDetails['bank_name'] ?? ''}}"  >
                                 </div>
                                 <div class="form-group">
                                     <label for="bank_ifsc_code" class="required">{{ __('Bank IFSC Code') }}</label>
-                                    <input type="text" name="bank_ifsc_code" id="bank_ifsc_code"  class="form-control" placeholder="Enter Bank IFSC Code" value="{{$vendorDetails['bank_ifsc_code']}}"  >
+                                    <input type="text" name="bank_ifsc_code" id="bank_ifsc_code"  class="form-control" placeholder="Enter Bank IFSC Code" value="{{$vendorDetails['bank_ifsc_code'] ?? ''}}"  >
                                 </div>
 
 

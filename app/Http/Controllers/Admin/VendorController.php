@@ -109,8 +109,8 @@ class VendorController extends Controller
 
                 //validation
                 $request->validate([
-                    'account_holder_name' => 'required',
-                    'account_number' => 'required',
+                    'account_holder_name' => 'required|regex:/^[\pL\s\-]+$/u',
+                    'account_number' => 'required|numeric',
                     'bank_ifsc_code' => 'required',
                     'bank_name' => 'required',
                 ]);
