@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\Country;
 use App\Models\Vendor;
 use App\Models\VendorsBankDetail;
 use App\Models\VendorsBusinessDetail;
@@ -133,7 +134,9 @@ class VendorController extends Controller
 
             }
         }
-        return view('admin.vendors.vendor_details', compact('slug', 'vendorDetails'));
+
+        $countries = Country::where('status', 1)->get();
+        return view('admin.vendors.vendor_details', compact('slug', 'vendorDetails','countries'));
     }
 }
 

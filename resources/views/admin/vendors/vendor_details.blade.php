@@ -41,7 +41,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="country"  >{{ __('Country') }}</label>
-                                <input type="text" name="country" id="country" class="form-control"  placeholder="Enter Country Name" value="{{$vendorDetails['country']}}"  >
+                                <select name="country" id="" class="form-control">
+                                    <option value="">Select Country</option>
+                                    @foreach($countries as $country)
+                                    <option value="{{$country->en}}" @if($vendorDetails['country'] == $country->en) selected @endif>{{$country->en}}</option>
+                                    @endforeach
+                                </select>
+
                             </div>
                             <div class="form-group">
                                 <label for="pincode"  >{{ __('Pin Code') }}</label>
