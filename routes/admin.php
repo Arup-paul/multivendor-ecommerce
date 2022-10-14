@@ -22,6 +22,10 @@ Route::group(['middleware' => ['admin']],function (){
 
        Route::get('update-profile', 'AdminController@updateProfile')->name('update-profile');
 
+       //admin management
+    Route::get('admins','AdminManagementController@admins')->name('admins');
+    Route::get('/send-email/{id}','AdminManagementController@sendEmail')->name('admins.send-email');
+    Route::get('vendor-details/{id}','AdminManagementController@vendorDetails')->name('vendor-details');
 
     //media controller
     Route::resource('media', 'MediaController');

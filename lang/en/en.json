@@ -35,5 +35,7 @@
     "Name2": "Name",
     "Current Password": "Current Password",
     "New Password": "New Password",
-    "Confirm Password": "Confirm Password"
+    "Confirm Password": "Confirm Password",
+  "Personal Information": "Personal Information",
+    "Business Details": "Business Details"
 }

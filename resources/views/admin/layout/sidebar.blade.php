@@ -23,12 +23,23 @@
                 </ul>
             </li>
             @endif
+
+            @if(auth()->guard('admin')->user()->type == 'superadmin')
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Admin Management</span></a>
+                <ul class="dropdown-menu">
+                    <li><a class="nav-link" href="{{route('admin.admins')}}">Admins</a></li>
+                 </ul>
+            </li>
+
             <li class="{{ Request::is('admin/media*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.media.list') }}">
                     <i class="far fa-file-image"></i>
                     <span>{{ __('Media') }}</span>
                 </a>
             </li>
+
+         @endif
 
         </ul>
 
