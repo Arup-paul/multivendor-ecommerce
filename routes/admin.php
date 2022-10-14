@@ -24,6 +24,7 @@ Route::group(['middleware' => ['admin']],function (){
 
        //admin management
     Route::get('admins','AdminManagementController@admins')->name('admins');
+    Route::post('admins/update-status/{id}','AdminManagementController@updateStatus')->name('admins.update-status');
     Route::get('/send-email/{id}','AdminManagementController@sendEmail')->name('admins.send-email');
     Route::get('vendor-details/{id}','AdminManagementController@vendorDetails')->name('vendor-details');
 

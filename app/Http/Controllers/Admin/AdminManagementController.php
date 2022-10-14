@@ -34,6 +34,23 @@ class AdminManagementController extends Controller
         return view('admin.admins.vendorDetails',compact('admin'));
     }
 
+    public function updateStatus($id)
+    {
+        $admin = Admin::findOrFail($id);
+        if ($admin->status == 1) {
+            $admin->status = 0;
+        }else{
+            $admin->status = 1;
+        }
+        $admin->save();
+
+        return  response()->json([
+            'message' => __('Status Updated Successfully'),
+            'redirect' => url()->previous()
+        ]);
+
+    }
+
     public function sendEmail(Request $request)
     {
         $request->validate([

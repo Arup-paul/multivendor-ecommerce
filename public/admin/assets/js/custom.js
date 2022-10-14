@@ -79,6 +79,48 @@
     });
 
 
+    /*-------------------------------
+ Update Status Confirmation Alert
+ -----------------------------------*/
+    $('.updateStatus').on('click', function(event) {
+        let url = $(this).data('action');
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to change this Status?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, change it!'
+        }).then((result) => {
+            if (result.value) {
+                event.preventDefault();
+                $.ajax({
+                    type: 'post',
+                    url: url,
+                    success: function(response){
+                        if (response.redirect){
+                            if (response.message){
+                                Notify('success', response)
+                            }
+                            setTimeout(() => {
+                                window.location.href = response.redirect;
+                            },500)
+
+                        }else{
+                            Notify('success', null, response.message)
+                        }
+                    },
+                    error: function(xhr, status, error)
+                    {
+                        Notify('error', xhr)
+                    }
+                })
+            }
+        })
+    });
+
+
 
 
 

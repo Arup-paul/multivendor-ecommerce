@@ -129,7 +129,7 @@
                                     @else
                                         <span class="badge badge-danger">{{ __('Inactive') }}</span>
                                     @endif
-
+                                </td>
                                 <td>
                                     <button class="btn btn-primary dropdown-toggle" type="button"
                                             id="dropdownMenuButton2" data-toggle="dropdown"
@@ -138,6 +138,11 @@
                                         {{ __('Action') }}
                                     </button>
                                     <div class="dropdown-menu">
+                                        <a class="dropdown-item has-icon updateStatus"
+                                           href="javascript:void(0);" data-action="{{route('admin.admins.update-status',$admin->id)}}">
+                                            <i class="fa fa-check-circle @if($admin->status == 1) text text-success @else text text-danger @endif "></i>
+                                            {{ __('Change Status') }}
+                                        </a>
                                         @if($admin->type == 'vendor')
                                             <a class="dropdown-item has-icon"
                                                href="{{route('admin.vendor-details',$admin->id)}}">
@@ -145,6 +150,7 @@
                                                 {{ __('View') }}
                                             </a>
                                         @endif
+
 
                                     </div>
                                 </td>
