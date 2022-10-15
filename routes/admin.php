@@ -28,6 +28,10 @@ Route::group(['middleware' => ['admin']],function (){
     Route::get('/send-email/{id}','AdminManagementController@sendEmail')->name('admins.send-email');
     Route::get('vendor-details/{id}','AdminManagementController@vendorDetails')->name('vendor-details');
 
+    //section management
+    Route::post('sections/mass-destroy','SectionController@massDestroy')->name('sections.mass-destroy');
+    Route::resource('sections','SectionController');
+
     //media controller
     Route::resource('media', 'MediaController');
     Route::get('medias/list', 'MediaController@list')->name('media.list');

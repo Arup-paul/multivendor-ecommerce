@@ -33,6 +33,13 @@
                     </a>
             </li>
 
+                <li class="{{ Request::is('admin/sections*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{route('admin.sections.index')}}">
+                        <i class="fa fa-puzzle-piece"></i>
+                        <span>{{ __('Section') }}</span>
+                    </a>
+                </li>
+
             <li class="{{ Request::is('admin/media*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.media.list') }}">
                     <i class="far fa-file-image"></i>

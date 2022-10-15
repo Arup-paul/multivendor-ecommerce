@@ -57,9 +57,9 @@ $(document).on('submit', '.ajaxform', function (e) {
         },
 
         success: function (response) {
+            console.log(response);
             $submitBtn.removeAttr('disabled');
             $submitBtn.html($submitBtnOld);
-
             Notify('success', response)
 
             if (response.redirect){
@@ -81,6 +81,96 @@ $(document).on('submit', '.ajaxform', function (e) {
             }
         }
     });
+});
+
+$(document).on('submit', '.ajaxform_with_reset', function (e) {
+    e.preventDefault();
+
+    var $submitBtn = $('.basic-btn')
+    var $submitBtnOld = $submitBtn.html();
+
+    $.ajax({
+        type: 'POST',
+        url: this.action,
+        data: new FormData(this),
+        dataType: 'json',
+        contentType: false,
+        cache: false,
+        processData: false,
+        beforeSend: function () {
+            $submitBtn.html("Please Wait....");
+            $submitBtn.attr('disabled', '');
+        },
+
+        success: function (response) {
+            $submitBtn.removeAttr('disabled');
+            $submitBtn.html($submitBtnOld);
+            $('.ajaxform_with_reset').trigger('reset');
+            Notify('success', response)
+
+            if (response.redirect){
+                window.setTimeout(function () {
+                    location.href = response.redirect;
+                }, 2000)
+            }
+        },
+        error: function (xhr, status, error) {
+            $submitBtn.html($submitBtnOld);
+            $submitBtn.removeAttr('disabled');
+
+            if (xhr.responseJSON.errors){
+                $.each(xhr.responseJSON.errors, function (i, error) {
+                    Notify('error', null, error[0])
+                })
+            }else{
+                Notify('error', xhr)
+            }
+        }
+    });
+});
+
+$(".ajaxform_with_reload").on('submit', function (e) {
+    e.preventDefault();
+
+    var $submitBtn = $('.basic-btn')
+    var $submitBtnOld = $submitBtn.html();
+
+        $.ajax({
+            type: 'POST',
+            url: this.action,
+            data: new FormData(this),
+            dataType: 'json',
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function () {
+                $submitBtn.html("Please Wait....");
+                $submitBtn.attr('disabled', '');
+            },
+
+            success: function (response) {
+                $submitBtn.removeAttr('disabled');
+                $submitBtn.html($submitBtnOld);
+                Notify('success', response)
+
+                window.setTimeout(function () {
+                    location.reload();
+                }, 1500);
+
+            },
+            error: function (xhr, status, error) {
+                $submitBtn.html($submitBtnOld);
+                $submitBtn.removeAttr('disabled');
+
+                if (xhr.responseJSON.message) {
+                    Notify('error', xhr.responseJSON.message);
+                } else if (xhr.responseJSON) {
+                    Notify('error', xhr.responseJSON);
+                } else {
+                    Notify('error', xhr.responseText);
+                }
+            }
+        });
 });
 
 
