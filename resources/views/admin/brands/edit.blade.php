@@ -1,8 +1,8 @@
 @extends('admin.layout.layout',[
-    'prev' => route('admin.sections.index')
+    'prev' => route('admin.brands.index')
 ])
 
-@section('title', 'Update Section')
+@section('title', 'Update Brand')
 
 @section('content')
     <section class="section">
@@ -12,18 +12,18 @@
                 <div class="card">
 
                     <div class="card-body overflow-auto" style="max-height: 600px">
-                        <form method="POST" action="{{route('admin.sections.update',$section->id)}}" class="ajaxform"  >
+                        <form method="POST" action="{{route('admin.brands.update',$brand->id)}}" class="ajaxform"  >
                             @csrf
                             @method('PUT')
                             <div class="form-group">
                                 <label for="name" class="required">{{ __('Name') }} </label>
-                                <input type="text" value="{{$section->name}}"  name="name" class="form-control"   >
+                                <input type="text" value="{{$brand->name}}"  name="name" class="form-control"   >
                             </div>
                             <div class="form-group">
                                 <label for="password" class="required">{{ __('Status') }}</label>
                                 <select name="status" class="form-control">
-                                    <option value="1" @selected($section->status == 1)>{{ __('Active') }}</option>
-                                    <option value="0" @selected($section->status == 0)>{{ __('Inactive') }}</option>
+                                    <option value="1" @selected($brand->status == 1)>{{ __('Active') }}</option>
+                                    <option value="0" @selected($brand->status == 0)>{{ __('Inactive') }}</option>
                                 </select>
                             </div>
 

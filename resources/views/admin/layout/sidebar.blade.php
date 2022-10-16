@@ -47,6 +47,13 @@
                     </a>
                 </li>
 
+                <li class="{{ Request::is('admin/brands*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{route('admin.brands.index')}}">
+                        <i class="fab fa-bandcamp"></i>
+                        <span>{{ __('Brand') }}</span>
+                    </a>
+                </li>
+
             <li class="{{ Request::is('admin/media*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.media.list') }}">
                     <i class="far fa-file-image"></i>
