@@ -121,8 +121,24 @@
     });
 
 
+    /*-------------------------------
+ Append Categories Level
+ -----------------------------------*/
 
-
+    $('#section_id').on('change', function() {
+         var section_id = $(this).val();
+         $.ajax({
+             'type': 'get',
+             'url':'/admin/append-categories-level',
+              'data': {section_id:section_id},
+             success: function(resp){
+                 console.log(resp)
+                 $('#appendCategoriesLevel').html(resp);
+             },error: function(){
+                 Notify('error', 'Something Wrong')
+             }
+         })
+    });
 
 
     /*-------------------------------

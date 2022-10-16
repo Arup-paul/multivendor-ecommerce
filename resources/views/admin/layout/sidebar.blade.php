@@ -40,6 +40,13 @@
                     </a>
                 </li>
 
+                <li class="{{ Request::is('admin/categories*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{route('admin.categories.index')}}">
+                        <i class="fa fa-tasks"></i>
+                        <span>{{ __('Category') }}</span>
+                    </a>
+                </li>
+
             <li class="{{ Request::is('admin/media*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.media.list') }}">
                     <i class="far fa-file-image"></i>

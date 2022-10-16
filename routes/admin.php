@@ -32,6 +32,11 @@ Route::group(['middleware' => ['admin']],function (){
     Route::post('sections/mass-destroy','SectionController@massDestroy')->name('sections.mass-destroy');
     Route::resource('sections','SectionController');
 
+    //category
+    Route::get('append-categories-level','CategoryController@appendCategoriesLevel')->name('append-categories-level');
+    Route::post('categories/mass-destroy','CategoryController@massDestroy')->name('categories.mass-destroy');
+    Route::resource('categories','CategoryController');
+
     //media controller
     Route::resource('media', 'MediaController');
     Route::get('medias/list', 'MediaController@list')->name('media.list');

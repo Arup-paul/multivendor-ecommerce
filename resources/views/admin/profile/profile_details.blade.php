@@ -34,7 +34,7 @@
                                 <input type="text" name="mobile" id="mobile" class="form-control" min="8" placeholder="Enter Mobile Number" value="{{auth()->guard('admin')->user()->mobile}}" required="" >
                             </div>
 
-                            {{ mediasection([
+                                  {{ mediasection([
                                              'input_name' => 'preview',
                                               'input_id' => 'preview',
                                               'preview' => auth()->guard('admin')->user()->image ?? null,

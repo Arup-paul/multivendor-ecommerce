@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(VendorBankTableSeeder::class);
         $this->call(CountryTableSeeder::class);
         $this->call(SectionTableSeeder::class);
+        $this->call(CategoryTableSeeder::class);
 
 
     }
