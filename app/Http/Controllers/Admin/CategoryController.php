@@ -53,7 +53,7 @@ public function index()
     public function edit($id){
         $sections = Section::where('status',1)->get();
         $category = Category::findOrFail($id);
-          $getCategories = Category::where(['section_id'=>$category->section_id])->get();
+        $getCategories = Category::where(['section_id'=>$category->section_id,'parent_id' => $category->parent_id])->get();
 
         return view('admin.categories.edit',compact('getCategories','sections','category'));
     }

@@ -11,7 +11,7 @@
             <div class="col-6">
                 <div class="card">
 
-                    <div class="card-body overflow-auto" style="max-height: 600px">
+                    <div class="card-body" >
                         <form method="POST" action="{{route('admin.sections.store')}}" class="ajaxform_with_reset"  >
                             @csrf
                             <div class="form-group">
