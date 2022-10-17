@@ -74,8 +74,8 @@
                             <div class="form-group">
                                 <label for="status" class="required">{{ __('Status') }}</label>
                                 <select name="status" class="form-control">
-                                    <option value="1" @selected($category->id == 1)>{{ __('Active') }}</option>
-                                    <option value="0" @selected($category->id == 0)>{{ __('Inactive') }}</option>
+                                    <option value="1" @selected($category->status == 1)>{{ __('Active') }}</option>
+                                    <option value="0" @selected($category->status == 0)>{{ __('Inactive') }}</option>
                                 </select>
                             </div>
                             <div class="form-group">

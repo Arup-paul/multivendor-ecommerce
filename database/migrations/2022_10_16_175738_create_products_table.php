@@ -23,15 +23,15 @@ return new class extends Migration
             $table->string('product_name');
             $table->string('product_color');
             $table->string('product_code');
-            $table->string('product_price');
-            $table->string('product_discount');
+            $table->float('product_price');
+            $table->float('product_discount');
             $table->string('product_weight');
             $table->string('product_image');
             $table->string('description');
             $table->string('meta_title');
             $table->string('meta_keywords');
             $table->string('meta_description');
-            $table->enum('featured',['is_featured', 'is_latest', 'is_trending', 'is_best_rated', 'is_most_viewed']);
+            $table->enum('featured',['is_featured', 'is_latest', 'is_trending', 'is_best_rated', 'is_most_viewed'])->nullable();
             $table->enum('status',[1, 0])->default(1);
             $table->timestamps();
         });

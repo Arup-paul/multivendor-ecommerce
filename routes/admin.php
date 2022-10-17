@@ -41,6 +41,10 @@ Route::group(['middleware' => ['admin']],function (){
     Route::post('brands/mass-destroy','BrandController@massDestroy')->name('brands.mass-destroy');
     Route::resource('brands','BrandController');
 
+    //product
+    Route::post('products/mass-destroy','ProductController@massDestroy')->name('products.mass-destroy');
+    Route::resource('products','ProductController');
+
     //media controller
     Route::resource('media', 'MediaController');
     Route::get('medias/list', 'MediaController@list')->name('media.list');

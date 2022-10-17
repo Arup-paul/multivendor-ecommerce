@@ -54,6 +54,13 @@
                     </a>
                 </li>
 
+                <li class="{{ Request::is('admin/products*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{route('admin.products.index')}}">
+                        <i class="fab fa-product-hunt"></i>
+                        <span>{{ __('Products') }}</span>
+                    </a>
+                </li>
+
             <li class="{{ Request::is('admin/media*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.media.list') }}">
                     <i class="far fa-file-image"></i>
