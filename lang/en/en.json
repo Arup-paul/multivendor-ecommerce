@@ -38,5 +38,8 @@
     "Confirm Password": "Confirm Password",
   "Personal Information": "Personal Information",
     "Business Details": "Business Details",
-  "Admin Management": "Admin Management"
+  "Admin Management": "Admin Management",
+  "Active": "Active",
+    "Inactive": "Inactive",
+    "Product Attribute": "Product Attribute"
 }

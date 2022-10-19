@@ -58,11 +58,24 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a class="btn btn-info"
-                                       href="{{route('admin.products.edit',$product->id)}}">
-                                        <i class="fa fa-edit"></i>
-                                        {{ __('Edit') }}
-                                    </a>
+                                    <button class="btn btn-primary dropdown-toggle" type="button"
+                                            id="dropdownMenuButton2" data-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="false">
+                                        {{ __('Action') }}
+                                    </button>
+                                    <div class="dropdown-menu">
+                                            <a class="dropdown-item has-icon"
+                                               href="{{route('admin.products.edit',$product->id)}}">
+                                                <i class="fa fa-edit"></i>
+                                                {{ __('Edit') }}
+                                            </a>
+                                        <a class="dropdown-item has-icon"
+                                           href="{{route('admin.product-attributes.create',$product->id)}}">
+                                            <i class="fa fa-plus-square"></i>
+                                            {{ __('Attribute') }}
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

@@ -45,6 +45,11 @@ Route::group(['middleware' => ['admin']],function (){
     Route::post('products/mass-destroy','ProductController@massDestroy')->name('products.mass-destroy');
     Route::resource('products','ProductController');
 
+    //product attribute
+    Route::get('product-attributes/{id}','ProductAttributeController@create')->name('product-attributes.create');
+    Route::post('product-attributes','ProductAttributeController@store')->name('product-attributes.store');
+    Route::post('product-attributes/update','ProductAttributeController@update')->name('product-attributes.update');
+
     //media controller
     Route::resource('media', 'MediaController');
     Route::get('medias/list', 'MediaController@list')->name('media.list');
