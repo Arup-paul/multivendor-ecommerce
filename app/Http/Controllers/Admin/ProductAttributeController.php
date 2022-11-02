@@ -39,7 +39,11 @@ class ProductAttributeController extends Controller
              $productAttribute->save();
          }
 
-         return response()->json( [ 'message' =>  'Product Attribute created successfully'] );
+         return response()->json([
+             'message' => 'Product Attribute created successfully',
+             'redirect' => route('admin.product-attributes.create',$productAttribute->product_id)
+         ]);
+
      }
 
      public function update(Request $request){
@@ -65,7 +69,10 @@ class ProductAttributeController extends Controller
              $productAttribute->save();
          }
 
-         return response()->json( [ 'message' =>  'Product Attribute Updated successfully'] );
+         return response()->json([
+             'message' => 'Product Attribute created successfully',
+             'redirect' => route('admin.product-attributes.create',$productAttribute->product_id)
+         ]);
      }
 
 }

@@ -44,7 +44,7 @@
                                 </div>
                             </div>
 
-                            <form method="POST" action="{{route('admin.product-attributes.store')}}" class="ajaxform_with_reset"   >
+                            <form method="POST" action="{{route('admin.product-attributes.store')}}" class="ajaxform"   >
                                 @csrf
 
                                 <input type="hidden" name="product_id" value="{{$product->id}}">
