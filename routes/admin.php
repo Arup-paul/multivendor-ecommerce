@@ -50,6 +50,13 @@ Route::group(['middleware' => ['admin']],function (){
     Route::post('product-attributes','ProductAttributeController@store')->name('product-attributes.store');
     Route::post('product-attributes/update','ProductAttributeController@update')->name('product-attributes.update');
 
+    //product image
+    Route::get('product-images/{id}','ProductImageController@create')->name('product-images.create');
+    Route::post('product-images/','ProductImageController@store')->name('product-images.store');
+    Route::post('product-images/update','ProductImageController@update')->name('product-images.update');
+
+
+
     //media controller
     Route::resource('media', 'MediaController');
     Route::get('medias/list', 'MediaController@list')->name('media.list');

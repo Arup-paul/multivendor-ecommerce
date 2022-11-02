@@ -75,6 +75,11 @@
                                             <i class="fa fa-plus-square"></i>
                                             {{ __('Attribute') }}
                                         </a>
+                                        <a class="dropdown-item has-icon"
+                                           href="{{route('admin.product-images.create',$product->id)}}">
+                                            <i class="fa fa-image"></i>
+                                            {{ __('Add Multiple Image') }}
+                                        </a>
                                     </div>
                                 </td>
                             </tr>
