@@ -30,7 +30,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-2 col-md-6 col-xs-6">
-                    <a href="index-2.html" class="biolife-logo"><img src="assets/images/organic-3.png" alt="biolife logo" width="135" height="34"></a>
+                    <a href="index-2.html" class="biolife-logo"><img src="{{asset('frontend/assets/images/organic-3.png')}}" alt="biolife logo" width="135" height="34"></a>
                 </div>
                 <div class="col-lg-6 col-md-7 hidden-sm hidden-xs">
                     <div class="primary-menu">
