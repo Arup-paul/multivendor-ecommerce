@@ -1,9 +1,11 @@
  @extends('frontend.layouts.layouts')
 
-        
-     @section('content')    
-     
-     @include('frontend.layouts.banner')
+
+     @section('content')
+
+         @if($sliders->count() > 0)
+             @include('frontend.layouts.banner')
+         @endif
             <!--Block 03: Product Tab-->
             <div class="product-tab z-index-20 sm-margin-top-193px xs-margin-top-30px">
                 <div class="container">
@@ -1362,7 +1364,7 @@
                     </div>
                 </div>
             </div>
- 
+
 
             <!--Block 06: Products-->
             <div class="Product-box sm-margin-top-96px xs-margin-top-0">
@@ -1941,7 +1943,6 @@
                     </ul>
                 </div>
             </div>
-  
+
   @endsection
 
- 
