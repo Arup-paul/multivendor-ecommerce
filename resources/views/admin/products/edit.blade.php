@@ -98,6 +98,7 @@
                                     <option value="is_latest" @selected($product->featured == 'is_latest') >{{ __('Is Latest') }}</option>
                                     <option value="is_trending" @selected($product->featured == 'is_trending') >{{ __('Is Trending') }}</option>
                                     <option value="is_best_rated" @selected($product->featured == 'is_best_rated') >{{ __('Is Best Rated') }}</option>
+                                    <option value="is_best_seller" @selected($product->featured == 'is_best_seller') >{{ __('Is Best Seller') }}</option>
                                     <option value="is_most_viewed" @selected($product->featured == 'is_most_viewed') >{{ __('Is Most Viewed') }}</option>
                                 </select>
                             </div>

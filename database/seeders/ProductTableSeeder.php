@@ -110,6 +110,6 @@ class ProductTableSeeder extends Seeder
 
 //        Product::insert($product);
 
-        Product::factory()->count(10)->create();
+        Product::factory()->count(100)->create();
     }
 }

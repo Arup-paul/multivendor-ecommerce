@@ -95,6 +95,7 @@
                                     <option value="is_latest">{{ __('Is Latest') }}</option>
                                     <option value="is_trending">{{ __('Is Trending') }}</option>
                                     <option value="is_best_rated">{{ __('Is Best Rated') }}</option>
+                                    <option value="is_best_seller">{{ __('Is Best Seller') }}</option>
                                     <option value="is_most_viewed">{{ __('Is Most Viewed') }}</option>
                                 </select>
                             </div>

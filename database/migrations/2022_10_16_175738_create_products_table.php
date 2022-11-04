@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('meta_title');
             $table->string('meta_keywords');
             $table->string('meta_description');
-            $table->enum('featured',['is_featured', 'is_latest', 'is_trending', 'is_best_rated', 'is_most_viewed'])->nullable();
+            $table->enum('featured',['is_featured', 'is_latest', 'is_trending', 'is_best_rated', 'is_most_viewed','is_best_seller'])->nullable();
             $table->enum('status',[1, 0])->default(1);
             $table->timestamps();
         });
