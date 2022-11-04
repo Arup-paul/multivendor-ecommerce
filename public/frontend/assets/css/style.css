@@ -6784,7 +6784,7 @@ body.open-overlay #overlay{
 }
 .slider-opt03__layout01 .media{
     z-index: 10;
-    background-image: url('../images/home-03/slide-01.jpg');
+    /*background-image: url('../images/home-03/slide-01.jpg');*/
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -6794,7 +6794,7 @@ body.open-overlay #overlay{
     display: inline-block;
     position: absolute;
     top: 4%;
-    right: 35%;
+    right: 5%;
     z-index: 5;
     margin-top: 10px;
     margin-right: -2px;
@@ -6811,8 +6811,8 @@ body.open-overlay #overlay{
 .slider-opt03__layout01 .text-content{
     display: inline-block;
     position: absolute;
-    top: 18%;
-    right: 13%;
+    top: 25%;
+    left: 10%;
     margin: 0 5px 0 0;
     z-index: 20;
     -webkit-transition: transform 0.7s ease 0.7s;
@@ -6824,7 +6824,6 @@ body.open-overlay #overlay{
     -ms-transform: scale(0);
     -o-transform: scale(0);
     transform: scale(0);
-    background-color: rgba(255, 255, 255, 0.8);
     color: rgb(255, 255, 255);
     border-color: rgb(102, 102, 102);
     padding: 20px 50px 40px;
@@ -6848,16 +6847,16 @@ body.open-overlay #overlay{
 .slider-opt03__layout01 .text-content .second-line{
     font-size: 60px;
     line-height: 60px;
-    color: #333333;
-    font-weight: 700;
+    color: #ffffff;
+    font-weight: 900;
     display: block;
     margin: 0;
-    max-width: 365px;
+    width:365px;
 }
 .slider-opt03__layout01 .text-content .third-line{
     font-size: 22px;
     line-height: 1;
-    color: #000000;
+    color: #ffffff;
     display: block;
     margin: 13px 0 0;
 }
@@ -11728,7 +11727,7 @@ body.open-quickview-block .biolife-quickview-block{
     .contain-product__deal-layout img{
         display: inline-block;
     }
-    .biolife-banner__style-01 .text-content .third-line, 
+    .biolife-banner__style-01 .text-content .third-line,
     .biolife-banner__style-01 .text-content .second-line{
         font-size: 30px;
         line-height: 40px;
@@ -13232,11 +13231,11 @@ body.open-quickview-block .biolife-quickview-block{
     .biolife-banner__style-04 .text-content{
         min-height: auto;
     }
-    .biolife-banner__style-14 .text2, 
-    .biolife-banner__style-09 .text2, 
+    .biolife-banner__style-14 .text2,
+    .biolife-banner__style-09 .text2,
     .biolife-banner__style-03 .text2,
-    .biolife-banner__style-13 .text2, 
-    .biolife-banner__style-08 .text2, 
+    .biolife-banner__style-13 .text2,
+    .biolife-banner__style-08 .text2,
     .biolife-banner__style-02 .text2{
         font-size: 25px;
     }
