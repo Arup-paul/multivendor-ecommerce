@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('category_image')->nullable();
             $table->integer('category_discount')->nullable();
             $table->string('description')->nullable();
-            $table->string('url')->nullable();
+            $table->string('url')->nullable()->unique();
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();
             $table->string('meta_keywords')->nullable();

@@ -7,12 +7,15 @@
             <a class="lookup btn_call_quickview" href="#"><i class="biolife-icon icon-search"></i></a>
         </div>
         <div class="info">
-            <b class="categories">{{$product->category->category_name}}</b>
+            <b class="categories">{{$product->category->category_name}}&nbsp;/&nbsp;{{$product->brand->name}}</b>
+            <b class="categories">{{$product->product_color}}</b>
             <h4 class="product-title"><a href="#" class="pr-name">{{$product->product_name}}</a></h4>
-
+             @php
+                 $discount =\App\Models\Product::getDiscountPrice($product->id)
+             @endphp
             <div class="price ">
-                @if(\App\Models\Product::getDiscountPrice($product->id) != 0)
-                    <ins><span class="price-amount"><span class="currencySymbol">৳</span>{{\App\Models\Product::getDiscountPrice($product->id)}}</span></ins>
+                @if( $discount != 0)
+                    <ins><span class="price-amount"><span class="currencySymbol">৳</span>{{$discount}}</span></ins>
                     <del><span class="price-amount"><span class="currencySymbol">৳</span>{{$product->product_price}}</span></del>
                 @else
                     <ins><span class="price-amount"><span class="currencySymbol">$</span>{{$product->product_price}}</span></ins>

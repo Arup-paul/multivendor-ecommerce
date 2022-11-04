@@ -19,6 +19,11 @@ class Category extends Model
     }
 
     public function subcategories(){
-        return $this->hasMany(Category::class,'parent_id')->where('status',1);
+        return $this->hasMany(Category::class,'parent_id')->where('status',1)->select(['id','parent_id','category_name','url','category_image']);
     }
+
+    public function products(){
+        return $this->hasMany(Product::class,'category_id')->where('status',1);
+    }
+
 }

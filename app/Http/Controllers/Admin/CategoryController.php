@@ -28,6 +28,7 @@ public function index()
           'category_name' => 'required',
            'category_discount' => 'numeric',
            'section_id' => 'required',
+           'url' => 'required|unique:categories',
        ],[
            'section_id.required' => 'Section is required',
        ]);
@@ -63,6 +64,7 @@ public function index()
             'category_name' => 'required',
             'category_discount' => 'numeric',
             'section_id' => 'required',
+            'url' => 'required|unique:categories,url,'.$id,
         ],[
             'section_id.required' => 'Section is required',
         ]);
