@@ -68,6 +68,13 @@
                 </a>
             </li>
 
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-cog"></i> <span>Frontend Setting</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="{{route('admin.sliders.index')}}">Slider</a></li>
+                    </ul>
+                </li>
+
          @endif
 
         </ul>

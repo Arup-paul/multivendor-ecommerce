@@ -56,6 +56,11 @@ Route::group(['middleware' => ['admin']],function (){
     Route::post('product-images/update','ProductImageController@update')->name('product-images.update');
 
 
+    //fronted settings
+    Route::post('sliders/mass-destroy','SliderController@massDestroy')->name('sliders.mass-destroy');
+    Route::resource('sliders','SliderController');
+
+
 
     //media controller
     Route::resource('media', 'MediaController');

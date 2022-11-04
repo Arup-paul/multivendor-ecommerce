@@ -109,9 +109,6 @@ public function index()
             return  response()->json(   __('Please Select Action'),422 );
         }
 
-
-
-
     }
 
     public function appendCategoriesLevel(Request $request){
