@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('product_color');
             $table->string('product_code');
             $table->float('product_price');
-            $table->float('product_discount');
-            $table->string('product_weight');
+            $table->float('product_discount')->default(0);
+            $table->float('product_weight')->default(0);
             $table->string('product_image');
             $table->string('description');
             $table->string('meta_title');

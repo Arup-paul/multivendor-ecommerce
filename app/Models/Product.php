@@ -37,5 +37,23 @@ class Product extends Model
         return $this->hasMany(ProductImage::class,'product_id');
     }
 
+    public static function getDiscountPrice($product_id){
+        $product = Product::select(['product_price','product_discount','category_id'])
+            ->where('id',$product_id)
+            ->first();
+       $category = Category::select(['category_discount'])
+            ->where('id',$product->category_id)
+            ->first();
+        $discountPrice = 0;
+        if($product->product_discount > 0){
+            $discountPrice = $product->product_price - ($product->product_price * ($product->product_discount/100));
+        }elseif($category->category_discount > 0){
+            $discountPrice = $product->product_price - ($product->product_price * ($category->category_discount/100));
+        }else{
+            $discountPrice = $product->product_price;
+        }
+        return number_format($discountPrice);
+    }
+
 
 }
