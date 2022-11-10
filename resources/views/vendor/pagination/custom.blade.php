@@ -1,4 +1,13 @@
 @if ($paginator->hasPages())
+    <style>
+        .pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
+            z-index: 3;
+            color: #fff;
+            background-color: #3db53d;
+            border-color: #3db53d;
+            cursor: default;
+        }
+    </style>
     <nav>
         <ul class="pagination panigation-contain">
             {{-- Previous Page Link --}}

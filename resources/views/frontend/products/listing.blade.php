@@ -104,7 +104,8 @@
                                                 </a>
                                             </div>
                                             <div class="info">
-                                                <b class="categories">{{$product->category->category_name}}&nbsp;/&nbsp;{{$product->brand->name}}</b>
+                                                <b class="categories"><a href="">{{$product->category->category_name}}</a>&nbsp;/&nbsp;<a
+                                                        href="">{{$product->brand->name}}</a></b>
                                                 <b class="categories">{{$product->product_color}}</b>
                                                 <h4 class="product-title"><a href="#" class="pr-name">{{$product->product_name}}</a></h4>
                                                 <div class="price">
@@ -141,14 +142,7 @@
                         </div>
 
                         <div class="biolife-panigations-block">
-                            <ul class="panigation-contain">
-                                <li><span class="current-page">1</span></li>
-                                <li><a href="#" class="link-page">2</a></li>
-                                <li><a href="#" class="link-page">3</a></li>
-                                <li><span class="sep">....</span></li>
-                                <li><a href="#" class="link-page">20</a></li>
-                                <li><a href="#" class="link-page next"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                            </ul>
+                            {{$products->links('vendor.pagination.custom')}}
                         </div>
 
                     </div>

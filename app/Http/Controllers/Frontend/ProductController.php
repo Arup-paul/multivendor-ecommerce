@@ -11,7 +11,7 @@ class ProductController extends Controller
 {
       public function listing(){
           $url = request()->segment(1);
-          $category =  Category::with('subcategories')->whereUrl($url)->whereStatus(1)->select(['parent_id','category_name','url','id','category_image'])->first();
+          $category =  Category::with('subcategories')->whereUrl($url)->whereStatus(1)->select(['parent_id','category_name','url','id','category_image','description'])->first();
             if($category) {
 
                if($category->parent_id == null){
