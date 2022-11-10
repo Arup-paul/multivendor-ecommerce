@@ -19,7 +19,7 @@ Route::namespace('App\Http\Controllers\Frontend')->group(function(){
     //listing
     $category = \App\Models\Category::select(['url'])->whereStatus(1)->pluck('url');
     foreach($category as $url){
-        Route::get('/'.$url,'ProductController@listing')->name('listing');
+        Route::match(['get','post'],'/'.$url,'ProductController@listing')->name('listing');
     }
 });
 

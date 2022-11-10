@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/assets/css/slick.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/assets/css/style.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('frontend/assets/css/main-color.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('frontend/assets/js/plugin/toastifyjs/toastify.css')}}">
 
 
 @yield('frontend_css')
