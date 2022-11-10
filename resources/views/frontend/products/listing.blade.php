@@ -74,16 +74,20 @@
                             <div class="flt-item to-right">
                                 <span class="flt-title">Sort</span>
                                 <div class="wrap-selectors">
-                                    <div class="selector-item orderby-selector">
-                                        <select name="orderby" class="orderby" aria-label="Shop order">
-                                            <option value="menu_order" selected="selected">Default sorting</option>
-                                            <option value="popularity">popularity</option>
-                                            <option value="rating">average rating</option>
-                                            <option value="date">newness</option>
-                                            <option value="price">price: low to high</option>
-                                            <option value="price-desc">price: high to low</option>
-                                        </select>
-                                    </div>
+
+                                        <div class="selector-item orderby-selector">
+                                            <form name="sortProducts" id="sortProducts">
+                                            <select name="sort" id="sort" class="orderby" aria-label="Shop order">
+                                                <option value="" selected="selected">sorting</option>
+                                                <option value="latest" @if(isset($_GET['sort']) && $_GET['sort'] == 'latest') selected @endif>Latest</option>
+                                                <option value="lowest-price" @if(isset($_GET['sort']) && $_GET['sort'] == 'lowest-price') selected @endif>price: low to high</option>
+                                                <option value="highest-price" @if(isset($_GET['sort']) && $_GET['sort'] == 'highest-price') selected @endif>price: high to low</option>
+                                                <option value="name-a-z" @if(isset($_GET['sort']) && $_GET['sort'] == 'name-a-z') selected @endif >Sort: Name A-Z</option>
+                                                <option value="name-z-a" @if(isset($_GET['sort']) && $_GET['sort'] == 'name-z-a') selected @endif >Sort: Name Z-A</option>
+                                            </select>
+                                            </form>
+                                        </div>
+
                                     <div class="selector-item viewmode-selector">
                                         <a href="category-grid-left-sidebar.html" class="viewmode grid-mode active"><i class="biolife-icon icon-grid"></i></a>
                                         <a href="category-list-left-sidebar.html" class="viewmode detail-mode"><i class="biolife-icon icon-list"></i></a>
@@ -142,7 +146,11 @@
                         </div>
 
                         <div class="biolife-panigations-block">
-                            {{$products->links('vendor.pagination.custom')}}
+                            @if(isset($_GET['sort']))
+                                {{$products->appends(['sort' => $_GET['sort']])->links('vendor.pagination.custom')}}
+                            @else
+                                {{$products->links('vendor.pagination.custom')}}
+                            @endif
                         </div>
 
                     </div>

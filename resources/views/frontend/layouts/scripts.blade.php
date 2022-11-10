@@ -7,6 +7,7 @@
     <script src="{{asset('frontend/assets/js/slick.min.js')}}"></script>
     <script src="{{asset('frontend/assets/js/biolife.framework.js')}}"></script>
     <script src="{{asset('frontend/assets/js/functions.js')}}"></script>
+    <script src="{{asset('frontend/assets/js/custom.js')}}"></script>
 
     @yield('frontend_scripts')
     @stack('frontend_scripts')

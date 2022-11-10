@@ -29,7 +29,23 @@ class ProductController extends Controller
                 }
 
 
-                $products = Product::with('category','category.subcategories','brand')->whereIn('category_id', $categoryId)->where('status', 1)->paginate(20);
+                $products = Product::with('category','category.subcategories','brand')->whereIn('category_id', $categoryId)->where('status', 1);
+                if(isset($_GET['sort']) && !empty($_GET['sort'])) {
+                    if ($_GET['sort'] == 'latest') {
+                        $products = $products->orderBy('id', 'desc');
+                    } elseif ($_GET['sort'] == 'lowest-price') {
+                        $products = $products->orderBy('product_price', 'asc');
+                    } elseif ($_GET['sort'] == 'highest-price') {
+                        $products = $products->orderBy('product_price', 'desc');
+                    } elseif ($_GET['sort'] == 'name-a-z') {
+                        $products = $products->orderBy('product_name', 'asc');
+                    } elseif ($_GET['sort'] == 'name-z-a') {
+                        $products = $products->orderBy('product_name', 'desc');
+                    }
+                } else {
+                    $products = $products->orderBy('id', 'desc');
+                }
+                 $products = $products->paginate(20);
                 return view('frontend.products.listing', compact('products', 'breadCrumb','parentCategory'));
             } else {
                 abort(404);
