@@ -60,7 +60,7 @@ Route::group(['middleware' => ['admin']],function (){
     Route::resource('filters','FilterController');
 
     //filter value
-    Route::post('filter-values/mass-destroy','FilterValueController@massDestroy')->name('filters-values.mass-destroy');
+    Route::post('filter-values/mass-destroy','FilterValueController@massDestroy')->name('filter-values.mass-destroy');
     Route::resource('filter-values','FilterValueController');
 
 

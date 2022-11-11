@@ -1,15 +1,15 @@
 @extends('admin.layout.layout',[
     'button_name' => 'Add New',
-    'button_link' => route('admin.brands.create')
+    'button_link' => route('admin.filter-values.create')
 ])
 
-@section('title', 'Brands')
+@section('title', 'Filter Values')
 
 @section('content')
 
     <div class="card">
         <div class="card-body">
-            <form method="post" action="{{ route('admin.brands.mass-destroy') }}" class="ajaxform_with_reload">
+            <form method="post" action="{{ route('admin.filter-values.mass-destroy') }}" class="ajaxform_with_reload">
                 @csrf
                 <div class="float-left mb-3">
                     <div class="input-group">
@@ -51,7 +51,7 @@
                                 </td>
                                 <td>
                                     <a class="btn btn-primary"
-                                       href="{{route('admin.brands.edit',$filter->id)}}">
+                                       href="{{route('admin.filter-values.edit',$filter->id)}}">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                 </td>

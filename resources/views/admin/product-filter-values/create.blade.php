@@ -1,8 +1,8 @@
 @extends('admin.layout.layout',[
-    'prev' => route('admin.brands.index')
+    'prev' => route('admin.filter-values.index')
 ])
 
-@section('title', 'Add New Brand')
+@section('title', 'Add New Filter Values')
 
 @section('content')
     <section class="section">
@@ -12,12 +12,24 @@
                 <div class="card">
 
                     <div class="card-body "  >
-                        <form method="POST" action="{{route('admin.brands.store')}}" class="ajaxform_with_reset"  >
+                        <form method="POST" action="{{route('admin.filter-values.store')}}" class="ajaxform_with_reset"  >
                             @csrf
                             <div class="form-group">
-                                <label for="name" class="required">{{ __('Name') }} </label>
-                                <input type="text"  name="name" class="form-control"   >
+                                <label for="name" class="required">{{ __('Filter Value') }} </label>
+                                <input type="text"  name="filter_value" class="form-control"   >
                             </div>
+
+                            <div class="form-group">
+                                <label for="category_id" class="required">{{ __('Filter Name') }} </label>
+                                <select name="product_filter_id" id="category_id" class="form-control" >
+                                    <option value="">Select Filter</option>
+                                    @foreach($filterData as $row)
+                                        <option value="{{$row->id}}">{{$row->filter_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+
                             <div class="form-group">
                                 <label for="password" class="required">{{ __('Status') }}</label>
                                 <select name="status" class="form-control">
