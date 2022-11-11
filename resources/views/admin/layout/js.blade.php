@@ -13,7 +13,6 @@
 <script src="{{ asset('admin/plugins/toastifyjs/toastify.js') }}"></script>
 <script src="{{ asset('admin/plugins/sweetalert/sweetalert2.all.min.js') }}"></script>
 <script src="{{ asset('admin/plugins/select2/select2.min.js') }}"></script>
-<script src="https://demo.getstisla.com/assets/modules/select2/dist/js/select2.full.min.js"></script>
 <script src="{{ asset('admin/plugins/Notify.js') }}"></script>
 <script src="{{asset('admin/assets/js/stisla.js')}}"></script>
 <script src="{{asset('admin/assets/js/scripts.js')}}"></script>

@@ -4,7 +4,6 @@
 
 <link rel="stylesheet" href="{{ asset('admin/plugins/toastifyjs/toastify.css') }}">
 <link rel="stylesheet" href="{{ asset('admin/plugins/select2/select2.min.css') }}">
-<link rel="stylesheet" href="https://demo.getstisla.com/assets/modules/select2/dist/css/select2.min.css">
 @stack('style')
 <!-- Template CSS -->
 <link rel="stylesheet" href="{{asset('/admin/assets/css/custom.css')}}">

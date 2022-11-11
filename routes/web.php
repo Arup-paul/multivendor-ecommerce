@@ -17,10 +17,15 @@ Route::namespace('App\Http\Controllers\Frontend')->group(function(){
     Route::get('/','HomeController@index')->name('home');
 
     //listing
-    $category = \App\Models\Category::select(['url'])->whereStatus(1)->pluck('url');
-    foreach($category as $url){
-        Route::match(['get','post'],'/'.$url,'ProductController@listing')->name('listing');
+    if(\Illuminate\Support\Facades\Schema::hasTable('categories')){
+        $category = \App\Models\Category::select(['url'])->whereStatus(1)->pluck('url');
+        foreach($category as $url){
+            Route::match(['get','post'],'/'.$url,'ProductController@listing')->name('listing');
+        }
     }
+
+
+
 });
 
 

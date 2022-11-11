@@ -319,13 +319,10 @@ $(function() {
     }
   });
 
-  // tooltip
-  $("[data-toggle='tooltip']").tooltip();
+
 
   // popover
-  $('[data-toggle="popover"]').popover({
-    container: 'body'
-  });
+
 
   // Select2
   if(jQuery().select2) {

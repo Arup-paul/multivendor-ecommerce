@@ -26,4 +26,10 @@ class Category extends Model
         return $this->hasMany(Product::class,'category_id')->where('status',1);
     }
 
+    public static function getCategoryName($category_id){
+        $category = Category::select('category_name')->where('id',$category_id)->first();
+        return $category->category_name;
+    }
+
+
 }

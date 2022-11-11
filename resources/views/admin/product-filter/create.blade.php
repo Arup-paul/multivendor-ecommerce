@@ -16,21 +16,22 @@
                             @csrf
                             <div class="form-group">
                                 <label for="name" class="required">{{ __('Filter Name') }} </label>
-                                <input type="text"  name="name" class="form-control"   >
+                                <input type="text"  name="filter_name" class="form-control"   >
                             </div>
                             <div class="form-group">
                                 <label for="name" class="required">{{ __('Filter Column') }} </label>
-                                <input type="text"  name="name" class="form-control"   >
+                                <input type="text"  name="filter_column" class="form-control"   >
                             </div>
                             <div class="form-group">
                                 <label for="category_id" class="required">{{ __('Category') }} </label>
-                                <select name="category_id" id="category_id" class="form-control select2" >
+                                <select name="category_id[]" id="category_id" class="form-control select2" multiple="" >
                                     <option value="">Select Category</option>
                                     @foreach($categories as $category)
                                         <option value="{{$category->id}}">{{$category->category_name}}</option>
                                     @endforeach
                                 </select>
                             </div>
+
 
                             <div class="form-group">
                                 <label for="password" class="required">{{ __('Status') }}</label>

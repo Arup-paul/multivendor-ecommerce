@@ -37,6 +37,7 @@
                                 <input type="text"  name="product_weight"  class="form-control"   >
                             </div>
 
+
                             <div class="form-group">
                                 <label for="category_id" class="required">{{ __('Category') }} </label>
                                 <select name="category_id" id="category_id" class="form-control">

@@ -38,12 +38,21 @@
                         </thead>
                         <tbody class="list font-size-base rowlink" data-link="row">
                         @foreach($filters as $key => $filter)
+
                             <tr>
                                 <td> <input type="checkbox" name="ids[]" value="{{ $filter->id }}"></td>
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $filter->filter_name }}</td>
                                 <td>{{ $filter->filter_column }}</td>
-                                <td>{{ $filter->category->category_name }}</td>
+                                <td>
+                                  @php
+                                      $categories = explode(',',$filter->category_id);
+                                      foreach($categories as $category){
+                                           $categoryName= App\Models\Category::getCategoryName($category);
+                                            echo $categoryName.',';
+                                      }
+                                  @endphp
+                                </td>
                                 <td>
                                     @if($filter->status == 1)
                                         <span class="badge badge-success">{{ __('Active') }}</span>
