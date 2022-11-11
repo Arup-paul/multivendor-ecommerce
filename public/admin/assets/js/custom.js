@@ -140,6 +140,23 @@
          })
     });
 
+    /*-------------------------------
+ Category wise product filter retrive
+ -----------------------------------*/
+
+    $('#category_id').on('change', function() {
+            var category_id = $(this).val();
+            $.ajax({
+                'type': 'post',
+                'url':'/admin/category-filter',
+                'data': {category_id:category_id},
+                success: function(resp){
+                    $('#appendFilter').html(resp.view);
+                },error: function(){
+                    Notify('error', 'Something Wrong')
+                }
+            })
+    });
 
     /*-------------------------------
     Action Confirmation Alert

@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class ProductController extends Controller
 {
@@ -78,6 +79,16 @@ class ProductController extends Controller
 
 
 
+    }
+
+    public function categoryFilter(Request $request){
+       if($request->ajax()){
+            $category_id = $request->input('category_id');
+            return response()->json(['view' => (String)View::make('admin.products.filters',compact('category_id'))]);
+
+
+
+       }
     }
 
 }

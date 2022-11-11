@@ -43,16 +43,21 @@
                                 <select name="category_id" id="category_id" class="form-control">
                                     <option value="">Select Category</option>
                                     @foreach($categories as $category)
-                                        <option @selected($product->id == $category->id) value="{{$category->id}}">{{$category->category_name}}</option>
+                                        <option @selected($product->category_id == $category->id) value="{{$category->id}}">{{$category->category_name}}</option>
                                     @endforeach
                                 </select>
                             </div>
+
+                            <div id="appendFilter">
+                                @include('admin.products.filters')
+                            </div>
+
                             <div class="form-group">
                                 <label for="brand_id" class="required">{{ __('Brand') }} </label>
                                 <select name="brand_id" id="brand_id" class="form-control">
                                     <option value="">Select Brand</option>
                                     @foreach($brands as $brand)
-                                        <option @selected($product->id == $brand->id) value="{{$brand->id}}">{{$brand->name}}</option>
+                                        <option @selected($product->brand_id == $brand->id) value="{{$brand->id}}">{{$brand->name}}</option>
                                     @endforeach
                                 </select>
                             </div>

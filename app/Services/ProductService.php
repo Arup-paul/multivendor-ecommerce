@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Category;
+use App\Models\ProductFilter;
 
 class ProductService
 {
@@ -34,6 +35,12 @@ class ProductService
        $product->meta_description = $request->meta_description;
        $product->featured = $request->featured;
        $product->status = $request->status;
+
+       //filter
+       $productFilters = ProductFilter::getFilter();
+       foreach ($productFilters as $filter){
+           $product->{$filter->filter_column} = $request->{$filter->filter_column};
+       }
 
    }
 

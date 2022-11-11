@@ -47,6 +47,12 @@
                                      @endforeach
                                 </select>
                             </div>
+
+                            <div id="appendFilter">
+                                @include('admin.products.filters')
+                            </div>
+
+
                             <div class="form-group">
                                 <label for="brand_id" class="required">{{ __('Brand') }} </label>
                                 <select name="brand_id" id="brand_id" class="form-control">

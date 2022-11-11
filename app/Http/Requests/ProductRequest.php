@@ -29,7 +29,7 @@ class ProductRequest extends FormRequest
                 'product_price' => 'required|numeric',
                 'product_discount' => 'required|numeric',
                 'product_code' => 'required',
-                'product_weight' => 'required',
+                'product_weight' => 'required|numeric',
                 'product_image' => 'required',
                 'brand_id' => 'required',
                 'category_id' => 'required',

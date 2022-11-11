@@ -43,6 +43,7 @@ Route::group(['middleware' => ['admin']],function (){
 
     //product
     Route::post('products/mass-destroy','ProductController@massDestroy')->name('products.mass-destroy');
+    Route::post('category-filter','ProductController@categoryFilter')->name('products.category_filter');
     Route::resource('products','ProductController');
 
     //product attribute
@@ -62,6 +63,8 @@ Route::group(['middleware' => ['admin']],function (){
     //filter value
     Route::post('filter-values/mass-destroy','FilterValueController@massDestroy')->name('filter-values.mass-destroy');
     Route::resource('filter-values','FilterValueController');
+
+
 
 
     //fronted settings
