@@ -18,7 +18,7 @@
                 success:function(data) {
                     $('.filter-products').html(data);
                 },error:function() {
-                     // Notify('error', 'Oops! Something went wrong');
+                     Notify('error', 'Oops! Something went wrong');
                 }
             })
         });

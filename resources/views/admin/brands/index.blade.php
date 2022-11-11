@@ -48,10 +48,9 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a class="btn btn-info"
+                                    <a class="btn btn-primary"
                                        href="{{route('admin.brands.edit',$brand->id)}}">
                                         <i class="fa fa-edit"></i>
-                                        {{ __('Edit') }}
                                     </a>
                                 </td>
                             </tr>

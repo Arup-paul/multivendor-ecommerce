@@ -1,15 +1,15 @@
 @extends('admin.layout.layout',[
     'button_name' => 'Add New',
-    'button_link' => route('admin.sections.create')
+    'button_link' => route('admin.filters.create')
 ])
 
-@section('title', 'Sections')
+@section('title', 'Filters')
 
 @section('content')
 
     <div class="card">
         <div class="card-body">
-            <form method="post" action="{{ route('admin.sections.mass-destroy') }}" class="ajaxform_with_reload">
+            <form method="post" action="{{ route('admin.filters.mass-destroy') }}" class="ajaxform_with_reload">
                 @csrf
                 <div class="float-left mb-3">
                     <div class="input-group">
@@ -29,19 +29,23 @@
                         <tr>
                             <th><input type="checkbox" class="checkAll"></th>
                             <th>{{ __('SL') }}</th>
-                            <th>{{ __('Name') }}</th>
+                            <th>{{ __('Filter Name') }}</th>
+                            <th>{{ __('Filter Column') }}</th>
+                            <th>{{ __('Category') }}</th>
                             <th>{{ __('Status') }}</th>
                             <th>{{ __('Action') }}</th>
                         </tr>
                         </thead>
                         <tbody class="list font-size-base rowlink" data-link="row">
-                        @foreach($sections as $key => $section)
+                        @foreach($filters as $key => $filter)
                             <tr>
-                                <td> <input type="checkbox" name="ids[]" value="{{ $section->id }}"></td>
+                                <td> <input type="checkbox" name="ids[]" value="{{ $filter->id }}"></td>
                                 <td>{{ $key+1 }}</td>
-                                <td>{{ $section->name }}</td>
+                                <td>{{ $filter->filter_name }}</td>
+                                <td>{{ $filter->filter_column }}</td>
+                                <td>{{ $filter->category->category_name }}</td>
                                 <td>
-                                    @if($section->status == 1)
+                                    @if($filter->status == 1)
                                         <span class="badge badge-success">{{ __('Active') }}</span>
                                     @else
                                         <span class="badge badge-danger">{{ __('Inactive') }}</span>
@@ -49,7 +53,7 @@
                                 </td>
                                 <td>
                                     <a class="btn btn-primary"
-                                       href="{{route('admin.sections.edit',$section->id)}}">
+                                       href="{{route('admin.filters.edit',$filter->id)}}">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                 </td>
@@ -62,7 +66,7 @@
             </form>
         </div>
         <div class="card-footer">
-            {{ $sections->links('vendor.pagination.bootstrap-4') }}
+            {{ $filters->links('vendor.pagination.bootstrap-4') }}
         </div>
     </div>
 

@@ -55,10 +55,20 @@ Route::group(['middleware' => ['admin']],function (){
     Route::post('product-images/','ProductImageController@store')->name('product-images.store');
     Route::post('product-images/update','ProductImageController@update')->name('product-images.update');
 
+    //filter
+    Route::post('filters/mass-destroy','FilterController@massDestroy')->name('filters.mass-destroy');
+    Route::resource('filters','FilterController');
+
+    //filter value
+    Route::post('filter-values/mass-destroy','FilterValueController@massDestroy')->name('filters-values.mass-destroy');
+    Route::resource('filter-values','FilterValueController');
+
 
     //fronted settings
     Route::post('sliders/mass-destroy','SliderController@massDestroy')->name('sliders.mass-destroy');
     Route::resource('sliders','SliderController');
+
+    //
 
 
 

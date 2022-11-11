@@ -60,6 +60,13 @@
                         <span>{{ __('Products') }}</span>
                     </a>
                 </li>
+                <li class="nav-item dropdown {{ Request::is('admin/filters*') ||  Request::is('admin/filter-values*')  ? 'active' : '' }}">
+                    <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fa fa-filter"></i> <span>Product Filter</span></a>
+                    <ul class="dropdown-menu">
+                        <li class="{{ Request::is('admin/filters*') ? 'active' : '' }}"><a class="nav-link" href="{{route('admin.filters.index')}}"> Filter</a></li>
+                        <li class="{{ Request::is('admin/filter-values*') ? 'active' : '' }}"><a class="nav-link" href="{{route('admin.filter-values.index')}}"> Filter Value</a></li>
+                    </ul>
+                </li>
 
             <li class="{{ Request::is('admin/media*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.media.list') }}">
