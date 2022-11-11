@@ -10,7 +10,7 @@ class ProductFilterValue extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function filterValues(){
+    public function productFilter(){
         return $this->belongsTo(ProductFilter::class,'product_filter_id','id');
     }
 }

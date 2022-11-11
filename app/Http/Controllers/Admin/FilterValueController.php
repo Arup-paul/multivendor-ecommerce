@@ -11,7 +11,7 @@ class FilterValueController extends Controller
 {
     public function index()
     {
-       $filters = ProductFilterValue::with('filterValues')->paginate(20);
+       $filters = ProductFilterValue::with('productFilter')->paginate(20);
 
         return view('admin.product-filter-values.index',compact('filters'));
     }

@@ -40,7 +40,7 @@
                             <tr>
                                 <td> <input type="checkbox" name="ids[]" value="{{ $filter->id }}"></td>
                                 <td>{{ $key+1 }}</td>
-                                <td>{{ $filter->filterValues->filter_name }}</td>
+                                <td>{{ $filter->productFilter->filter_name }}</td>
                                 <td>{{ $filter->filter_value }}</td>
                                 <td>
                                     @if($filter->status == 1)

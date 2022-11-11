@@ -1,3 +1,8 @@
+@php
+    use \App\Models\ProductFilter;
+    $productFilters = ProductFilter::getFilter();
+@endphp
+
 @extends('frontend.layouts.layouts')
 @section('content')
 
@@ -7,7 +12,7 @@
             <ul>
                 <li class="nav-item"><a href="index-2.html" class="permal-link">Home</a></li>
                 @if($parentCategory)
-                    <li class="nav-item"><a href="{{url($parentCategory->url)}}" class="permal-link">{{$parentCategory->category_name}}</a></li>
+                    <li class="nav-item"><a href="{{url($parentCategory->url)}}" class="permal-link">{{$parentCategory->category_name}}  </a></li>
                 @endif
                 <li class="nav-item"><a href="{{url($breadCrumb->url)}}" class="permal-link">{{$breadCrumb->category_name}}</a></li>
             </ul>
@@ -121,28 +126,26 @@
                         <a class="biolife-close-btn" href="#" data-object="open-mobile-filter">&times;</a>
                     </div>
                     <div class="sidebar-contain">
-                        <div class="widget biolife-filter">
-                            <h4 class="wgt-title">Departements</h4>
-                            <div class="wgt-content">
-                                <ul class="cat-list">
-                                    <li class="cat-list-item"><a href="#" class="cat-link">Organic Food</a></li>
-                                    <li class="cat-list-item"><a href="#" class="cat-link">Fresh Fruit</a></li>
-                                    <li class="cat-list-item"><a href="#" class="cat-link">Dried Fruits</a></li>
-                                </ul>
-                            </div>
-                        </div>
 
-                        <div class="widget biolife-filter">
-                            <h4 class="wgt-title">Shipping & Pickup</h4>
-                            <div class="wgt-content">
-                                <ul class="cat-list">
-                                    <li class="cat-list-item"><a href="#" class="cat-link">Show all</a></li>
-                                    <li class="cat-list-item"><a href="#" class="cat-link">2- Day shipping</a></li>
-                                    <li class="cat-list-item"><a href="#" class="cat-link">Shop to Home</a></li>
-                                    <li class="cat-list-item"><a href="#" class="cat-link">Free Pickup</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                      @foreach($productFilters as $filter)
+                        @php $filterAvailable = ProductFilter::filterAvailable($filter->id,$category->id);  @endphp
+                           @if($filterAvailable)
+                              @if(count($filter->filterValues) > 0)
+                                <div class="widget biolife-filter">
+                                    <h4 class="wgt-title">{{$filter->filter_name}}</h4>
+                                    <div class="wgt-content">
+                                        <ul class="check-list multiple">
+                                            @foreach($filter->filterValues as $filter_value)
+                                                <li class="check-list-item">
+                                                    <a href="#" class="check-link">{{$filter_value->filter_value}}</a>
+                                                </li>
+                                                @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                               @endif
+                           @endif
+                      @endforeach
 
                         <div class="widget price-filter biolife-filter">
                             <h4 class="wgt-title">Price</h4>

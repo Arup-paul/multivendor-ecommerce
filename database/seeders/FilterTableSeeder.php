@@ -6,6 +6,7 @@ use App\Models\ProductFilter;
 use App\Models\ProductFilterValue;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class FilterTableSeeder extends Seeder
 {
@@ -28,7 +29,7 @@ class FilterTableSeeder extends Seeder
             [
                 'category_id' => '2,4',
                 'filter_name' => 'Fabric',
-                'filter_column' => 'Fabric',
+                'filter_column' => 'fabric',
                 'status' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -36,6 +37,10 @@ class FilterTableSeeder extends Seeder
         ];
 
         ProductFilter::insert($data);
+        foreach ($data as $d){
+            DB::statement('ALTER TABLE products ADD '.$d['filter_column'].' VARCHAR(255) NULL AFTER description');
+        }
+
 
         $data = [
             [

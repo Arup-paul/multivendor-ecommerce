@@ -57,7 +57,7 @@ class ProductController extends Controller
                 if($request->ajax()){
                     return view('frontend.products.ajax_listing',compact('products'));
                 }else{
-                    return view('frontend.products.listing', compact('products', 'breadCrumb','parentCategory','url'));
+                    return view('frontend.products.listing', compact('products', 'breadCrumb','parentCategory','url','category'));
                 }
 
             } else {
