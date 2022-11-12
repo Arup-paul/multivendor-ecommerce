@@ -3572,7 +3572,7 @@ body.open-overlay #overlay{
 .sidebar .price-filter .frm-contain .f-item .input-number{
     border: 2px solid #e6e6e6;
     border-radius: 9999px;
-    width: 59px;
+    width: 100px;
     height: 33px;
     text-align: center;
 }

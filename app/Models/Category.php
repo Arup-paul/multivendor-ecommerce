@@ -31,5 +31,17 @@ class Category extends Model
         return $category->category_name;
     }
 
+    public static function getCategory($url){
+        $category = Category::whereUrl($url)->first();
+
+        $categoryId = [];
+        $categoryId[] = $category->id;
+        foreach ($category->subcategories as $subcategory) {
+            $categoryId[] = $subcategory->id;
+        }
+
+        return $categoryId;
+    }
+
 
 }

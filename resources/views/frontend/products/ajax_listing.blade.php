@@ -15,11 +15,11 @@
                     @php
                         $discount =\App\Models\Product::getDiscountPrice($product->id)
                     @endphp
-                    @if($discount != 0)
-                        <ins><span class="price-amount"><span class="currencySymbol">৳</span>{{$discount}}</span></ins>
-                        <del><span class="price-amount"><span class="currencySymbol">৳</span>{{$product->product_price}}</span></del>
+                    @if($product->product_discount == 0)
+                        <ins><span class="price-amount"><span class="currencySymbol">$</span>{{$product->product_price}} </span></ins>
                     @else
-                        <ins><span class="price-amount"><span class="currencySymbol">$</span>{{$product->product_price}}</span></ins>
+                        <ins><span class="price-amount"><span class="currencySymbol">৳</span>{{$discount}}</span></ins>
+                        <del><span class="price-amount"><span class="currencySymbol">$</span>{{$product->product_price}}</span></del>
                     @endif
                 </div>
                 <div class="shipping-info">

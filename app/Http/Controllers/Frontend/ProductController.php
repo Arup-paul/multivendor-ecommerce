@@ -16,7 +16,10 @@ class ProductController extends Controller
               $url = $request->input('url');
               $sort = $request->input('sort');
               $size = $request->input('size');
-
+              $product_color = $request->input('product_color');
+              $price_from = $request->input('price_from');
+              $price_to = $request->input('price_to');
+              $brand = $request->input('brand');
 
           }else{
               $url = request()->segment(1);
@@ -42,8 +45,9 @@ class ProductController extends Controller
 
                 $products = Product::with('category','category.subcategories','brand')->whereIn('category_id', $categoryId)->where('status', 1);
 
-               //check dynamic filter
+
                 if($request->ajax()) {
+                    //check dynamic filter
                     $productFilters = ProductFilter::getFilter();
                     foreach ($productFilters as $key => $filter) {
                         if (isset($filter->filter_column) && isset($request[$filter->filter_column]) &&
@@ -52,14 +56,32 @@ class ProductController extends Controller
                         }
                     }
 
+                    //size wise filtering
                     if(isset($size) && !empty($size)){
                         $products->whereHas('attributes',function ($query) use ($size){
                             $query->whereIn('size',$size);
                         });
                     }
+                    //color wise filtering
+                    if(isset($product_color) && !empty($product_color)){
+                        $products->whereIn('product_color',$product_color);
+                    }
+                    //price wise filtering
+                    if(isset($price_from) && !empty($price_from)){
+                        $products->where('product_price','>=',$price_from);
+                    }
+                    if(isset($price_to) && !empty($price_to)){
+                        $products->where('product_price','<=',$price_to);
+                    }
+
+                    //brand wise filtering
+                    if(isset($brand) && !empty($brand)){
+                        $products->whereIn('brand_id',$brand);
+                    }
                 }
 
 
+                //sorting
                 if(isset($sort) && !empty($sort)) {
                     if ($sort == 'latest') {
                         $products = $products->orderBy('id', 'desc');

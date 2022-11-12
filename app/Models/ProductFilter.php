@@ -37,14 +37,9 @@ class ProductFilter extends Model
     }
 
     public static function getSizes($url){
-        $category = Category::whereUrl($url)->first();
+        $category = Category::getCategory($url);
 
-        $categoryId = [];
-        $categoryId[] = $category->id;
-        foreach ($category->subcategories as $subcategory) {
-            $categoryId[] = $subcategory->id;
-        }
-        $getProductIds = Product::whereIn('category_id',$categoryId)
+        $getProductIds = Product::whereIn('category_id',$category)
             ->whereStatus(1)
             ->pluck('id');
 
@@ -54,10 +49,42 @@ class ProductFilter extends Model
             ->pluck('size');
 
         return $getProductSizes;
+    }
+
+    public static function getColors($url){
+        $category = Category::getCategory($url);
+
+        $getProductIds = Product::whereIn('category_id',$category)
+            ->whereStatus(1)
+            ->pluck('id');
+
+        $getColors = Product::whereIn('id',$getProductIds)
+            ->whereStatus(1)
+            ->groupBy('product_color')
+            ->pluck('product_color');
 
 
-//        echo "<pre>"; print_r($getProductSizes); die;
+        return $getColors;
+    }
 
+    public static function getBrands($url){
+        $category = Category::getCategory($url);
+
+        $getProductIds = Product::whereIn('category_id',$category)
+            ->whereStatus(1)
+            ->pluck('id');
+
+        $getBrandId = Product::whereIn('id',$getProductIds)
+            ->whereStatus(1)
+            ->groupBy('brand_id')
+            ->pluck('brand_id');
+
+        $getBrands = Brand::whereIn('id',$getBrandId)
+            ->whereStatus(1)
+            ->get(['name','id']);
+
+
+        return $getBrands;
     }
 
 

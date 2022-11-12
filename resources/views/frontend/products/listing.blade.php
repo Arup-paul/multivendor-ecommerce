@@ -2,6 +2,9 @@
     use \App\Models\ProductFilter;
     $productFilters = ProductFilter::getFilter();
     $productSizes =  ProductFilter::getSizes($url);
+    $productColors =  ProductFilter::getColors($url);
+    $productBrands =  ProductFilter::getBrands($url);
+
 @endphp
 
 @extends('frontend.layouts.layouts')
@@ -173,6 +176,63 @@
                                   </div>
                               </div>
                           </div>
+                          <div class="widget biolife-filter">
+                              <h4 class="wgt-title">Brand</h4>
+                              <div class="wgt-content">
+                                  <div class="check-list-new ">
+                                      @foreach($productBrands as $key => $brand)
+                                          <div>
+                                              <input type="checkbox" class="brand"
+                                                     id="brand{{$key}}"
+                                                     value="{{$brand->id}}"
+                                                     name="brand[]"
+                                              >
+                                              <label for="brand{{$key}}" class=" ">{{ucwords($brand->name)}}</label>
+                                          </div>
+
+                                      @endforeach
+
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="widget price-filter biolife-filter">
+                              <h4 class="wgt-title">Price</h4>
+                              <div class="wgt-content">
+                                  <div class="frm-contain">
+                                      <form action="#" name="price-filter" id="price-filter" method="get">
+                                          <p class="f-item">
+                                              <label for="pr-from">$</label>
+                                              <input class="input-number" type="text" id="pr-from" value="" name="price-from">
+                                          </p>
+                                          <p class="f-item">
+                                              <label for="pr-to">to $</label>
+                                              <input class="input-number" type="text" id="pr-to" value="" name="price-to">
+                                          </p>
+                                      </form>
+                                  </div>
+
+                              </div>
+                          </div>
+
+                          <div class="widget biolife-filter">
+                              <h4 class="wgt-title">Color</h4>
+                              <div class="wgt-content">
+                                  <div class="check-list-new ">
+                                      @foreach($productColors as $key => $color)
+                                          <div>
+                                              <input type="checkbox" class="product_color"
+                                                     id="product_color{{$key}}"
+                                                     value="{{$color}}"
+                                                     name="product_color[]"
+                                              >
+                                              <label for="product_color{{$key}}" class=" ">{{ucwords($color)}}</label>
+                                          </div>
+
+                                      @endforeach
+
+                                  </div>
+                              </div>
+                          </div>
 
 
 
@@ -194,10 +254,17 @@
         });
 
         $(document).ready(function() {
-            //sorting filter
-            $('#sort').on('change', function() {
+            //sorting, size,brand, product color filter
+            $('#sort,.size,.brand,.product_color').on('change', function() {
                 var sort = $("#sort").val();
+                var size = get_filter('size');
+                var product_color = get_filter('product_color');
                 var url = $("#url").val();
+                var price_from = $("#pr-from").val();
+                var price_to = $("#pr-to").val();
+                var brand = get_filter('brand');
+
+
                 @foreach($productFilters as $filters)
                 var {{$filters->filter_column}} = get_filter('{{$filters->filter_column}}');
                 @endforeach
@@ -208,7 +275,7 @@
                         @foreach($productFilters as $filters)
                             {{$filters->filter_column}}:{{$filters->filter_column}},
                         @endforeach
-                        sort:sort,url:url,
+                        sort:sort,url:url,size:size,product_color:product_color,price_from:price_from,price_to:price_to,brand:brand
                     },
                     success:function(data) {
                         $('.filter-products').html(data);
@@ -218,9 +285,13 @@
                 })
             });
 
-            //size filtering
-            $('.size').on('change', function() {
+
+
+            $('.price-filter').on('keyup', function() {
+                var price_from = $("#pr-from").val();
+                var price_to = $("#pr-to").val();
                 var size = get_filter('size');
+                var product_color = get_filter('product_color');
                 var sort = $("#sort").val();
                 var url = $("#url").val();
                 @foreach($productFilters as $filters)
@@ -233,7 +304,7 @@
                         @foreach($productFilters as $filters)
                             {{$filters->filter_column}}:{{$filters->filter_column}},
                         @endforeach
-                        sort:sort,url:url,size:size
+                        sort:sort,url:url,product_color:product_color,size:size,price_from:price_from,price_to:price_to
                     },
                     success:function(data) {
                         $('.filter-products').html(data);
@@ -249,6 +320,11 @@
             $('.{{$filter->filter_column}}').on('click', function() {
                 var url = $("#url").val();
                 var sort = $("#sort option:selected").val();
+                var size = get_filter('size');
+                var product_color = get_filter('product_color');
+                var price_from = $("#pr-from").val();
+                var price_to = $("#pr-to").val();
+                var brand = get_filter('brand');
 
                 @foreach($productFilters as $filters)
                    var {{$filters->filter_column}} = get_filter('{{$filters->filter_column}}');
@@ -261,7 +337,7 @@
                         @foreach($productFilters as $filters)
                             {{$filters->filter_column}}:{{$filters->filter_column}},
                         @endforeach
-                      sort:sort,url:url,
+                      sort:sort,url:url,size:size,product_color:product_color,price_from:price_from,price_to:price_to,brand:brand
                     },
                     success:function(data) {
                         $('.filter-products').html(data);
