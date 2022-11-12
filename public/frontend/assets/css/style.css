@@ -3396,7 +3396,7 @@ body.open-overlay #overlay{
 .sidebar .widget{
     display: block;
     clear: both;
-    border-bottom: 1px solid #e6e6e6;
+    border-bottom: .5px solid #3db53d;
     margin-bottom: 37px;
 }
 .sidebar .widget:last-child{
@@ -3434,6 +3434,16 @@ body.open-overlay #overlay{
     line-height: 0;
     margin: 15px 0 22px;
 }
+.check-list-new{
+    padding-top: 10px;
+}
+.check-list-new input{
+    color: #444444;
+}
+.check-list-new  label{
+    font-size: 14px;
+    padding-left: 10px;
+}
 .sidebar .wgt-content .color-list li,
 .sidebar .wgt-content .color-list li,
 .sidebar .wgt-content .check-list li,
@@ -3444,7 +3454,9 @@ body.open-overlay #overlay{
     line-height: 34px;
     padding: 0;
     color: #444444;
+
 }
+
 .sidebar .wgt-content .check-list.bold li{
     font-size: 15px;
     font-weight: 600;

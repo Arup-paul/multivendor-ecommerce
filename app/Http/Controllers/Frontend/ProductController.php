@@ -5,14 +5,18 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductFilter;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
       public function listing(Request $request){
+
           if($request->ajax()){
               $url = $request->input('url');
               $sort = $request->input('sort');
+              $size = $request->input('size');
+
 
           }else{
               $url = request()->segment(1);
@@ -37,6 +41,25 @@ class ProductController extends Controller
 
 
                 $products = Product::with('category','category.subcategories','brand')->whereIn('category_id', $categoryId)->where('status', 1);
+
+               //check dynamic filter
+                if($request->ajax()) {
+                    $productFilters = ProductFilter::getFilter();
+                    foreach ($productFilters as $key => $filter) {
+                        if (isset($filter->filter_column) && isset($request[$filter->filter_column]) &&
+                            !empty($filter->filter_column) && !empty($request[$filter->filter_column])) {
+                            $products->whereIn($filter->filter_column, $request[$filter->filter_column]);
+                        }
+                    }
+
+                    if(isset($size) && !empty($size)){
+                        $products->whereHas('attributes',function ($query) use ($size){
+                            $query->whereIn('size',$size);
+                        });
+                    }
+                }
+
+
                 if(isset($sort) && !empty($sort)) {
                     if ($sort == 'latest') {
                         $products = $products->orderBy('id', 'desc');
