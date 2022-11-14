@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('vendor_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('admin_type');
             $table->string('product_name');
+            $table->string('slug')->unique();
             $table->string('product_color');
             $table->string('product_code');
             $table->float('product_price');

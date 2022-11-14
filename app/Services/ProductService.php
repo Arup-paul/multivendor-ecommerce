@@ -4,12 +4,14 @@ namespace App\Services;
 
 use App\Models\Category;
 use App\Models\ProductFilter;
+use Illuminate\Support\Str;
 
 class ProductService
 {
    public function productCreateUpdate($request, $product){
 
        $product->product_name = $request->product_name;
+       $product->slug = Str::slug($request->product_name.'-'.time());
        $product->product_color = $request->product_color;
        $product->product_price = $request->product_price;
        $product->product_discount = $request->product_discount;

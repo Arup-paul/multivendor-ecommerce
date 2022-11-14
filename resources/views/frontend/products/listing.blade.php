@@ -11,17 +11,7 @@
 @section('content')
 
    @include('frontend.partials.breadcrumb', ['title' => $breadCrumb->category_name,'image' => $breadCrumb->category_image])
-    <div class="container">
-        <nav class="biolife-nav">
-            <ul>
-                <li class="nav-item"><a href="index-2.html" class="permal-link">Home</a></li>
-                @if($parentCategory)
-                    <li class="nav-item"><a href="{{url($parentCategory->url)}}" class="permal-link">{{$parentCategory->category_name}}  </a></li>
-                @endif
-                <li class="nav-item"><a href="{{url($breadCrumb->url)}}" class="permal-link">{{$breadCrumb->category_name}}</a></li>
-            </ul>
-        </nav>
-    </div>
+   @include('frontend.partials.category_nav')
 
     <div class="page-contain category-page left-sidebar">
         <div class="container">

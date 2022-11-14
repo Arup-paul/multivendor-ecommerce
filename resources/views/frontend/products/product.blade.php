@@ -1,15 +1,14 @@
 <li class="product-item">
     <div class="contain-product layout-default">
         <div class="product-thumb">
-            <a href="#" class="link-to-product">
+            <a href="{{route('product.details',$product->slug)}}" class="link-to-product">
                 <img src="{{asset($product->product_image)}}" alt="{{$product->product_name}}" width="270" height="270" class="product-thumnail">
             </a>
-            <a class="lookup btn_call_quickview" href="#"><i class="biolife-icon icon-search"></i></a>
         </div>
         <div class="info">
-            <b class="categories">{{$product->category->category_name}}&nbsp;/&nbsp;{{$product->brand->name}}</b>
+            <b class="categories"><a href="{{url($product->category->url)}}">{{$product->category->category_name}}&nbsp;</a>/&nbsp;<a href="">{{$product->brand->name}}</a></b>
             <b class="categories">{{$product->product_color}}</b>
-            <h4 class="product-title"><a href="#" class="pr-name">{{$product->product_name}}</a></h4>
+            <h4 class="product-title"><a href="{{route('product.details',$product->slug)}}" class="pr-name">{{$product->product_name}}</a></h4>
              @php
                  $discount =\App\Models\Product::getDiscountPrice($product->id)
              @endphp

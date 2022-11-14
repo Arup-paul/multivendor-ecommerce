@@ -2,15 +2,15 @@
     <li class="product-item col-lg-4 col-md-4 col-sm-4 col-xs-6">
         <div class="contain-product layout-default">
             <div class="product-thumb">
-                <a href="#" class="link-to-product">
+                <a href="{{route('product.details',$product->slug)}}" class="link-to-product">
                     <img src="{{asset($product->product_image)}}" alt="{{$product->product_name}}" width="270" height="270" class="product-thumnail">
                 </a>
             </div>
             <div class="info">
-                <b class="categories"><a href="">{{$product->category->category_name}}</a>&nbsp;/&nbsp;<a
+                <b class="categories"><a href="{{url($product->category->url)}}">{{$product->category->category_name}}</a>&nbsp;/&nbsp;<a
                         href="">{{$product->brand->name}}</a></b>
                 <b class="categories">{{$product->product_color}}</b>
-                <h4 class="product-title"><a href="#" class="pr-name">{{$product->product_name}}</a></h4>
+                <h4 class="product-title"><a href="{{route('product.details',$product->slug)}}" class="pr-name">{{$product->product_name}}</a></h4>
                 <div class="price">
                     @php
                         $discount =\App\Models\Product::getDiscountPrice($product->id)

@@ -110,4 +110,25 @@ class ProductController extends Controller
             }
 
       }
+
+
+      public function productDetails($slug)
+      {
+            $product = Product::with('section','category', 'brand', 'attributes', 'vendor', 'images')->whereSlug($slug)->whereStatus(1)->first();
+
+          if ($product->category->url) {
+
+              if ($product->category->parent_id == null) {
+                  $breadCrumb = $product->category;
+                  $parentCategory = [];
+              } else {
+                  $parentCategory = Category::where('id', $product->category->parent_id)->first();
+                  $breadCrumb = $product->category;
+              }
+
+
+              return view('frontend.products.product_details', compact('product','breadCrumb','parentCategory'));
+
+          }
+      }
 }

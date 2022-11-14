@@ -24,6 +24,8 @@ Route::namespace('App\Http\Controllers\Frontend')->group(function(){
         }
     }
 
+    Route::get('/product/{slug}','ProductController@productDetails')->name('product.details');
+
 
 
 });
