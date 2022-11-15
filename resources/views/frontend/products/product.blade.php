@@ -14,8 +14,8 @@
              @endphp
             <div class="price ">
                 @if( $discount != 0)
-                    <ins><span class="price-amount"><span class="currencySymbol">৳</span>{{$discount}}</span></ins>
-                    <del><span class="price-amount"><span class="currencySymbol">৳</span>{{$product->product_price}}</span></del>
+                    <ins><span class="price-amount"><span class="currencySymbol">$</span>{{$discount}}</span></ins>
+                    <del><span class="price-amount"><span class="currencySymbol">$</span>{{$product->product_price}}</span></del>
                 @else
                     <ins><span class="price-amount"><span class="currencySymbol">$</span>{{$product->product_price}}</span></ins>
                 @endif

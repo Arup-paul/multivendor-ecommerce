@@ -114,7 +114,11 @@ class ProductController extends Controller
 
       public function productDetails($slug)
       {
-            $product = Product::with('section','category', 'brand', 'attributes', 'vendor', 'images')->whereSlug($slug)->whereStatus(1)->first();
+            $product = Product::with(['section','category', 'brand', 'vendor', 'images', 'attributes' => function($query){
+                $query->where('stock','>',0);
+             }])->whereSlug($slug)->whereStatus(1)->first();
+
+
 
           if ($product->category->url) {
 

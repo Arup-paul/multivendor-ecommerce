@@ -33,124 +33,78 @@
                     <h3 class="title">{{$product->product_name}}</h3>
                     <div class="rating">
                         <p class="star-rating"><span class="width-80percent"></span></p>
-                        <span class="review-count">(04 Reviews)</span>
-                        <span class="qa-text">Q&A</span>
-                        <b class="category">By: Natural food</b>
+                        @if($product->attributes->sum('stock') > 0)
+                        <span class="review-count main-font-color">In Stock</span>
+                        @else
+                        <span class="review-count main-font-color-red">Out Of Stock</span>
+                        @endif
                     </div>
                     <span class="sku">Sku: #76584HH</span>
-                    <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vel maximus lacus. Duis ut mauris eget justo dictum tempus sed vel tellus.</p>
-                    <div class="price">
-                        <ins><span class="price-amount"><span class="currencySymbol">£</span>19.99</span></ins>
-                        <ins><span class="price-amount"><span class="currencySymbol">£</span>48.99</span></ins>
+                    <div>
+                        <span class="sku">Product Code: {{$product->product_code ?? null}}</span>
                     </div>
-                    <div class="grouped-product-list no-border-top">
-                        <table cellspacing="0" class="group_table">
-                            <tbody>
-                            <tr>
-                                <td class="grouped-product-list-item__quantity">
-                                    <div class="quantity-box type2">
-                                        <div class="qty-input">
-                                            <input type="text" name="qty12554" value="1" data-max_value="20" data-min_value="1" data-step="1">
-                                            <a href="#" class="qty-btn btn-up"><i class="fa fa-caret-up" aria-hidden="true"></i></a>
-                                            <a href="#" class="qty-btn btn-down"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
-                                        </div>
+                    <div>
+                        <span class="sku">Product Color: {{$product->product_color ?? null}}</span>
+                    </div>
+
+                    <p class="excerpt">{{\Illuminate\Support\Str::limit($product->description,100)}}</p>
+
+                        @php
+                            $discount =\App\Models\Product::getDiscountPrice($product->id)
+                        @endphp
+                        <div class="price ">
+                            @if( $discount != 0)
+                                <ins><span class="price-amount"><span class="currencySymbol">$</span>{{$discount}}</span></ins>
+                                <del><span class="price-amount"><span class="currencySymbol">$</span>{{$product->product_price}}</span></del>
+                            @else
+                                <ins><span class="price-amount"><span class="currencySymbol">$</span>{{$product->product_price}}</span></ins>
+                            @endif
+                        </div>
+
+
+                    <div class="action-form">
+                        <div class="row">
+                            <div class="col-md-6 col-12">
+                                <div class="location-shipping-to">
+                                    <span class="title">Size:</span>
+                                    <select name="shipping_to" class="country">
+                                        <option value="">Select Size</option>
+                                        @foreach($product->attributes as $attribute)
+                                            <option value="{{$attribute->size}}">{{$attribute->size}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-12">
+                                <div class="quantity-box location-shipping-to">
+                                    <span class="title">Quantity:</span>
+                                    <div class="qty-input">
+                                        <input type="number" name="qty12554" value="1" data-max_value="20" data-min_value="1" data-step="1">
                                     </div>
-                                </td>
-                                <td class="grouped-product-list-item__label">
-                                    <a class="hover-main-color" href="#">Organic 10 Assorted Flavors Jelly Beans, 5.5 Oz</a>
-                                </td>
-                                <td class="grouped-product-list-item__price">
-                                    <div class="price">
-                                        <ins><span class="price-amount"><span class="currencySymbol">£</span>8.99</span></ins>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="grouped-product-list-item__quantity">
-                                    <div class="quantity-box type2">
-                                        <div class="qty-input">
-                                            <input type="text" name="qty12554" value="1" data-max_value="20" data-min_value="1" data-step="1">
-                                            <a href="#" class="qty-btn btn-up"><i class="fa fa-caret-up" aria-hidden="true"></i></a>
-                                            <a href="#" class="qty-btn btn-down"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="grouped-product-list-item__label">
-                                    <a class="hover-main-color" href="#">Organic 10 Assorted Flavors Jelly Beans, 5.5 Oz</a>
-                                </td>
-                                <td class="grouped-product-list-item__price">
-                                    <div class="price">
-                                        <ins><span class="price-amount"><span class="currencySymbol">£</span>12.99</span></ins>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="grouped-product-list-item__quantity">
-                                    <div class="quantity-box type2">
-                                        <div class="qty-input">
-                                            <input type="text" name="qty12554" value="1" data-max_value="20" data-min_value="1" data-step="1">
-                                            <a href="#" class="qty-btn btn-up"><i class="fa fa-caret-up" aria-hidden="true"></i></a>
-                                            <a href="#" class="qty-btn btn-down"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="grouped-product-list-item__label">
-                                    <a class="hover-main-color" href="#">Organic 10 Assorted Flavors Jelly Beans, 5.5 Oz</a>
-                                </td>
-                                <td class="grouped-product-list-item__price">
-                                    <div class="price">
-                                        <del><span class="price-amount"><span class="currencySymbol">£</span>19.99</span></del>
-                                        <ins><span class="price-amount"><span class="currencySymbol">£</span>14.99</span></ins>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <div class="d-flex">
+                                <a href="#" class="btn add-to-cart-btn">add to cart</a>
+                                <a href="#" class="btn add-to-cart-btn">Wish List</a>
+                                <a href="#" class="btn add-to-cart-btn">Compare</a>
+                            </div>
+
+                        </div>
+                        <div class="social-media">
+                            <ul class="social-list">
+                                <li><a href="#" class="social-link"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="#" class="social-link"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#" class="social-link"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                                <li><a href="#" class="social-link"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
+                                <li><a href="#" class="social-link"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="shipping-info">
-                        <p class="shipping-day">3-Day Shipping</p>
-                        <p class="for-today">Pree Pickup Today</p>
-                    </div>
-                </div>
-                <div class="action-form">
-                    <div class="total-price-contain">
-                        <span class="title">Total Price:</span>
-                        <p class="price">£199.99</p>
-                    </div>
-                    <div class="buttons">
-                        <a href="#" class="btn add-to-cart-btn">add to cart</a>
-                        <p class="pull-row">
-                            <a href="#" class="btn wishlist-btn">wishlist</a>
-                            <a href="#" class="btn compare-btn">compare</a>
-                        </p>
-                    </div>
-                    <div class="location-shipping-to">
-                        <span class="title">Ship to:</span>
-                        <select name="shipping_to" class="country">
-                            <option value="-1">Select Country</option>
-                            <option value="america">America</option>
-                            <option value="france">France</option>
-                            <option value="germany">Germany</option>
-                            <option value="japan">Japan</option>
-                        </select>
-                    </div>
-                    <div class="social-media">
-                        <ul class="social-list">
-                            <li><a href="#" class="social-link"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                            <li><a href="#" class="social-link"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                            <li><a href="#" class="social-link"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-                            <li><a href="#" class="social-link"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-                            <li><a href="#" class="social-link"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="acepted-payment-methods">
-                        <ul class="payment-methods">
-                            <li><img src="assets/images/card1.jpg" alt="" width="51" height="36"></li>
-                            <li><img src="assets/images/card2.jpg" alt="" width="51" height="36"></li>
-                            <li><img src="assets/images/card3.jpg" alt="" width="51" height="36"></li>
-                            <li><img src="assets/images/card4.jpg" alt="" width="51" height="36"></li>
-                        </ul>
-                    </div>
+
                 </div>
             </div>
 
@@ -166,16 +120,7 @@
                 </div>
                 <div class="tab-content">
                     <div id="tab_1st" class="tab-contain desc-tab active">
-                        <p class="desc">Quisque quis ipsum venenatis, fermentum ante volutpat, ornare enim. Phasellus molestie risus non aliquet cursus. Integer vestibulum mi lorem, id hendrerit ante lobortis non. Nunc ante ante, lobortis non pretium non, vulputate vel nisi. Maecenas dolor elit, fringilla nec turpis ac, auctor vulputate nulla. Phasellus sed laoreet velit.
-                            Proin fringilla urna vel mattis euismod. Etiam sodales, massa non tincidunt iaculis, mauris libero scelerisque justo, ut rutrum lectus urna sit amet quam. Nulla maximus vestibulum mi vitae accumsan. Donec sit amet ligula et enim semper viverra a in arcu. Vestibulum enim ligula, varius sed enim vitae, posuere molestie velit. Morbi risus orci, congue in nulla at, sodales fermentum magna.</p>
-                        <div class="desc-expand">
-                            <span class="title">Organic Fresh Fruit</span>
-                            <ul class="list">
-                                <li>100% real fruit ingredients</li>
-                                <li>100 fresh fruit bags individually wrapped</li>
-                                <li>Blending Eastern & Western traditions, naturally</li>
-                            </ul>
-                        </div>
+                        <p class="desc">{{$product->description}} </p>
                     </div>
                     <div id="tab_2nd" class="tab-contain addtional-info-tab">
                         <table class="tbl_attributes">

@@ -164,7 +164,6 @@ select option{
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
-    border: none;
     padding: 0 14px;
     font-size: 14px;
     line-height: 1;
@@ -4135,6 +4134,9 @@ body.open-overlay #overlay{
     display: inline-block;
     float: left;
     width: 38.462%;
+    background: #fff;
+    margin: 10px;
+    padding: 10px;
 }
 .sumary-product .media ul{
     padding: 0;
@@ -4162,9 +4164,11 @@ body.open-overlay #overlay{
 .sumary-product .product-attribute{
     display: inline-block;
     float: left;
-    width: calc( 100% - 38.462% - 270px );
+    width: calc( 100% - 38.462% - 100px );
     padding-left: 20px;
     padding-top: 13px;
+    background: #fff;
+    margin: 10px;
 }
 .sumary-product .product-attribute .title{
     font-size: 20px;
@@ -4179,6 +4183,10 @@ body.open-overlay #overlay{
     display: block;
     line-height: 0;
     margin-top: 10px;
+}
+.page-contain.single-product{
+    background: #f3f3f3;
+    padding:20px;
 }
 .sumary-product .product-attribute .category,
 .sumary-product .product-attribute .qa-text,
@@ -4214,7 +4222,6 @@ body.open-overlay #overlay{
     font-size: 14px;
     line-height: 20px;
     margin: 15px 0 0;
-    max-width: 352px;
 }
 .sumary-product .product-attribute .price{
     margin-top: 23px;
@@ -4295,9 +4302,9 @@ body.open-overlay #overlay{
 }
 .sumary-product .action-form{
     display: inline-block;
-    width: 270px;
-    background-color: #f3f3f3;
-    padding: 11px 20px 34px;
+    width: 95%;
+    /*background-color: #f3f3f3;*/
+    /*padding: 11px 20px 34px;*/
 }
 .sumary-product .action-form .title{
     font-size: 15px;
@@ -4315,7 +4322,6 @@ body.open-overlay #overlay{
 }
 .quantity-box .qty-input input,
 .sumary-product .action-form .qty-input input{
-    border: none;
     background-color: #ffffff;
     font-size: 16px;
     width: 119px;
@@ -4357,10 +4363,15 @@ body.open-overlay #overlay{
     margin: 11px 0 0;
     font-weight: 700;
 }
+.main-font-color{
+    color: #3db53d !important;
+}
+.main-font-color-red{
+    color: #b5133e !important;
+}
 .sumary-product .action-form .buttons{
     display: block;
     text-align: center;
-    border-top: 2px solid #e6e6e6;
     margin-top: 17px;
     padding-top: 20px;
 }
@@ -4369,11 +4380,7 @@ body.open-overlay #overlay{
     line-height: 24px;
     color: #ffffff;
     font-weight: 700;
-    text-transform: uppercase;
-    display: block;
-    border-radius: 999px;
-    border: none;
-    padding: 12px 10px 11px;
+    text-transform: capitalize;
 }
 .sumary-product .action-form .buttons .add-to-cart-btn:hover{
     background-color: #444444;
@@ -4439,6 +4446,13 @@ body.open-overlay #overlay{
     padding-right: 32px;
     border-radius: 9999px;
 }
+.quantity-box-select .nice-select{
+    width: 100%;
+    background-color: #f3f3f3;
+    padding-left: 20px;
+    padding-right: 32px;
+    border-radius: 9999px;
+}
 .sumary-product .action-form .location-shipping-to .nice-select .current{
     font-size: 13px;
     color: #888888;
@@ -4457,6 +4471,7 @@ body.open-overlay #overlay{
 }
 .sumary-product .action-form .social-media{
     margin-top: 13px;
+    text-align: center;
 }
 .sumary-product .action-form .social-media ul li{
     list-style: none;
@@ -10681,7 +10696,6 @@ body.open-quickview-block .biolife-quickview-block{
 .sumary-product .product-attribute .price+div:not(.product-atts):not(.no-border-top){
     border-top: 1px solid #e6e6e6;
     margin-top: 20px;
-    padding-top: 20px;
 }
 .sumary-product .product-attribute .price ins + ins::before{
     content: '-';
@@ -14264,7 +14278,7 @@ body.open-quickview-block .biolife-quickview-block{
         margin-left: 20px;
     }
     .sumary-product .product-attribute .price+div:not(.product-atts){
-        max-width: 368px;
+        max-width: 100% !important;
     }
     .sumary-product .product-attribute .price+div.grouped-product-list{
         width: calc( 100% - 30px);
