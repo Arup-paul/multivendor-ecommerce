@@ -25,7 +25,7 @@ class Product extends Model
 
     public function vendor()
     {
-        return $this->belongsTo(Vendor::class)->select(['id','name']);
+        return $this->belongsTo(Vendor::class)->where('status',1)->with('vendorDetails');
     }
 
     public function attributes()
@@ -34,7 +34,7 @@ class Product extends Model
     }
     public function images()
     {
-        return $this->hasMany(ProductImage::class,'product_id');
+        return $this->hasMany(ProductImage::class,'product_id')->where('status',1);
     }
 
     public static function getDiscountPrice($product_id){
@@ -50,9 +50,34 @@ class Product extends Model
         }elseif($category->category_discount > 0){
             $discountPrice = $product->product_price - ($product->product_price * ($category->category_discount/100));
         }else{
-            $discountPrice = $product->product_price;
+            $discountPrice = 0;
         }
         return number_format($discountPrice);
+    }
+
+    public static function getDisCountAttributePrice($product_id,$size){
+        $productAttribute = ProductAttributes::where('product_id',$product_id)->where('size',$size)->first();
+
+        $product = Product::select(['product_price','product_discount','category_id'])
+            ->where('id',$product_id)
+            ->first();
+        $category = Category::select(['category_discount'])
+            ->where('id',$product->category_id)
+            ->first();
+
+        if($product->product_discount > 0){
+            $total_price = $productAttribute->price - ($productAttribute->price * ($product->product_discount/100));
+        }elseif($category->category_discount > 0){
+            $total_price = $productAttribute->price - ($productAttribute->price * ($category->category_discount/100));
+        }else{
+            $total_price = $productAttribute->price;
+        }
+        return [
+            'total_price' => number_format($total_price),
+            'discount_price' => number_format($productAttribute->price - $total_price),
+            'product_price' => number_format($productAttribute->price),
+            'sku' => $productAttribute->sku,
+        ];
     }
 
 

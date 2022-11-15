@@ -1,3 +1,9 @@
+@php
+    use \App\Models\ProductFilter;
+    $productFilters = ProductFilter::getFilter();
+@endphp
+
+
 @extends('frontend.layouts.layouts')
 @section('content')
 
@@ -39,13 +45,18 @@
                         <span class="review-count main-font-color-red">Out Of Stock</span>
                         @endif
                     </div>
-                    <span class="sku">Sku: #76584HH</span>
+                    <span class="sku productAttributeSku">Sku: {{$product->attributes[0]->sku ?? null}}</span>
                     <div>
                         <span class="sku">Product Code: {{$product->product_code ?? null}}</span>
                     </div>
                     <div>
                         <span class="sku">Product Color: {{$product->product_color ?? null}}</span>
                     </div>
+                    @if($product->vendor)
+                    <div>
+                        <span class="sku">Sold By: {{$product->vendor->name ?? null}} ({{$product->vendor->vendorDetails->shop_name ?? null}})</span>
+                    </div>
+                    @endif
 
                     <p class="excerpt">{{\Illuminate\Support\Str::limit($product->description,100)}}</p>
 
@@ -54,10 +65,10 @@
                         @endphp
                         <div class="price ">
                             @if( $discount != 0)
-                                <ins><span class="price-amount"><span class="currencySymbol">$</span>{{$discount}}</span></ins>
-                                <del><span class="price-amount"><span class="currencySymbol">$</span>{{$product->product_price}}</span></del>
+                                <ins><span class="price-amount discount-price"><span class="currencySymbol">$</span>{{$discount}}</span></ins>
+                                <del><span class="price-amount product-main-price"><span class="currencySymbol">$</span>{{$product->product_price}}</span></del>
                             @else
-                                <ins><span class="price-amount"><span class="currencySymbol">$</span>{{$product->product_price}}</span></ins>
+                                <ins><span class="price-amount product-main-price"><span class="currencySymbol">$</span>{{$product->product_price}}</span></ins>
                             @endif
                         </div>
 
@@ -67,12 +78,13 @@
                             <div class="col-md-6 col-12">
                                 <div class="location-shipping-to">
                                     <span class="title">Size:</span>
-                                    <select name="shipping_to" class="country">
+                                    <select name="size" id="getPrice" product_id="{{$product->id}}" class="country getPrice">
                                         <option value="">Select Size</option>
                                         @foreach($product->attributes as $attribute)
                                             <option value="{{$attribute->size}}">{{$attribute->size}}</option>
                                         @endforeach
                                     </select>
+
                                 </div>
                             </div>
 
@@ -125,14 +137,24 @@
                     <div id="tab_2nd" class="tab-contain addtional-info-tab">
                         <table class="tbl_attributes">
                             <tbody>
-                            <tr>
-                                <th>Color</th>
-                                <td><p>Black, Blue, Purple, Red, Yellow</p></td>
-                            </tr>
-                            <tr>
-                                <th>Size</th>
-                                <td><p>S, M, L</p></td>
-                            </tr>
+                            @foreach($productFilters as $filter)
+                                @php $filterAvailable = ProductFilter::filterAvailable($filter->id,$product->category->id);  @endphp
+                                @if($filterAvailable)
+                                    @if(count($filter->filterValues) > 0)
+                               <tr>
+                                 <th>{{$filter->filter_name}}</th>
+                                 <td>
+                                     <p>
+                                         @foreach($filter->filterValues as $filter_value)
+                                             {{$filter_value->filter_value}} @if(!$loop->last),@endif
+                                         @endforeach
+                                     </p>
+                                 </td>
+                                   </tr>
+                                    @endif
+                                @endif
+                            @endforeach
+
                             </tbody>
                         </table>
                     </div>
@@ -545,5 +567,41 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('frontend_scripts')
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $(document).ready(function() {
+        $('#getPrice').on('change', function() {
+            var size = $(this).val();
+            var product_id = $(this).attr('product_id');
+
+            $.ajax({
+                url: "{{ url('/get-product-price') }}",
+                type: 'post',
+                data: {
+                    size: size,
+                    product_id: product_id
+                },
+                success: function(resp) {
+                   $('.discount-price').text(resp['total_price']);
+                   $('.product-main-price').text(resp['product_price']);
+                   $('.productAttributeSku').text("Sku: " + resp['sku']);
+                },
+                error: function() {
+                    Notify('error', 'Something went wrong');
+
+                }
+            });
+
+
+        });
+    });
+</script>
 @endsection
 

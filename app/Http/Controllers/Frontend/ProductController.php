@@ -114,9 +114,11 @@ class ProductController extends Controller
 
       public function productDetails($slug)
       {
-            $product = Product::with(['section','category', 'brand', 'vendor', 'images', 'attributes' => function($query){
+             $product = Product::with(['section','category', 'brand', 'vendor','images','vendor', 'attributes' => function($query){
                 $query->where('stock','>',0);
              }])->whereSlug($slug)->whereStatus(1)->first();
+
+              abort_if(!$product,404);
 
 
 
@@ -133,6 +135,13 @@ class ProductController extends Controller
 
               return view('frontend.products.product_details', compact('product','breadCrumb','parentCategory'));
 
+          }
+      }
+
+      public function getProductPrice(Request $request){
+          if($request->ajax()){
+                 $getDiscountAttributePrice = Product::getDiscountAttributePrice($request->product_id,$request->size);
+                 return response()->json($getDiscountAttributePrice);
           }
       }
 }
