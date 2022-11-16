@@ -65,7 +65,7 @@ $(document).on('submit', '.ajaxform', function (e) {
             if (response.redirect){
                 window.setTimeout(function () {
                     location.href = response.redirect;
-                }, 2000)
+                }, 1000)
             }
         },
         error: function (xhr, status, error) {
