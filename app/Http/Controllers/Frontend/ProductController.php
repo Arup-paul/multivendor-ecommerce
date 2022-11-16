@@ -6,7 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductFilter;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
@@ -97,7 +101,7 @@ class ProductController extends Controller
                 } else {
                     $products = $products->orderBy('id', 'desc');
                 }
-                 $products = $products->paginate(20);
+                 $products = $products->paginate(21);
 
                 if($request->ajax()){
                     return view('frontend.products.ajax_listing',compact('products'));
@@ -111,6 +115,18 @@ class ProductController extends Controller
 
       }
 
+      public function vendorListing($vendorId){
+           $vendor = Vendor::getVendorShop($vendorId);
+
+           $products = Product::with('brand')
+               ->where('vendor_id',$vendorId)
+               ->where('status',1)
+               ->orderBy('id','desc')
+               ->paginate(20);
+
+           return view('frontend.products.vendor_listing',compact('products','vendor'));
+      }
+
 
       public function productDetails($slug)
       {
@@ -119,7 +135,6 @@ class ProductController extends Controller
              }])->whereSlug($slug)->whereStatus(1)->first();
 
               abort_if(!$product,404);
-
 
 
           if ($product->category->url) {
@@ -132,8 +147,44 @@ class ProductController extends Controller
                   $breadCrumb = $product->category;
               }
 
+                $relatedProducts = Product::with('category','category.subcategories','brand')
+                    ->where('category_id', $product->category_id)
+                    ->where('status', 1)
+                    ->where('id','!=',$product->id)
+                    ->inRandomOrder()->orderBy('id','desc')
+                    ->limit(10)->get();
 
-              return view('frontend.products.product_details', compact('product','breadCrumb','parentCategory'));
+              //set session recently product
+              if(empty(Session::get('session_id'))){
+                  $session_id = Hash::make(time());
+                  Session::put('session_id',$session_id);
+              }else{
+                    $session_id = Session::get('session_id');
+              }
+              $countRecentViewProducts = DB::table('recently_viewed_products')->where('product_id',$product->id)->where('session_id',$session_id)->count();
+
+              if($countRecentViewProducts == 0){
+                  DB::table('recently_viewed_products')->insert([
+                      'session_id' => $session_id,
+                      'product_id' => $product->id,
+                      'created_at' => now(),
+                      'updated_at' => now()
+                  ]);
+              }
+               $recentViewProductIds = DB::table('recently_viewed_products')
+                  ->where('session_id',$session_id)
+                  ->where('product_id','!=',$product->id)
+                  ->inRandomOrder()->limit(10)->pluck('product_id');
+
+              $recent_viewed_products = Product::with('category','category.subcategories','brand')
+                  ->whereIn('id', $recentViewProductIds)
+                  ->where('status', 1)->get();
+
+
+
+
+
+              return view('frontend.products.product_details', compact('product','breadCrumb','parentCategory','relatedProducts','recent_viewed_products'));
 
           }
       }
@@ -144,4 +195,6 @@ class ProductController extends Controller
                  return response()->json($getDiscountAttributePrice);
           }
       }
+
+
 }

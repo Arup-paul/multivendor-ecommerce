@@ -1,5 +1,5 @@
 @foreach($products as $product)
-    <li class="product-item col-lg-4 col-md-4 col-sm-4 col-xs-6">
+    <li class="product-item @if(isset($vendor)) col-lg-3 col-md-3 col-sm-4 col-xs-6 @else col-lg-4 col-md-4 col-sm-4 col-xs-6 @endif">
         <div class="contain-product layout-default">
             <div class="product-thumb">
                 <a href="{{route('product.details',$product->slug)}}" class="link-to-product">

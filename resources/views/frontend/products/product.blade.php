@@ -22,7 +22,6 @@
 
             </div>
             <div class="slide-down-box">
-                <p class="message">{{$product->description ?? null}}</p>
                 <div class="buttons">
                     <a href="#" class="btn wishlist-btn"><i class="fa fa-heart" aria-hidden="true"></i></a>
                     <a href="#" class="btn add-to-cart-btn"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>add to cart</a>
