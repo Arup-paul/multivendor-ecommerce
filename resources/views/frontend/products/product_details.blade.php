@@ -73,12 +73,15 @@
                         </div>
 
 
-                    <div class="action-form">
+                    <form action="{{route('cart.add')}}" method="post" class="cartForm">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{$product->id}}">
+                        <div class="action-form">
                         <div class="row">
                             <div class="col-md-6 col-12">
                                 <div class="location-shipping-to">
                                     <span class="title">Size:</span>
-                                    <select name="size" id="getPrice" product_id="{{$product->id}}" class="country getPrice">
+                                    <select name="size" id="getPrice" product_id="{{$product->id}}" class=" getPrice" required>
                                         <option value="">Select Size</option>
                                         @foreach($product->attributes as $attribute)
                                             <option value="{{$attribute->size}}">{{$attribute->size}}</option>
@@ -92,7 +95,7 @@
                                 <div class="quantity-box location-shipping-to">
                                     <span class="title">Quantity:</span>
                                     <div class="qty-input">
-                                        <input type="number" name="qty12554" value="1" data-max_value="20" data-min_value="1" data-step="1">
+                                        <input type="number" name="qty" value="1" data-max_value="20" data-min_value="1" data-step="1" required>
                                     </div>
                                 </div>
 
@@ -100,7 +103,7 @@
                         </div>
                         <div class="buttons">
                             <div class="d-flex">
-                                <a href="#" class="btn add-to-cart-btn">add to cart</a>
+                                <button type="submit" class="btn add-to-cart-btn">add to cart</button>
                                 <a href="#" class="btn add-to-cart-btn">Wish List</a>
                                 <a href="#" class="btn add-to-cart-btn">Compare</a>
                             </div>
@@ -116,7 +119,7 @@
                             </ul>
                         </div>
                     </div>
-
+                    </form>
                 </div>
             </div>
 
@@ -264,32 +267,32 @@
                                 <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
                                     <div class="review-form-wrapper">
                                         <span class="title">Submit your review</span>
-                                        <form action="#" name="frm-review" method="post">
-                                            <div class="comment-form-rating">
-                                                <label>1. Your rating of this products:</label>
-                                                <p class="stars">
-                                                        <span>
-                                                            <a class="btn-rating" data-value="star-1" href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
-                                                            <a class="btn-rating" data-value="star-2" href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
-                                                            <a class="btn-rating" data-value="star-3" href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
-                                                            <a class="btn-rating" data-value="star-4" href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
-                                                            <a class="btn-rating" data-value="star-5" href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
-                                                        </span>
-                                                </p>
-                                            </div>
-                                            <p class="form-row wide-half">
-                                                <input type="text" name="name" value="" placeholder="Your name">
-                                            </p>
-                                            <p class="form-row wide-half">
-                                                <input type="email" name="email" value="" placeholder="Email address">
-                                            </p>
-                                            <p class="form-row">
-                                                <textarea name="comment" id="txt-comment" cols="30" rows="10" placeholder="Write your review here..."></textarea>
-                                            </p>
-                                            <p class="form-row">
-                                                <button type="submit" name="submit">submit review</button>
-                                            </p>
-                                        </form>
+{{--                                        <form action="#" name="frm-review" method="post">--}}
+{{--                                            <div class="comment-form-rating">--}}
+{{--                                                <label>1. Your rating of this products:</label>--}}
+{{--                                                <p class="stars">--}}
+{{--                                                        <span>--}}
+{{--                                                            <a class="btn-rating" data-value="star-1" href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>--}}
+{{--                                                            <a class="btn-rating" data-value="star-2" href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>--}}
+{{--                                                            <a class="btn-rating" data-value="star-3" href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>--}}
+{{--                                                            <a class="btn-rating" data-value="star-4" href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>--}}
+{{--                                                            <a class="btn-rating" data-value="star-5" href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>--}}
+{{--                                                        </span>--}}
+{{--                                                </p>--}}
+{{--                                            </div>--}}
+{{--                                            <p class="form-row wide-half">--}}
+{{--                                                <input type="text" name="name" value="" placeholder="Your name">--}}
+{{--                                            </p>--}}
+{{--                                            <p class="form-row wide-half">--}}
+{{--                                                <input type="email" name="email" value="" placeholder="Email address">--}}
+{{--                                            </p>--}}
+{{--                                            <p class="form-row">--}}
+{{--                                                <textarea name="comment" id="txt-comment" cols="30" rows="10" placeholder="Write your review here..."></textarea>--}}
+{{--                                            </p>--}}
+{{--                                            <p class="form-row">--}}
+{{--                                                <button type="submit" name="submit">submit review</button>--}}
+{{--                                            </p>--}}
+{{--                                        </form>--}}
                                     </div>
                                 </div>
                             </div>

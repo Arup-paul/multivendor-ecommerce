@@ -31,6 +31,10 @@ Route::namespace('App\Http\Controllers\Frontend')->group(function(){
     Route::get('/products/{vendorId}','ProductController@vendorListing')->name('product.vendor-listing');
 
 
+    //cart
+    Route::post('/cart/add','CartController@cartAdd')->name('cart.add');
+    Route::get('/cart','CartController@cart')->name('cart');
+
 
 
 });

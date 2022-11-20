@@ -4439,12 +4439,13 @@ body.open-overlay #overlay{
 .sumary-product .action-form .location-shipping-to{
     margin-top: 20px;
 }
-.sumary-product .action-form .location-shipping-to .nice-select{
+.sumary-product .action-form .location-shipping-to select{
     width: 100%;
-    background-color: #ffffff;
     padding-left: 20px;
     padding-right: 32px;
     border-radius: 9999px;
+    border: 1px solid #ddd;
+    color: #ddd;
 }
 .quantity-box-select .nice-select{
     width: 100%;
@@ -5150,6 +5151,9 @@ body.open-overlay #overlay{
     -moz-transition: background-color 150ms ease;
     -o-transition: background-color 150ms ease;
     transition: background-color 150ms ease;
+}
+.shopping-cart-container{
+    margin-top: 30px;
 }
 .shopping-cart-container .box-title{
     font-size: 20px;
