@@ -203,7 +203,7 @@
                                             </li>
                                         </ul>
                                         <p class="btn-control">
-                                            <a href="#" class="btn view-cart">view cart</a>
+                                            <a href="{{route('cart')}}" class="btn view-cart">view cart</a>
                                             <a href="#" class="btn">checkout</a>
                                         </p>
                                     </div>

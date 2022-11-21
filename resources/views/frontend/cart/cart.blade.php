@@ -9,82 +9,69 @@
                 <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                     <h3 class="box-title">Your cart items</h3>
                     <form class="shopping-cart-form" action="#" method="post">
-                        <table class="shop_table cart-form">
+                        <table class="shop_table cart-form ">
                             <thead>
                             <tr>
-                                <th class="product-name">Product Name</th>
+                                <th class="product-name">Product Info</th>
                                 <th class="product-price">Price</th>
                                 <th class="product-quantity">Quantity</th>
                                 <th class="product-subtotal">Total</th>
+                                <th class="product-subtotal">Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="cart_item">
-                                <td class="product-thumbnail" data-title="Product Name">
-                                    <a class="prd-thumb" href="#">
-                                        <figure><img width="113" height="113" src="assets/images/shippingcart/pr-01.jpg" alt="shipping cart"></figure>
-                                    </a>
-                                    <a class="prd-name" href="#">National Fresh Fruit</a>
-                                    <div class="action">
-                                        <a href="#" class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                        <a href="#" class="remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                    </div>
-                                </td>
-                                <td class="product-price" data-title="Price">
-                                    <div class="price price-contain">
-                                        <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                                        <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
-                                    </div>
-                                </td>
-                                <td class="product-quantity" data-title="Quantity">
-                                    <div class="quantity-box type1">
-                                        <div class="qty-input">
-                                            <input type="text" name="qty12554" value="1" data-max_value="20" data-min_value="1" data-step="1">
-                                            <a href="#" class="qty-btn btn-up"><i class="fa fa-caret-up" aria-hidden="true"></i></a>
-                                            <a href="#" class="qty-btn btn-down"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                            @foreach($cartItems as $items)
+                                @php
+                                    $discount =\App\Models\Product::getDiscountPrice($items->product_id)
+                                @endphp
+                                <tr class="cart_item">
+                                    <td class="product-thumbnail" data-title="Product Name">
+                                        <a class="prd-thumb" href="#">
+                                            <figure><img width="113" height="113" src="{{$items->product->product_image ?? ''}}" alt="shipping cart"></figure>
+                                        </a>
+                                        <a class="prd-name" href="{{route('product.details',$items->product->slug)}}">
+                                            Name: <small>{{$items->product->product_name}}</small> <br>
+                                            Color: <small> {{$items->product->product_color}}</small> <br>
+                                            Code: <small> {{$items->product->product_code}}</small> <br>
+                                            Size: <small> {{$items->size}}</small> <br>
+                                        </a>
+                                    </td>
+                                    <td class="product-price" data-title="Price">
+                                        <div class="price price-contain">
+                                            @if( $discount != 0)
+                                                <ins><span class="price-amount"><span class="currencySymbol">$</span>{{$discount}}</span></ins>
+                                                <del><span class="price-amount"><span class="currencySymbol">$</span>{{$items->product->product_price}}</span></del>
+                                            @else
+                                                <ins><span class="price-amount"><span class="currencySymbol">$</span>{{$items->product->product_price}}</span></ins>
+                                            @endif
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="product-subtotal" data-title="Total">
-                                    <div class="price price-contain">
-                                        <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                                        <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="cart_item">
-                                <td class="product-thumbnail" data-title="Product Name">
-                                    <a class="prd-thumb" href="#">
-                                        <figure><img width="113" height="113" src="assets/images/shippingcart/pr-02.jpg" alt="shipping cart"></figure>
-                                    </a>
-                                    <a class="prd-name" href="#">National Fresh Fruit</a>
-                                    <div class="action">
-                                        <a href="#" class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                        <a href="#" class="remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                    </div>
-                                </td>
-                                <td class="product-price" data-title="Price">
-                                    <div class="price price-contain">
-                                        <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                                        <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
-                                    </div>
-                                </td>
-                                <td class="product-quantity" data-title="Quantity">
-                                    <div class="quantity-box type1">
-                                        <div class="qty-input">
-                                            <input type="text" name="qty12554" value="1" data-max_value="20" data-min_value="1" data-step="1">
-                                            <a href="#" class="qty-btn btn-up"><i class="fa fa-caret-up" aria-hidden="true"></i></a>
-                                            <a href="#" class="qty-btn btn-down"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                                    </td>
+                                    <td class="product-quantity" data-title="Quantity">
+                                        <div class="quantity-box type1">
+                                            <div class="qty-input">
+                                                <input type="number" name="qty" value="{{$items->quantity}}" data-max_value="20" data-min_value="1" data-step="1" required>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="product-subtotal" data-title="Total">
-                                    <div class="price price-contain">
-                                        <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                                        <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+
+                                    <td class="product-subtotal" data-title="Total">
+                                        <div class="price price-contain">
+                                            @if( $discount != 0)
+                                            <ins><span class="price-amount"><span class="currencySymbol">$</span>{{$discount * $items->quantity}}</span></ins>
+                                            <del><span class="price-amount"><span class="currencySymbol">$</span>{{$items->product->product_price  * $items->quantity}}</span></del>
+                                            @else
+                                                <ins><span class="price-amount"><span class="currencySymbol">$</span>{{$items->product->product_price  * $items->quantity}}</span></ins>
+                                            @endif
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="action">
+                                            <a href="#" class="remove"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+
                             <tr class="cart_item wrap-buttons">
                                 <td class="wrap-btn-control" colspan="4">
                                     <a class="btn back-to-shop">Back to Shop</a>

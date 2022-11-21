@@ -5202,7 +5202,7 @@ body.open-overlay #overlay{
     display: inline-block;
     width: calc(100% - 115px);
     padding-left: 10px;
-    line-height: 1;
+    line-height: 1.3;
     vertical-align: middle;
 }
 .shopping-cart-container table td.product-thumbnail .action{
