@@ -8,6 +8,7 @@
     <script src="{{asset('frontend/assets/js/biolife.framework.js')}}"></script>
     <script src="{{asset('frontend/assets/js/functions.js')}}"></script>
     <script src="{{asset('frontend/assets/js/plugin/toastifyjs/toastify.js')}}"></script>
+    <script src="{{asset('frontend/assets/js/plugin/sweetalert/sweetalert2.all.min.js')}}"></script>
     <script src="{{asset('frontend/assets/js/plugin/Notify.js')}}"></script>
     <script src="{{asset('frontend/assets/js/form.js')}}"></script>
     <script src="{{asset('frontend/assets/js/custom.js')}}"></script>

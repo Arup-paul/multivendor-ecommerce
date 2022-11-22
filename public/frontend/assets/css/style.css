@@ -5228,7 +5228,6 @@ body.open-overlay #overlay{
     padding: 29px 0 0;
     font-size: 0;
     line-height: 0;
-    text-align: right;
 }
 .shopping-cart-container table td.wrap-btn-control .btn{
     display: inline-block;

@@ -7,6 +7,7 @@ use App\Models\Cart;
 use App\Models\ProductAttributes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\View;
 
 class CartController extends Controller
 {
@@ -59,4 +60,53 @@ class CartController extends Controller
         $cartItems = Cart::getCartItems();
         return view('frontend.cart.cart',compact('cartItems'));
     }
+
+    public function cartUpdate(Request $request){
+        if($request->ajax()){
+            $cartDetails = Cart::find($request->cartId);
+            $cartItems = Cart::getCartItems();
+            $availableSize = ProductAttributes::where(['product_id'=>$cartDetails->product_id,'size'=>$cartDetails->size,'status' => 1])->count();
+            if($availableSize  ==  0){
+                return response()->json([
+                    'status' => false,
+                    'message' => __('Product Size is not  available. Please remove this product from cart'),
+                    'view' => (String)View::make('frontend.cart.items',compact('cartItems'))->render(),
+
+                ]);
+            }
+
+            $productStock = ProductAttributes::isStockAvailable($cartDetails->product_id,$cartDetails->size);
+            if($productStock < $request->qty){
+                return response()->json([
+                    'status' => false,
+                    'message' => __('Product Stock is not available'),
+                    'view' => (String)View::make('frontend.cart.items',compact('cartItems'))->render(),
+
+                ]);
+            }
+            $cart = Cart::where('id',$request->cartId)->update(['quantity'=>$request->qty]);
+            $cartItems = Cart::getCartItems();
+            return response()->json([
+               'status' => true,
+               'view' => (String)View::make('frontend.cart.items',compact('cartItems'))->render(),
+            ]);
+
+        }
+
+    }
+
+    public function removeItem(Request $request){
+        if($request->ajax()){
+             Cart::where('id',$request->cartId)->delete();
+            $cartItems = Cart::getCartItems();
+            return response()->json([
+                'status' => true,
+                'message' => 'Product removed from cart successfully',
+                'view' => (String)View::make('frontend.cart.items',compact('cartItems'))->render(),
+            ]);
+
+        }
+
+    }
+
 }

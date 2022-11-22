@@ -34,6 +34,8 @@ Route::namespace('App\Http\Controllers\Frontend')->group(function(){
     //cart
     Route::post('/cart/add','CartController@cartAdd')->name('cart.add');
     Route::get('/cart','CartController@cart')->name('cart');
+    Route::post('/cart/update-qty','CartController@cartUpdate')->name('cart.update-qty');
+    Route::post('/cart/remove-item','CartController@removeItem')->name('cart.remove-item');
 
 
 
