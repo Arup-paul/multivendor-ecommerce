@@ -54,8 +54,13 @@
 
                         <li class="menu-item"><a href="#">Blog</a></li>
                         <li class="menu-item"><a href="#">Contact</a></li>
-                        <li class="menu-item"><a href="#">Login</a></li>
-                        <li class="menu-item"><a href="#">Register</a></li>
+                        @guest
+                           <li class="menu-item"><a href="{{route('login')}}">Signup/Login</a></li>
+                        @endguest
+                        @auth
+                           <li class="menu-item"><a href=" ">Account</a></li>
+                           <li class="menu-item"><a href="{{route('logout')}}">Logout</a></li>
+                        @endauth
 
                     </ul>
                 </div>

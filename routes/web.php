@@ -16,6 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::namespace('App\Http\Controllers\Frontend')->group(function(){
     Route::get('/','HomeController@index')->name('home');
 
+    //user login
+    Route::get('/login','AuthController@login')->name('login');
+    Route::post('/login','AuthController@processLogin')->name('login');
+    Route::get('/register','AuthController@register')->name('register');
+    Route::post('/register','AuthController@processRegister')->name('register');
+    Route::get('/logout','AuthController@logout')->name('logout');
+
+
     //listing
     if(\Illuminate\Support\Facades\Schema::hasTable('categories')){
         $category = \App\Models\Category::select(['url'])->whereStatus(1)->pluck('url');

@@ -72,12 +72,14 @@ $(document).on('submit', '.ajaxform', function (e) {
             $submitBtn.html($submitBtnOld);
             $submitBtn.removeAttr('disabled');
 
+            if(xhr.responseJSON.message){
+                Notify('error', null, xhr.responseJSON.message)
+            }
+
             if (xhr.responseJSON.errors){
                 $.each(xhr.responseJSON.errors, function (i, error) {
                     Notify('error', null, error[0])
                 })
-            }else{
-                Notify('error', xhr)
             }
         }
     });
