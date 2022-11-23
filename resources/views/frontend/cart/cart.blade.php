@@ -1,7 +1,7 @@
 @extends('frontend.layouts.layouts')
 @section('content')
 
-    @include('frontend.partials.breadcrumb', ['title' =>'Shopping Cart'])
+
     <div class="container">
         <!--Cart Table-->
         <div class="shopping-cart-container  ">

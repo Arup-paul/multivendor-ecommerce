@@ -7,14 +7,13 @@
 @extends('frontend.layouts.layouts')
 @section('content')
 
-    @include('frontend.partials.breadcrumb', ['title' => $product->category->category_name,'image' => $product->category->category_image])
     @include('frontend.partials.category_nav',['section' => $product->section->name])
 
 
 
 
 <div class="page-contain single-product">
-    <div class="container">
+    <div class="container container-xxl">
 
         <!-- Main content -->
         <div id="main-content" class="main-content">
@@ -383,8 +382,6 @@
             @if(count($relatedProducts) > 0)
             <div class="product-related-box single-layout">
                 <div class="biolife-title-box lg-margin-bottom-26px-im">
-                    <span class="biolife-icon icon-organic"></span>
-                    <span class="subtitle">All the best item for You</span>
                     <h3 class="main-title">Related Products</h3>
                 </div>
                 <ul class="products-list biolife-carousel nav-center-02 nav-none-on-mobile" data-slick='{"rows":1,"arrows":true,"dots":false,"infinite":false,"speed":400,"slidesMargin":0,"slidesToShow":5, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 4}},{"breakpoint":992, "settings":{ "slidesToShow": 3, "slidesMargin":20 }},{"breakpoint":768, "settings":{ "slidesToShow": 2, "slidesMargin":10}}]}'>

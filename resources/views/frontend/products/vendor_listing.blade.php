@@ -7,7 +7,7 @@
 
 
     <div class="page-contain category-page left-sidebar">
-        <div class="container">
+        <div class="container container-xxl">
             <div class="row">
                 <!-- Main content -->
                 <div id="main-content" class="main-content col-12">

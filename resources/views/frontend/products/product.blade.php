@@ -1,4 +1,4 @@
-<li class="product-item">
+<li class="product-item product-item-new">
     <div class="contain-product layout-default">
         <div class="product-thumb">
             <a href="{{route('product.details',$product->slug)}}" class="link-to-product">

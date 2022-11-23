@@ -1,13 +1,13 @@
 <div class="main-slide block-slider">
-    <ul class="biolife-carousel nav-none-on-mobile" data-slick='{"arrows": true, "dots": false, "slidesMargin": 0, "slidesToShow": 1, "infinite": true, "speed": 800}' >
+    <ul class="biolife-carousel nav-none-on-mobile" data-slick='{"arrows": true, "dots": true, "slidesMargin": 0, "slidesToShow": 1, "infinite": true, "speed": 800}' >
         @foreach($sliders as $slider)
             <li>
                 <div class="slide-contain slider-opt03__layout01">
                     <div class="media" style="background-image:url({{asset($slider['value']['banner'])}})">
                         @if($slider['value']['child_image'])
-                        <div class="child-elememt">
-                                <img src="{{asset($slider['value']['child_image'] ?? null)}}" width="604" height="580" alt="">
-                        </div>
+{{--                        <div class="child-elememt">--}}
+{{--                                <img src="{{asset($slider['value']['child_image'] ?? null)}}" width="604" height="580" alt="">--}}
+{{--                        </div>--}}
                         @endif
                     </div>
                     <div class="text-content">

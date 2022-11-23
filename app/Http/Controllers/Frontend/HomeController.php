@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Option;
 use App\Models\Product;
 use App\Models\Section;
@@ -17,6 +18,8 @@ class HomeController extends Controller
       $featuredProducts = Product::with('category','brand')->whereFeatured('is_featured')->whereStatus(1)->inRandomOrder()->take(10)->get();
       $discountProducts = Product::with('category','brand')->where('product_discount' ,'>',0)->whereStatus(1)->inRandomOrder()->take(10)->get();
       $bestRatedProducts = Product::with('category','brand')->whereFeatured('is_best_rated')->whereStatus(1)->inRandomOrder()->take(10)->get();
-      return view('frontend.index',compact('sliders','newProducts','bestSellerProducts','featuredProducts','discountProducts','bestRatedProducts'));
+
+       $categories = Category::where('parent_id', null)->whereStatus(1)->get();
+      return view('frontend.index',compact('sliders','newProducts','bestSellerProducts','featuredProducts','discountProducts','bestRatedProducts','categories'));
     }
 }

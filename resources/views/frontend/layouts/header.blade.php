@@ -1,7 +1,7 @@
    <!-- HEADER -->
   <header id="header" class="header-area style-01 layout-03">
-    <div class="header-top bg-main hidden-xs">
-        <div class="container">
+    <div class="header-top header-bg hidden-xs">
+        <div class="container container-xxl">
             <div class="top-bar left">
                 <ul class="horizontal-menu">
 
@@ -26,46 +26,28 @@
 
         </div>
     </div>
-    <div class="header-middle biolife-sticky-object ">
-        <div class="container">
+    <div class="header-middle  ">
+        <div class="container container-xxl">
             <div class="row">
                 <div class="col-lg-3 col-md-2 col-md-6 col-xs-6">
                     <a href="index-2.html" class="biolife-logo"><img src="{{asset('frontend/assets/images/organic-3.png')}}" alt="biolife logo" width="135" height="34"></a>
                 </div>
                 <div class="col-lg-6 col-md-7 hidden-sm hidden-xs">
-                    <div class="primary-menu">
-                    <ul class="menu biolife-menu clone-main-menu clone-primary-menu" id="primary-menu" data-menuname="main menu">
-                        <li class="menu-item"><a href="index-2.html">Home</a></li>
-                        <li class="menu-item menu-item-has-children has-megamenu">
-                            <a href="#" class="menu-name" data-title="Shop" >Shop</a>
-                            <div class="wrap-megamenu lg-width-900 md-width-750">
-                                <div class="mega-content">
-                                    <div class="col-lg-3 col-md-3 col-xs-12 md-margin-bottom-0 xs-margin-bottom-25">
-                                        <div class="wrap-custom-menu vertical-menu">
-                                            <h4 class="menu-title">Fresh Berries</h4>
-                                            <ul class="menu">
-                                                <li><a href="#">Fruit & Nut Gifts</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="menu-item"><a href="#">Blog</a></li>
-                        <li class="menu-item"><a href="#">Contact</a></li>
-                        @guest
-                           <li class="menu-item"><a href="{{route('login')}}">Signup/Login</a></li>
-                        @endguest
-                        @auth
-                           <li class="menu-item"><a href=" ">Account</a></li>
-                           <li class="menu-item"><a href="{{route('logout')}}">Logout</a></li>
-                        @endauth
-
-                    </ul>
-                </div>
+                    <div class="header-search-bar layout-01">
+                        <form action="#" class="form-search" name="desktop-seacrh" method="get">
+                            <input type="text" name="s" class="input-text" value="" placeholder="Search here...">
+                            <select name="category">
+                                <option value="-1" selected>All Sections</option>
+                                @foreach($sections as $section)
+                                    <option value="">{{$section->name}}</option>
+                                @endforeach
+                            </select>
+                            <button type="submit" class="btn-submit"><i class="biolife-icon icon-search"></i></button>
+                        </form>
+                    </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-md-6 col-xs-6">
+
                     <div class="biolife-cart-info">
                         <div class="mobile-search">
                             <a href="javascript:void(0)" class="open-searchbox"><i class="biolife-icon icon-search"></i></a>
@@ -84,6 +66,14 @@
                                 </form>
                             </div>
                         </div>
+                        <div class="wishlist-block hidden-sm hidden-xs">
+                            <a href="#" class="link-to">
+                                    <span class="icon-qty-combine">
+                                        <i class="icon-heart-bold biolife-icon"></i>
+                                        <span class="qty">4</span>
+                                    </span>
+                            </a>
+                        </div>
                         <div class="minicart-block">
                             <div class="minicart-contain">
                                 <a href="javascript:void(0)" class="link-to">
@@ -91,7 +81,7 @@
                                             <i class="icon-cart-mini biolife-icon"></i>
                                             <span class="qty">8</span>
                                         </span>
-                                    <span class="sub-total">$0.00</span>
+                                    <span class="sub-total">$1.00</span>
                                 </a>
                                 <div class="cart-content">
                                     <div class="cart-inner">
@@ -227,8 +217,8 @@
             </div>
         </div>
     </div>
-    <div class="header-bottom hidden-sm hidden-xs">
-        <div class="container">
+    <div class="header-bottom biolife-sticky-object hidden-sm hidden-xs">
+        <div class="container container-xxl">
             <div class="row">
                 <div class="col-lg-3 col-md-4">
                     <div class="vertical-menu vertical-category-block">
@@ -337,19 +327,38 @@
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-8 padding-top-2px">
-                    <div class="header-search-bar layout-01">
-                        <form action="#" class="form-search" name="desktop-seacrh" method="get">
-                            <input type="text" name="s" class="input-text" value="" placeholder="Search here...">
-                            <select name="category">
-                                <option value="-1" selected>All Sections</option>
-                                @foreach($sections as $section)
-                                    <option value="">{{$section->name}}</option>
-                                @endforeach
-                            </select>
-                            <button type="submit" class="btn-submit"><i class="biolife-icon icon-search"></i></button>
-                        </form>
-                    </div>
 
+                    <div class="primary-menu">
+                        <ul class="menu biolife-menu clone-main-menu clone-primary-menu" id="primary-menu" data-menuname="main menu">
+                            <li class="menu-item"><a href="index-2.html">Home</a></li>
+                            <li class="menu-item menu-item-has-children has-megamenu">
+                                <a href="#" class="menu-name" data-title="Shop" >Shop</a>
+                                <div class="wrap-megamenu lg-width-900 md-width-750">
+                                    <div class="mega-content">
+                                        <div class="col-lg-3 col-md-3 col-xs-12 md-margin-bottom-0 xs-margin-bottom-25">
+                                            <div class="wrap-custom-menu vertical-menu">
+                                                <h4 class="menu-title">Fresh Berries</h4>
+                                                <ul class="menu">
+                                                    <li><a href="#">Fruit & Nut Gifts</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="menu-item"><a href="#">Blog</a></li>
+                            <li class="menu-item"><a href="#">Contact</a></li>
+                            @guest
+                                <li class="menu-item"><a href="{{route('login')}}">Signup/Login</a></li>
+                            @endguest
+                            @auth
+                                <li class="menu-item"><a href=" ">Account</a></li>
+                                <li class="menu-item"><a href="{{route('logout')}}">Logout</a></li>
+                            @endauth
+
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

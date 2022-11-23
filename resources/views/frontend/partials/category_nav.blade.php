@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container container-xxl">
     <nav class="biolife-nav">
         <ul>
             <li class="nav-item"><a href="{{route('home')}}" class="permal-link">Home</a></li>

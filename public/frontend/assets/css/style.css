@@ -154,7 +154,6 @@ input[type="search"]::placeholder{
 select{
     background: transparent;
     border: none;
-    color: #ffffff;
 }
 select option{
     color: #333333;
@@ -772,6 +771,9 @@ body{
     line-height: 1;
     margin-top: 20px;
 }
+.mb-10{
+    margin-bottom: 30px;
+}
 .hero-section .page-title{
     display: inline-block;
     position: absolute;
@@ -876,11 +878,11 @@ body{
     display: inline-block;
 }
 .header-top .top-bar .horizontal-menu a{
-    color: #ffffff;
+    color: #212529;
     font-size: 14px;
 }
 .header-top .top-bar .horizontal-menu a:hover{
-    color: #dddddd;
+    color: #fab528;
 }
 .header-top .left a>i{
     font-size: 15px;
@@ -947,6 +949,8 @@ body{
 }
 .header-area .header-middle{
     padding: 30px 0 21px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
 .header-area .primary-menu{
     margin-top: 8px;
@@ -1069,7 +1073,7 @@ body{
     display: inline-block;
 }
 .header-area .header-bottom{
-    padding-bottom: 10px;
+    padding: 10px;
 }
 body.open-mobile-search .header-area.layout-02{
     z-index: 150;
@@ -2066,6 +2070,7 @@ body.open-mobile-search .header-area.layout-02{
     -ms-transform: translateX(10px);
     -o-transform: translateX(10px);
     transform: translateX(10px);
+    top:125px;
 }
 .biolife-carousel.nav-center-02 .slick-arrow.next{
     right: -9px;
@@ -2075,6 +2080,8 @@ body.open-mobile-search .header-area.layout-02{
     -ms-transform: translateX(-10px);
     -o-transform: translateX(-10px);
     transform: translateX(-10px);
+    top:125px;
+
 }
 .biolife-carousel.nav-center-02 .slick-arrow::before{
     content: "\f104";
@@ -4944,7 +4951,7 @@ body.open-overlay #overlay{
     margin-bottom: 31px;
 }
 .biolife-title-box{
-    text-align: center;
+
 }
 .biolife-title-box .biolife-icon{
     display: inline-block;
@@ -4967,6 +4974,16 @@ body.open-overlay #overlay{
     display: block;
     margin: 12px 0 0;
     line-height: 1;
+    position: relative;
+}
+.biolife-title-box .main-title::before {
+    position: absolute;
+    content: '';
+    height: 4px;
+    width: 20%;
+    bottom: -20px;
+    left: 0;
+    background: #fab528;
 }
 .biolife-title-box.style-02 .subtitle{
     font-family: 'Cairo', sans-serif;
@@ -6811,7 +6828,6 @@ body.open-overlay #overlay{
 .slider-opt04__layout01,
 .slider-opt03__layout02,
 .slider-opt03__layout01{
-    margin: 0;
     padding: 0;
     font-size: 0;
     line-height: 0;
@@ -6887,7 +6903,7 @@ body.open-overlay #overlay{
     color: #ffffff;
     font-weight: 900;
     display: block;
-    margin: 0;
+    margin: 20px;
     width:365px;
 }
 .slider-opt03__layout01 .text-content .third-line{
@@ -10847,7 +10863,9 @@ body.open-quickview-block .biolife-quickview-block{
     }
     .header-area.layout-01 .header-top{
         margin-top: 18px;
+
     }
+
     .newsletter-block.layout-04 .wrap-title .texts{
         text-align: left;
     }
@@ -13559,6 +13577,7 @@ body.open-quickview-block .biolife-quickview-block{
     .sm-margin-top_58px{
         margin-top: -58px;
     }
+
     /*--------------------------*/
     .sm-margin-bottom-0{
         margin-bottom: 0;
@@ -14600,4 +14619,26 @@ body.open-quickview-block .biolife-quickview-block{
     .biolife-carousel.nav-none-on-mobile.nav-center-03 .slick-arrow.next{
         display: none !important;
     }
+}
+
+.product-item-new{
+    border: 1px solid #dddddd;
+    margin: 5px;
+}
+.category-product{
+    background: #f7f7f7;
+    margin: 10px !important;
+    border-radius: 10px;
+}
+.category-product:hover{
+    border: #fff;
+}
+.category-product .contain-product .info .product-title{
+   padding: 5px !important;
+}
+.container-xxl{
+    margin: 0 auto !important;
+    max-width: 1650px !important;
+    padding: 0 15px !important;
+    width: 100% !important;
 }

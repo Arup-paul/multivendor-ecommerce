@@ -1,5 +1,5 @@
 @foreach($products as $product)
-    <li class="product-item @if(isset($vendor)) col-lg-3 col-md-3 col-sm-4 col-xs-6 @else col-lg-4 col-md-4 col-sm-4 col-xs-6 @endif">
+    <li class="product-item @if(isset($vendor)) col-lg-2 col-md-3 col-sm-4 col-xs-6 @else col-lg-3 col-md-3 col-sm-4 col-xs-6 @endif">
         <div class="contain-product layout-default">
             <div class="product-thumb">
                 <a href="{{route('product.details',$product->slug)}}" class="link-to-product">
@@ -22,12 +22,8 @@
                         <del><span class="price-amount"><span class="currencySymbol">$</span>{{$product->product_price}}</span></del>
                     @endif
                 </div>
-                <div class="shipping-info">
-                    <p class="shipping-day">3-Day Shipping</p>
-                    <p class="for-today">Pree Pickup Today</p>
-                </div>
+
                 <div class="slide-down-box">
-                    <p class="message">All products are carefully selected to ensure food safety.</p>
                     <div class="buttons">
                         <a href="#" class="btn wishlist-btn"><i class="fa fa-heart" aria-hidden="true"></i></a>
                         <a href="#" class="btn add-to-cart-btn"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>add to cart</a>
