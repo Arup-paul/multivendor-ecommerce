@@ -9,12 +9,17 @@
 
 @section('content')
     <section class="section">
-
+        @if(session()->has('error'))
+            <div class="alert alert-danger">
+                {{ session()->get('error') }}
+            </div>
+        @endif
         <div class="row justify-content-center">
             <div class="col-6">
                 <div class="card">
 
                     <div class="card-body" >
+
                         @if($slug == 'personal')
                         <form method="POST" action="{{route('admin.update-vendor-details','personal')}}" class="ajaxform"  >
                           @csrf
@@ -117,9 +122,9 @@
                                     <label for="address_proof" class="required"  >{{ __('Shop Address Proof') }}</label>
                                     <select class="form-control" name="address_proof" id="address_proof">
                                         <option value="">{{ __('Select') }}</option>
-                                        <option value="passport" @selected($vendorDetails['address_proof'] == 'passport')>{{ __('Passport') }}</option>
-                                        <option value="nid" @selected($vendorDetails['address_proof'] == 'nid') >{{ __('NID Card') }}</option>
-                                        <option value="visa" @selected($vendorDetails['address_proof'] == 'visa') >{{ __('Visa') }}</option>
+                                        <option value="passport" @if(isset($vendorDetails['address_proof'])) @selected($vendorDetails['address_proof'] == 'passport') @endif>{{ __('Passport') }}</option>
+                                        <option value="nid"  @if(isset($vendorDetails['address_proof'])) @selected($vendorDetails['address_proof'] == 'nid')  @endif>{{ __('NID Card') }}</option>
+                                        <option value="visa"  @if(isset($vendorDetails['address_proof']))  @selected($vendorDetails['address_proof'] == 'visa')  @endif>{{ __('Visa') }}</option>
                                     </select>
                                  </div>
 

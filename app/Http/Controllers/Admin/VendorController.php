@@ -37,6 +37,7 @@ class VendorController extends Controller
                     $vendor->country = $data['country'];
                     $vendor->address = $data['address'];
                     $vendor->pincode = $data['pincode'];
+                    $vendor->status = 1;
                     $vendor->save();
 
                     $vendorAdmin = Admin::find(auth()->guard('admin')->user()->id);
@@ -88,6 +89,8 @@ class VendorController extends Controller
                         'gst_number' => $data['gst_number'],
                         'pan_number' => $data['pan_number'],
                     ]);
+
+                    Vendor::find($vendorId)->update(['is_business_details' => 1]);
 
 
                     return response()->json([

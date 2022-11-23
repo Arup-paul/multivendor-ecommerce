@@ -72,6 +72,8 @@ $(document).on('submit', '.ajaxform', function (e) {
             $submitBtn.html($submitBtnOld);
             $submitBtn.removeAttr('disabled');
 
+            console.log(xhr)
+
             if(xhr.responseJSON.message){
                 Notify('error', null, xhr.responseJSON.message)
             }

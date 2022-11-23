@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('mobile');
             $table->string('email')->unique();
             $table->tinyInteger('status')->default(1);
+            $table->tinyInteger('is_business_details')->default(0);
             $table->timestamps();
         });
     }

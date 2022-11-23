@@ -21,9 +21,16 @@
                 <a href="{{route('admin.update-password')}}" class="dropdown-item has-icon">
                     <i class="fas fa-key"></i> Update Password
                 </a>
-                <a href="{{route('admin.logout')}}" class="dropdown-item has-icon text-danger">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </a>
+
+                   @if(auth()->guard('admin')->user()->type == 'vendor')
+                        <a href="{{route('seller.logout')}}" class="dropdown-item has-icon text-danger">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    @else
+                        <a href="{{route('admin.logout')}}" class="dropdown-item has-icon text-danger">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    @endif
             </div>
         </li>
     </ul>

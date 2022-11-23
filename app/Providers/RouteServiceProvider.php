@@ -41,6 +41,12 @@ class RouteServiceProvider extends ServiceProvider
                 ->as('admin.')
                 ->namespace('App\Http\Controllers\Admin')
                 ->group(base_path('routes/admin.php'));
+
+            Route::middleware('web')
+                ->prefix('/seller')
+                ->as('seller.')
+                ->namespace('App\Http\Controllers\Seller')
+                ->group(base_path('routes/seller.php'));
         });
     }
 

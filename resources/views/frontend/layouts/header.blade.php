@@ -5,7 +5,7 @@
             <div class="top-bar left">
                 <ul class="horizontal-menu">
 
-                    <li class="menu-item"> <a href="#" class="link-to-item"> <i class="fa fa-user-circle"></i>Seller</a>   </li>
+                    <li class="menu-item"> <a href="{{route('seller.login')}}" class="link-to-item"> <i class="fa fa-user-circle"></i>Seller Login</a>   </li>
                     <li class="menu-item"> <a href="#" class="link-to-item"> <i class="fa fa-venus-double"></i>Order Tracking</a>   </li>
                 </ul>
             </div>

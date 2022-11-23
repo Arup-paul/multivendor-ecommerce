@@ -7,6 +7,7 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Vendor;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
@@ -15,7 +16,21 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with('category','brand','vendor')->orderByDesc('id')->paginate(20);
+        $admin = auth()->guard('admin')->user();
+        if($admin->type == 'superadmin'){
+            $products = Product::with('category','brand','vendor')->orderByDesc('id')->paginate(20);
+        }else{
+             $vendor = Vendor::find($admin->vendor_id);
+             if($vendor->status == 0){
+                 return redirect()->route('admin.update-vendor-details','personal')->with('error','Please update your profile details');
+             }else if($vendor->is_business_details == 0) {
+                 return redirect()->route('admin.update-vendor-details', 'business')->with('error', 'Please update your business details');
+             }
+
+            $products = Product::with('category','brand','vendor')->where('vendor_id',$admin->vendor_id)->orderByDesc('id')->paginate(20);
+        }
+
+
 
         return view('admin.products.index',compact('products'));
     }

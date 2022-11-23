@@ -53,13 +53,14 @@
                         <span>{{ __('Brand') }}</span>
                     </a>
                 </li>
-
+            @endif
                 <li class="{{ Request::is('admin/products*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('admin.products.index')}}">
                         <i class="fab fa-product-hunt"></i>
                         <span>{{ __('Products') }}</span>
                     </a>
                 </li>
+            @if(auth()->guard('admin')->user()->type == 'superadmin')
                 <li class="nav-item dropdown {{ Request::is('admin/filters*') ||  Request::is('admin/filter-values*')  ? 'active' : '' }}">
                     <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fa fa-filter"></i> <span>Product Filter</span></a>
                     <ul class="dropdown-menu">
