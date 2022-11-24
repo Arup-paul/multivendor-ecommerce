@@ -60,6 +60,12 @@
                         <span>{{ __('Products') }}</span>
                     </a>
                 </li>
+                <li class="{{ Request::is('admin/coupons*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{route('admin.coupons.index')}}">
+                        <i class="fab fa-bandcamp"></i>
+                        <span>{{ __('Coupon') }}</span>
+                    </a>
+                </li>
             @if(auth()->guard('admin')->user()->type == 'superadmin')
                 <li class="nav-item dropdown {{ Request::is('admin/filters*') ||  Request::is('admin/filter-values*')  ? 'active' : '' }}">
                     <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fa fa-filter"></i> <span>Product Filter</span></a>

@@ -64,7 +64,9 @@ Route::group(['middleware' => ['admin']],function (){
     Route::post('filter-values/mass-destroy','FilterValueController@massDestroy')->name('filter-values.mass-destroy');
     Route::resource('filter-values','FilterValueController');
 
-
+    //Coupon
+    Route::post('coupons/mass-destroy','CouponController@massDestroy')->name('coupons.mass-destroy');
+    Route::resource('coupons','CouponController');
 
 
     //fronted settings
