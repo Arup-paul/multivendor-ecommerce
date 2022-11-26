@@ -30,7 +30,7 @@
         <div class="container container-xxl">
             <div class="row">
                 <div class="col-lg-3 col-md-2 col-md-6 col-xs-6">
-                    <a href="index-2.html" class="biolife-logo"><img src="{{asset('frontend/assets/images/organic-3.png')}}" alt="biolife logo" width="135" height="34"></a>
+                    <a href="{{route('home')}}" class="biolife-logo"><img src="{{asset('frontend/assets/images/organic-3.png')}}" alt="biolife logo" width="135" height="34"></a>
                 </div>
                 <div class="col-lg-6 col-md-7 hidden-sm hidden-xs">
                     <div class="header-search-bar layout-01">
@@ -256,64 +256,7 @@
 
                                                     @endforeach
 
-                                                    <div class="col-lg-6 col-md-4 col-sm-12 lg-padding-left-50 xs-margin-bottom-25 md-margin-bottom-0">
-                                                        <div class="biolife-products-block max-width-270">
-                                                            <h4 class="menu-title">Bestseller Products</h4>
-                                                            <ul class="products-list default-product-style biolife-carousel nav-none-after-1k2 nav-center" data-slick='{"rows":1,"arrows":true,"dots":false,"infinite":false,"speed":400,"slidesMargin":30,"slidesToShow":1, "responsive":[{"breakpoint":767, "settings":{ "arrows": false}}]}' >
-                                                                <li class="product-item">
-                                                                    <div class="contain-product none-overlay">
-                                                                        <div class="product-thumb">
-                                                                            <a href="#" class="link-to-product">
-                                                                                <img src="assets/images/products/p-08.jpg" alt="dd" width="270" height="270" class="product-thumnail">
-                                                                            </a>
-                                                                        </div>
-                                                                        <div class="info">
-                                                                            <b class="categories">Fresh Fruit</b>
-                                                                            <h4 class="product-title"><a href="#" class="pr-name">National Fresh Fruit</a></h4>
-                                                                            <div class="price">
-                                                                                <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                                                                                <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                                <li class="product-item">
-                                                                    <div class="contain-product none-overlay">
-                                                                        <div class="product-thumb">
-                                                                            <a href="#" class="link-to-product">
-                                                                                <img src="assets/images/products/p-11.jpg" alt="dd" width="270" height="270" class="product-thumnail">
-                                                                            </a>
-                                                                        </div>
-                                                                        <div class="info">
-                                                                            <b class="categories">Fresh Fruit</b>
-                                                                            <h4 class="product-title"><a href="#" class="pr-name">National Fresh Fruit</a></h4>
-                                                                            <div class="price">
-                                                                                <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                                                                                <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                                <li class="product-item">
-                                                                    <div class="contain-product none-overlay">
-                                                                        <div class="product-thumb">
-                                                                            <a href="#" class="link-to-product">
-                                                                                <img src="assets/images/products/p-15.jpg" alt="dd" width="270" height="270" class="product-thumnail">
-                                                                            </a>
-                                                                        </div>
-                                                                        <div class="info">
-                                                                            <b class="categories">Fresh Fruit</b>
-                                                                            <h4 class="product-title"><a href="#" class="pr-name">National Fresh Fruit</a></h4>
-                                                                            <div class="price">
-                                                                                <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                                                                                <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -330,7 +273,7 @@
 
                     <div class="primary-menu">
                         <ul class="menu biolife-menu clone-main-menu clone-primary-menu" id="primary-menu" data-menuname="main menu">
-                            <li class="menu-item"><a href="index-2.html">Home</a></li>
+                            <li class="menu-item"><a href="{{route('home')}}">Home</a></li>
                             <li class="menu-item menu-item-has-children has-megamenu">
                                 <a href="#" class="menu-name" data-title="Shop" >Shop</a>
                                 <div class="wrap-megamenu lg-width-900 md-width-750">
