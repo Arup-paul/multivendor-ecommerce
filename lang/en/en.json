@@ -43,5 +43,9 @@
     "Inactive": "Inactive",
     "Product Attribute": "Product Attribute",
   "Add New Image": "Add New Image",
-  "Size": "Size"
+  "Size": "Size",
+  "Products": "Products",
+    "Coupons": "Coupons",
+    "Filter": "Filter",
+    "Filter Value": "Filter Value"
 }

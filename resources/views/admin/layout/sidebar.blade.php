@@ -54,27 +54,21 @@
                     </a>
                 </li>
             @endif
-                <li class="{{ Request::is('admin/products*') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{route('admin.products.index')}}">
-                        <i class="fab fa-product-hunt"></i>
-                        <span>{{ __('Products') }}</span>
-                    </a>
-                </li>
-                <li class="{{ Request::is('admin/coupons*') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{route('admin.coupons.index')}}">
-                        <i class="fab fa-bandcamp"></i>
-                        <span>{{ __('Coupon') }}</span>
-                    </a>
-                </li>
-            @if(auth()->guard('admin')->user()->type == 'superadmin')
-                <li class="nav-item dropdown {{ Request::is('admin/filters*') ||  Request::is('admin/filter-values*')  ? 'active' : '' }}">
-                    <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fa fa-filter"></i> <span>Product Filter</span></a>
+
+
+
+                <li class="nav-item dropdown {{ Request::is('admin/products*') ||  Request::is('admin/coupons*') ||  Request::is('admin/filters*') ||  Request::is('admin/filter-values*')  ? 'active' : '' }}">
+                    <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fab fa-product-hunt"></i> <span>Product</span></a>
                     <ul class="dropdown-menu">
-                        <li class="{{ Request::is('admin/filters*') ? 'active' : '' }}"><a class="nav-link" href="{{route('admin.filters.index')}}"> Filter</a></li>
-                        <li class="{{ Request::is('admin/filter-values*') ? 'active' : '' }}"><a class="nav-link" href="{{route('admin.filter-values.index')}}"> Filter Value</a></li>
+                        <li class="{{ Request::is('admin/products*') ? 'active' : '' }}"><a class="nav-link" href="{{route('admin.products.index')}}"> {{ __('Products') }}</a></li>
+                        <li class="{{ Request::is('admin/coupons*') ? 'active' : '' }}"><a class="nav-link" href="{{route('admin.coupons.index')}}"> {{ __('Coupons') }}</a></li>
+                        @if(auth()->guard('admin')->user()->type == 'superadmin')
+                        <li class="{{ Request::is('admin/filters*') ? 'active' : '' }}"><a class="nav-link" href="{{route('admin.filters.index')}}"> {{ __('Filter') }}</a></li>
+                        <li class="{{ Request::is('admin/filter-values*') ? 'active' : '' }}"><a class="nav-link" href="{{route('admin.filter-values.index')}}"> {{ __('Filter Value') }}</a></li>
+                        @endif
                     </ul>
                 </li>
-
+            @if(auth()->guard('admin')->user()->type == 'superadmin')
             <li class="{{ Request::is('admin/media*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.media.list') }}">
                     <i class="far fa-file-image"></i>
@@ -94,8 +88,8 @@
         </ul>
 
         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-            <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
-                <i class="fas fa-rocket"></i> Documentation
+            <a href="{{route('home')}}" target="_blank" class="btn btn-primary btn-lg btn-block btn-icon-split">
+                <i class="fas fa-rocket"></i> Website
             </a>
         </div>
     </aside>
