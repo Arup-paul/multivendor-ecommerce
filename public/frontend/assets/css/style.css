@@ -14642,3 +14642,7 @@ body.open-quickview-block .biolife-quickview-block{
     padding: 0 15px !important;
     width: 100% !important;
 }
+
+.d-flex{
+    display: flex;
+}

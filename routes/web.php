@@ -46,6 +46,10 @@ Route::namespace('App\Http\Controllers\Frontend')->group(function(){
     Route::post('/cart/update-qty','CartController@cartUpdate')->name('cart.update-qty');
     Route::post('/cart/remove-item','CartController@removeItem')->name('cart.remove-item');
 
+    //coupon
+    Route::post('/apply-coupon','CartController@applyCoupon')->name('apply.coupon');
+
+
 
 
 });

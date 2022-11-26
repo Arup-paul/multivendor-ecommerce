@@ -79,18 +79,17 @@
                     $totalQuantity += $items->quantity;
                 @endphp
             @endforeach
-            @else
+            @endif
+
                 <tr class="cart_item wrap-buttons">
                     <td class="wrap-btn-control" colspan="5">
                         <a class="btn btn-update"  href="" >Back To Shop</a>
                     </td>
                 </tr>
-            @endif
-
-
             </tbody>
         </table>
     </form>
+
 </div>
 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
     <div class="shpcart-subtotal-block">
@@ -99,22 +98,55 @@
             <span class="stt-price">$ {{$total}}</span>
         </div>
         <div class="subtotal-line">
-            <b class="stt-name">Shipping</b>
-            <span class="stt-price">$0.00</span>
-        </div>
-        <div class="subtotal-line">
             <b class="stt-name">Coupon Discount</b>
             <span class="stt-price">$0.00</span>
         </div>
-        <div class="tax-fee">
-            <p class="title">Est. Taxes & Fees</p>
-            <p class="desc">Based on 56789</p>
-        </div>
+
+
+            <div class="subtotal-line">
+                <form id="ApplyCoupon" method="post" action="javascript:;"  @auth user="1"   @endauth >
+                    @csrf
+                    <b class="stt-name">Coupon Code</b>
+                    <div class="d-flex">
+                        <input type="text" id="coupon_code" name="coupon_code" required placeholder="Enter Code" class="form-control">
+                        <button type="submit" class="btn checkout">Apply</button>
+                    </div>
+               </form>
+            </div>
+
+
         <div class="btn-checkout">
             <a href="#" class="btn checkout">Check out</a>
         </div>
           </div>
 </div>
 
+@push('frontend_scripts')
+    <script>
+        $(document).on('submit','#ApplyCoupon',function (e){
+             var user = $(this).attr("user");
+             if(user != 1 ){
+                 Notify('error','Please Login First' );
+                 return false;
+             }
+             var code = $("#coupon_code").val();
+             $.ajax({
+                 headers: {
+                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                 },
+                 type:'POST',
+                 data:{code:code},
+                 url:"{{route('apply.coupon')}}",
+                 success:function (res){
+                      if(res.invalid_coupon){
+                          Notify('error',res.invalid_coupon );
+                      }
+                 },error:function (e){
+                     Notify('error','Something went wrong!' );
+                 }
+             })
 
+          })
+    </script>
+@endpush
 

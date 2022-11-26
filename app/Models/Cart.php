@@ -12,10 +12,14 @@ class Cart extends Model
     protected $guarded= [];
 
     public static function getCartItems(){
+        $session_id = Session::get('session_id');
         if(auth()->check()){
-            $cartItems = Cart::with('product')->orderByDesc('id')->where('user_id',auth()->user()->id)->get();
+            $cartItems = Cart::with('product')->orderByDesc('id')
+                ->where('user_id',auth()->user()->id)
+                ->orWhere('session_id',$session_id)
+                ->get();
+
         }else{
-            $session_id = Session::get('session_id');
             $cartItems = Cart::with('product')->orderByDesc('id')->where('session_id',$session_id)->get();
         }
         return $cartItems;

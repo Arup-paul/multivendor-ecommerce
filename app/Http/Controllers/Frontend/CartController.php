@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
+use App\Models\Coupon;
 use App\Models\ProductAttributes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -46,7 +47,10 @@ class CartController extends Controller
 
            $cart = new Cart();
            $cart->session_id = $session_id;
-//           $cart->user_id = auth()->user()->id;
+           if(auth()->check()){
+               $cart->user_id = auth()->user()->id;
+           }
+
            $cart->product_id = $request->product_id;
            $cart->size = $request->size;
            $cart->quantity = $request->qty;
@@ -57,7 +61,7 @@ class CartController extends Controller
     }
 
     public function cart(){
-        $cartItems = Cart::getCartItems();
+         $cartItems = Cart::getCartItems();
         return view('frontend.cart.cart',compact('cartItems'));
     }
 
@@ -105,6 +109,21 @@ class CartController extends Controller
                 'view' => (String)View::make('frontend.cart.items',compact('cartItems'))->render(),
             ]);
 
+        }
+
+    }
+
+    public function applyCoupon(Request $request){
+        if($request->ajax()){
+           $code = $request->input('code');
+           $count = Coupon::where('coupon_code',$code)->count();
+           if($count == 0){
+               return response()->json([
+                   'invalid_coupon' => 'This Coupon Code is not valid'
+               ]);
+           }else{
+
+           }
         }
 
     }
