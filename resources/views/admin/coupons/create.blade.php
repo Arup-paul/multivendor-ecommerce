@@ -16,7 +16,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for="coupon_option" class="required">{{ __('Coupon Option:') }} </label>
-                                <span><input type="radio" id="AutomaticCoupon"  name="coupon_option" value="automatic" > {{ __('Automatic') }} &nbsp;</span>
+                                <span><input type="radio" id="AutomaticCoupon"  name="coupon_option" value="Automatic" > {{ __('Automatic') }} &nbsp;</span>
                                 <span><input type="radio" id="ManualCoupon"  name="coupon_option" value="Manual" > {{ __('Manual') }}</span>
                             </div>
 
