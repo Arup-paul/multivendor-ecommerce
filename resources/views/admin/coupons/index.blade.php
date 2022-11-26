@@ -28,12 +28,8 @@
                         <thead>
                         <tr>
                             <th><input type="checkbox" class="checkAll"></th>
-                            <th>{{ __('Coupon Option') }}</th>
                             <th>{{ __('Coupon Code') }}</th>
                             <th>{{ __('Coupon Type') }}</th>
-                            <th>{{ __('Categories') }}</th>
-                            <th>{{ __('Users') }}</th>
-                            <th>{{ __('Amount Type') }}</th>
                             <th>{{ __('Amount') }}</th>
                             <th>{{ __('Start Date') }}</th>
                             <th>{{ __('End Date') }}</th>
@@ -43,28 +39,18 @@
                         </thead>
                         <tbody class="list font-size-base rowlink" data-link="row">
                         @foreach($coupons as $key => $coupon)
-                            @php
-                                //categories
-                                $categoryIds = explode(',', $coupon->categories);
-                                $categories = \App\Models\Category::whereIn('id', $categoryIds)->pluck('category_name')->toArray();
-                                $category = implode(',',$categories);
-
-                                //users
-                                $userIds = explode(',', $coupon->users);
-                                $users = \App\Models\User::whereIn('id', $userIds)->pluck('email')->toArray();
-                                $user = implode(',',$users);
-
-
-                            @endphp
                             <tr>
                                 <td> <input type="checkbox" name="ids[]" value="{{ $coupon->id }}"></td>
-                                <td>{{ $coupon->coupon_option }}</td>
                                 <td>{{ $coupon->coupon_code }}</td>
                                 <td>{{ $coupon->coupon_type }}</td>
-                                <td>{{ $category }}</td>
-                                <td>{{ $user }}</td>
-                                <td>{{ $coupon->amount_type }}</td>
-                                <td>{{ $coupon->amount }}</td>
+                                <td>
+                                    {{ $coupon->amount }}
+                                     @if($coupon->coupon_type == 'Percentage')
+                                         %
+                                    @else
+                                         $
+                                    @endif
+                                </td>
                                 <td>{{ $coupon->start_date }}</td>
                                 <td>{{ $coupon->end_date }}</td>
                                 <td>

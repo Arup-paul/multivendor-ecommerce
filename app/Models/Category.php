@@ -19,7 +19,7 @@ class Category extends Model
     }
 
     public function subcategories(){
-        return $this->hasMany(Category::class,'parent_id')->where('status',1)->select(['id','parent_id','category_name','url','category_image']);
+        return $this->hasMany(Category::class,'parent_id')->where('status',1)->select(['id','parent_id','category_name','url','category_image'])->where('status',1);
     }
 
     public function products(){

@@ -37,7 +37,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        $categories = Category::select(['id','category_name'])->get();
+        $categories = Category::with('subcategories')->select(['id','category_name'])->where('status',1)->get();
         $brands = Brand::select(['id','name'])->get();
         return view('admin.products.create',compact('categories','brands'));
     }

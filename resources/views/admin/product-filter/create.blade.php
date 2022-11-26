@@ -28,6 +28,9 @@
                                     <option value="">Select Category</option>
                                     @foreach($categories as $category)
                                         <option value="{{$category->id}}">{{$category->category_name}}</option>
+                                        @foreach($category->subcategories as $subcategory)
+                                            <option value="{{$subcategory->id}}">  &nbsp;&nbsp; -- {{$subcategory->category_name}}</option>
+                                        @endforeach
                                     @endforeach
                                 </select>
                             </div>

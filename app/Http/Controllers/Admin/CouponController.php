@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Coupon;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CouponController extends Controller
@@ -17,21 +19,47 @@ class CouponController extends Controller
 
     public function create()
     {
-        return view('admin.brands.create');
+        $categories = Category::with('subcategories')->select(['id','category_name'])->where('parent_id',null)->where('status',1)->get();
+        $users = User::select(['id','email'])->whereStatus(1)->get();
+
+        return view('admin.coupons.create',compact('categories','users'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'coupon_option' => 'required',
+            'coupon_type' => 'required',
+            'amount_type' => 'required',
+            'amount' => 'required|numeric',
         ]);
 
-        $section = new Brand();
-        $section->name = $request->name;
-        $section->status = $request->status;
-        $section->save();
+        $coupon = new Coupon();
+        $coupon->coupon_option = $request->input('coupon_option');
+        $coupon->coupon_code = $request->input('coupon_code');
+        $coupon->coupon_type = $request->input('coupon_type');
+        $coupon->amount_type = $request->input('amount_type');
+        $coupon->amount = $request->input('amount');
+        $coupon->start_date = date('Y-m-d',strtotime($request->input('start_date')));
+        $coupon->end_date =  date('Y-m-d',strtotime($request->input('end_date')));
+        $coupon->status = $request->input('status');
 
-        return response()->json( [ 'message' =>  'Brand created successfully'] );
+        //categories
+        $categories = $request->input('categories');
+        $categoryId = implode(',',$categories);
+        $coupon->categories = $categoryId;
+
+        //users
+        $users = $request->input('users');
+        $usersId = implode(',',$categories);
+        $coupon->users = $usersId;
+
+        $coupon->save();
+
+        return response()->json( [
+            'message' =>  'Coupon created successfully',
+            'redirect' =>  url()->previous()
+        ] );
     }
 
     public function edit($id)

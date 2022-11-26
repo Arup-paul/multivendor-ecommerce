@@ -21,7 +21,7 @@ class FilterController extends Controller
 
     public function create()
     {
-        $categories = Category::select(['id','category_name'])->where('status',1)->get();
+        $categories = Category::with('subcategories')->select(['id','category_name'])->where('status',1)->get();
         return view('admin.product-filter.create',compact('categories'));
     }
 

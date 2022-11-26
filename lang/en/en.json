@@ -47,5 +47,9 @@
   "Products": "Products",
     "Coupons": "Coupons",
     "Filter": "Filter",
-    "Filter Value": "Filter Value"
+    "Filter Value": "Filter Value",
+    "Automatic": "Automatic",
+    "Manual": "Manual",
+    "Select Category": "Select Category",
+    "Single Time": "Single Time"
 }

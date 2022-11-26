@@ -42,9 +42,12 @@
                                 <label for="category_id" class="required">{{ __('Category') }} </label>
                                 <select name="category_id" id="category_id" class="form-control">
                                     <option value="">Select Category</option>
-                                     @foreach($categories as $category)
+                                    @foreach($categories as $category)
                                         <option value="{{$category->id}}">{{$category->category_name}}</option>
-                                     @endforeach
+                                        @foreach($category->subcategories as $subcategory)
+                                            <option value="{{$subcategory->id}}">  &nbsp;&nbsp; -- {{$subcategory->category_name}}</option>
+                                        @endforeach
+                                    @endforeach
                                 </select>
                             </div>
 
