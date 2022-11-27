@@ -26,7 +26,7 @@ class CouponService
 
         //users
         $users = $request->input('users');
-        $usersId = implode(',',$categories);
+        $usersId = implode(',',$users);
         $coupon->users = $usersId;
     }
 

@@ -99,7 +99,24 @@
         </div>
         <div class="subtotal-line">
             <b class="stt-name">Coupon Discount</b>
-            <span class="stt-price">$0.00</span>
+            <span class="stt-price">
+                @if(Session::has('couponAmount'))
+                    $ {{Session::get('couponAmount')}}
+                @else
+                    $ 0
+                @endif
+            </span>
+        </div>
+
+        <div class="subtotal-line">
+            <b class="stt-name">Total</b>
+            <span class="stt-price">
+                @if(Session::has('grandTotal'))
+                    $ {{Session::get('grandTotal')}}
+                @else
+                    $  {{$total}}
+                @endif
+            </span>
         </div>
 
 
@@ -123,30 +140,7 @@
 
 @push('frontend_scripts')
     <script>
-        $(document).on('submit','#ApplyCoupon',function (e){
-             var user = $(this).attr("user");
-             if(user != 1 ){
-                 Notify('error','Please Login First' );
-                 return false;
-             }
-             var code = $("#coupon_code").val();
-             $.ajax({
-                 headers: {
-                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                 },
-                 type:'POST',
-                 data:{code:code},
-                 url:"{{route('apply.coupon')}}",
-                 success:function (res){
-                      if(res.invalid_coupon){
-                          Notify('error',res.invalid_coupon );
-                      }
-                 },error:function (e){
-                     Notify('error','Something went wrong!' );
-                 }
-             })
 
-          })
     </script>
 @endpush
 

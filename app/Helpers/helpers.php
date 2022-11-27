@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Cart;
 use App\Models\Tax;
 use App\Models\Menu;
 use App\Models\User;
@@ -558,5 +559,17 @@ if (!function_exists('support_setting')){
 if (!function_exists('total_new_message')){
     function total_new_message() {
         return Message::where('reciever_id', auth()->id())->where('is_seen', 0)->count();
+    }
+}
+
+//total cart items
+if (!function_exists('total_cart_items')){
+    function total_cart_items() {
+        $session_id = session()->getId();
+       if(auth()->check()) {
+           return Cart::where('user_id', auth()->id())->orWhere('session_id',$session_id)->count()->sum('quantity');
+       }else{
+              return Cart::where('session_id',$session_id)->count()->sum('quantity');
+       }
     }
 }

@@ -116,6 +116,35 @@
                 })
             });
 
+            $(document).on('submit','#ApplyCoupon',function (e){
+                var user = $(this).attr("user");
+                if(user != 1 ){
+                    Notify('error','Please Login First' );
+                    return false;
+                }
+                var code = $("#coupon_code").val();
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type:'POST',
+                    data:{code:code},
+                    url:"{{route('apply.coupon')}}",
+                    success:function (res){
+                        if(res.invalid_coupon){
+                            Notify('error',res.invalid_coupon );
+                        }
+                        if(res.status == true){
+                            Notify('success',null,res.message);
+                            $('#appendCartItems').html(res.view);
+                        }
+                    },error:function (e){
+                        Notify('error','Something went wrong!' );
+                    }
+                })
+
+            })
+
 
         });
     </script>

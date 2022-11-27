@@ -11,6 +11,10 @@ class Cart extends Model
     use HasFactory;
     protected $guarded= [];
 
+    public function product(){
+        return $this->belongsTo(Product::class,'product_id')->select('id','product_name','product_image','product_price','product_code','product_color','category_id','slug');
+    }
+
     public static function getCartItems(){
         $session_id = Session::get('session_id');
         if(auth()->check()){
@@ -25,8 +29,18 @@ class Cart extends Model
         return $cartItems;
     }
 
-    public function product(){
-        return $this->belongsTo(Product::class,'product_id')->select('id','product_name','product_image','product_price','product_code','product_color','category_id','slug');
+    public static function getCartTotal(){
+        $session_id = Session::get('session_id');
+        if(auth()->check()){
+            $cartTotal = Cart::where('user_id',auth()->user()->id)
+                ->orWhere('session_id',$session_id)
+                ->sum('quantity');
+        }else{
+            $cartTotal = Cart::where('session_id',$session_id)->sum('quantity');
+        }
+        return $cartTotal;
     }
+
+
 
 }

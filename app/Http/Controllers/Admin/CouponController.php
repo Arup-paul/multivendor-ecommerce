@@ -22,7 +22,7 @@ class CouponController extends Controller
     public function create()
     {
         $categories = Category::with('subcategories')->select(['id','category_name'])->where('parent_id',null)->where('status',1)->get();
-        $users = User::select(['id','email'])->whereStatus(1)->get();
+        $users = User::select(['id','email'])->whereStatus(1)->orderByDesc('id')->get();
 
         return view('admin.coupons.create',compact('categories','users'));
     }
@@ -47,7 +47,7 @@ class CouponController extends Controller
          $userIds = explode(',',$coupon->users);
 
         $categories = Category::with('subcategories')->select(['id','category_name'])->where('parent_id',null)->where('status',1)->get();
-        $users = User::select(['id','email'])->whereStatus(1)->get();
+         $users = User::select(['id','email'])->whereStatus(1)->orderByDesc('id')->get();
         return view('admin.coupons.edit',compact('coupon','categories','users','categoryIds','userIds'));
     }
 
