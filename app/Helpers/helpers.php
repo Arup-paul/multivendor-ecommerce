@@ -15,6 +15,7 @@ use App\Models\LevelUser;
 use App\Models\FrontendData;
 use App\Models\Message;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Optional;
 use Illuminate\Support\Collection;
 use Illuminate\Contracts\View\Factory;
@@ -550,26 +551,18 @@ if (!function_exists('user_currency')) {
     }
 }
 
-if (!function_exists('support_setting')){
-    function support_setting(User $user){
-        return $user->supportSetting;
-    }
-}
 
-if (!function_exists('total_new_message')){
-    function total_new_message() {
-        return Message::where('reciever_id', auth()->id())->where('is_seen', 0)->count();
-    }
-}
+
+
 
 //total cart items
 if (!function_exists('total_cart_items')){
     function total_cart_items() {
-        $session_id = session()->getId();
+        $session_id = Session::get('session_id');
        if(auth()->check()) {
-           return Cart::where('user_id', auth()->id())->orWhere('session_id',$session_id)->count()->sum('quantity');
+           return Cart::where('user_id', auth()->id())->orWhere('session_id',$session_id)->sum('quantity');
        }else{
-              return Cart::where('session_id',$session_id)->count()->sum('quantity');
+              return Cart::where('session_id',$session_id)->sum('quantity');
        }
     }
 }

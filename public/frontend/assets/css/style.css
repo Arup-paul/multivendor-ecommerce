@@ -1073,7 +1073,7 @@ body{
     display: inline-block;
 }
 .header-area .header-bottom{
-    padding: 10px;
+    border-bottom: 1px solid #ddd;
 }
 body.open-mobile-search .header-area.layout-02{
     z-index: 150;
@@ -5433,7 +5433,7 @@ body.open-overlay #overlay{
     color: #222222;
 }
 .checkout-progress-wrap{
-    max-width: 600px;
+    /*max-width: 600px;*/
 }
 .checkout-progress-wrap .steps{
     padding: 0;
@@ -5585,8 +5585,9 @@ body.open-overlay #overlay{
     color: #000000;
 }
 .order-summary{
-    background-color: #fafafa;
     padding: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 10px 10px 10px #ddd;
 }
 .order-summary .title-block{
     display: inline-block;
@@ -5650,9 +5651,12 @@ body.open-overlay #overlay{
     text-align: left;
 }
 .order-summary .cart-list .cart-item .product-thumb{
-    width: 113px;
+    width: 70px;
     font-size: 0;
     line-height: 0;
+}
+.order-summary .cart-list .cart-item .product-thumb .prd-thumb img{
+   border-radius: 50%;
 }
 .order-summary .cart-list .cart-item .info{
     font-size: 0;
@@ -14645,4 +14649,21 @@ body.open-quickview-block .biolife-quickview-block{
 
 .d-flex{
     display: flex;
+}
+
+/*delivery address*/
+.delivery_box{
+    margin: 10px 0;
+}
+.delivery_address{
+    border: 1px solid #fab528;
+    padding: 10px;
+    margin:5px 0;
+}
+
+.add_delivery{
+    font-size: 14px;
+}
+.border-1{
+    border:1px solid #ddd;
 }

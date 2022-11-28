@@ -83,7 +83,7 @@
 
                 <tr class="cart_item wrap-buttons">
                     <td class="wrap-btn-control" colspan="5">
-                        <a class="btn btn-update"  href="" >Back To Shop</a>
+                        <a class="btn btn-update"  href="{{route('home')}}" >Back To Shop</a>
                     </td>
                 </tr>
             </tbody>
@@ -133,7 +133,7 @@
 
 
         <div class="btn-checkout">
-            <a href="#" class="btn checkout">Check out</a>
+            <a href="{{route('checkout')}}" class="btn checkout">Check out</a>
         </div>
           </div>
 </div>

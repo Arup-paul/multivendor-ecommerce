@@ -79,7 +79,7 @@
                                 <a href="javascript:void(0)" class="link-to">
                                         <span class="icon-qty-combine">
                                             <i class="icon-cart-mini biolife-icon"></i>
-                                            <span class="qty">8</span>
+                                            <span class="qty">{{total_cart_items()}}</span>
                                         </span>
                                     <span class="sub-total">$1.00</span>
                                 </a>
@@ -199,7 +199,7 @@
                                         </ul>
                                         <p class="btn-control">
                                             <a href="{{route('cart')}}" class="btn view-cart">view cart</a>
-                                            <a href="#" class="btn">checkout</a>
+                                            <a href="{{route('checkout')}}" class="btn">checkout</a>
                                         </p>
                                     </div>
                                 </div>

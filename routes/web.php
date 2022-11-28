@@ -1,7 +1,9 @@
 <?php
 
 
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,8 +28,8 @@ Route::namespace('App\Http\Controllers\Frontend')->group(function(){
 
 
     //listing
-    if(\Illuminate\Support\Facades\Schema::hasTable('categories')){
-        $category = \App\Models\Category::select(['url'])->whereStatus(1)->pluck('url');
+    if(Schema::hasTable('categories')){
+        $category =  Category::select(['url'])->whereStatus(1)->pluck('url');
         foreach($category as $url){
             Route::match(['get','post'],'/'.$url,'ProductController@listing')->name('listing');
         }
@@ -48,6 +50,11 @@ Route::namespace('App\Http\Controllers\Frontend')->group(function(){
 
     //coupon
     Route::post('/apply-coupon','CartController@applyCoupon')->name('apply.coupon');
+
+    //checkout
+
+    Route::get('/checkout','CheckoutController@checkout')->name('checkout');
+
 
 
 
