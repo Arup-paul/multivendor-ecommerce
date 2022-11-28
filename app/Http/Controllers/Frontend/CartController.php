@@ -34,7 +34,11 @@ class CartController extends Controller
         }
         //check product is already exist
         if (auth()->check()) {
-            $countProducts = Cart::where('user_id', auth()->user()->id)->where('product_id', $request->product_id)->where('size', $request->size)->count();
+            $countProducts = Cart::where('user_id', auth()->user()->id)
+                            ->where('product_id', $request->product_id)
+                            ->orWhere('session_id',$session_id)
+                            ->where('size', $request->size)
+                            ->count();
             if ($countProducts > 0) {
                 return response()->json(__('product is already exist'), 422);
             }
