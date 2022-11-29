@@ -106,7 +106,9 @@
 
             <!--checkout progress box-->
             <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
-                <div class="checkout-progress-wrap">
+                <form action="{{route('checkout')}}" method="post" class="ajaxform">
+                    @csrf
+                   <div class="checkout-progress-wrap">
                     <ul class="steps">
                         <li class="step 1st">
                             <div class="checkout-act active">
@@ -117,7 +119,7 @@
                                          <div class="delivery_address">
                                              <div class="row">
                                                  <div class="col-xs-9">
-                                                     <input name="address" type="radio" value="1" id="address-{{$address->id}}"> <br>
+                                                     <input name="delivery_address" type="radio" value="{{$address->id}}" id="address-{{$address->id}}"> <br>
                                                      <label for="address-{{$address->id}}">
                                                          <h6><span>Name: </span>{{$address->name}}</h6>
                                                          <h6><span>Mobile: </span>{{$address->mobile}}</h6>
@@ -139,9 +141,31 @@
 
                             </div>
                         </li>
+                        <li class="step 1st">
+                            <div class="checkout-act active">
+                                <h3 class="title-box">Pay With </h3>
+                                <div class="row  ">
+                                        <div class="col-md-6 col-12">
+                                            <div class="payment-methods">
+                                                <input type="radio" id="cod" name="payment_gateway" value="COD">
+                                                <img for="cod" src="{{asset('frontend/img/cash-on-delivery.jpg')}}" width="200" height="200" alt="">
+                                            </div>
+                                        </div>
+
+                                </div>
+
+                            </div>
+                        </li>
+                        <li>
+                            <div class="pull-right">
+                                 <button type="submit" class="btn-placeorder ">Place Order</button>
+
+                            </div>
+                        </li>
 
                     </ul>
                 </div>
+                </form>
             </div>
 
 

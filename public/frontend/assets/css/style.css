@@ -14667,3 +14667,20 @@ body.open-quickview-block .biolife-quickview-block{
 .border-1{
     border:1px solid #ddd;
 }
+.btn-placeorder{
+    border: none;
+    display: block;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-align: center;
+    clear: both;
+    border-radius: 9999px;
+    background-color: #fab528;
+    font-weight: 700;
+    padding: 10px 20px;
+}
+.btn-placeorder:hover{
+    background-color: #444444 !important;
+    color: #ffffff;
+}
