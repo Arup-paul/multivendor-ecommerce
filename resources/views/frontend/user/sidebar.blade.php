@@ -10,6 +10,6 @@
     </div>
     <nav class="list-group">
         <a class="list-group-item active" href="#"><i class="icon-command"></i>Dashboard</a>
-        <a class="list-group-item  " href="#"><i class="icon-command"></i>new</a>
+        <a class="list-group-item  " href="{{route('user.orders.index')}}"><i class="icon-command"></i>Orders</a>
     </nav>
 </aside>

@@ -25,6 +25,7 @@ class CheckoutController extends Controller
             return redirect()->route('cart');
         }
 
+
          $deliveryAddress = DeliveryAddress::getDeliveryAddress();
         return view('frontend.checkout.index',compact('cartItems','deliveryAddress'));
     }
@@ -51,11 +52,18 @@ class CheckoutController extends Controller
             $couponCode = null;
         }
 
+
+
         if(Session::has('grandTotal')){
             $grandTotal = Session::get('grandTotal');
         }else{
-            $grandTotal = 0;
+            if(Session::has('total')) {
+                $grandTotal = Session::get('total');
+            }else{
+                $grandTotal = 0;
+            }
         }
+
 
         DB::beginTransaction();
         try {

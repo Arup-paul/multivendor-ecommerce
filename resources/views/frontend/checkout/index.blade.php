@@ -50,6 +50,8 @@
                                     }else{
                                        $total += $item->product->product_price * $item->quantity;
                                     }
+
+                                    \Illuminate\Support\Facades\Session::put('total',$total);
                                 @endphp
                             @endforeach
 
@@ -158,7 +160,7 @@
                         </li>
                         <li>
                             <div class="pull-right">
-                                 <button type="submit" class="btn-placeorder ">Place Order</button>
+                                 <button type="submit" class="btn-placeorder basic-btn">Place Order</button>
 
                             </div>
                         </li>

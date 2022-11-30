@@ -14,4 +14,12 @@ class Order extends Model
     public function orderProducts(){
         return $this->hasMany(OrderProduct::class,'order_id');
     }
+
+    public function deliveryAddress(){
+        return $this->belongsTo(DeliveryAddress::class,'delivery_address_id');
+    }
+
+    public function users(){
+        return $this->belongsTo(User::class,'user_id');
+    }
 }
