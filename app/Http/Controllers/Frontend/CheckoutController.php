@@ -92,8 +92,8 @@ class CheckoutController extends Controller
 
         DB::commit();
         return response()->json([
-            'message' => __('Successfully Order Placed'),
-            'redirect' => url()->previous()
+            'message' => __('Thank You, Your Order Successfully Placed'),
+            'redirect' => route('cart')
          ]);
          } catch (\Exception $e) {
             DB::rollback();
