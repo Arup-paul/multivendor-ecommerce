@@ -68,6 +68,13 @@ Route::group(['middleware' => ['admin']],function (){
     Route::post('coupons/mass-destroy','CouponController@massDestroy')->name('coupons.mass-destroy');
     Route::resource('coupons','CouponController');
 
+    //order
+    Route::post('/orders/mass-destroy','OrderController@massDestroy')->name('orders.mass-destroy');
+    Route::get('orders/invoice/{order}/print', 'OrderController@print')->name('orders.print.invoice');
+    Route::get('orders/pdf', 'OrderController@orderPdf')->name('orders.pdf');
+    Route::post('orders/payment-status/{id}', 'OrderController@paymentStatusUpdate')->name('orders.payment-status');
+    Route::resource('orders', 'OrderController');
+
 
     //fronted settings
     Route::post('sliders/mass-destroy','SliderController@massDestroy')->name('sliders.mass-destroy');

@@ -20,9 +20,9 @@ return new class extends Migration
             $table->float('shipping_charge')->default(0);
             $table->string('coupon_code')->nullable();
             $table->float('coupon_discount')->default(0);
-            $table->string('order_status');
+            $table->integer('order_status'); // 0 = pending, 1 = processing, 2 = shipping, 3 = completed, 4 = canceled
             $table->string('payment_method');
-            $table->string('payment_status');
+            $table->integer('payment_status'); // 0 = failed, 1 = complete, 2 = pending, 3 = incomplete
             $table->string('payment_gateway');
             $table->float('grand_total');
             $table->timestamps();

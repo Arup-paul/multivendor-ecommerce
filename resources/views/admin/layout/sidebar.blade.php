@@ -24,6 +24,7 @@
             </li>
             @endif
 
+
             @if(auth()->guard('admin')->user()->type == 'superadmin')
 
              <li class="{{ Request::is('admin/admins*') ? 'active' : '' }}">
@@ -32,7 +33,16 @@
                         <span>{{ __('Admin Management') }}</span>
                     </a>
             </li>
+            @endif
 
+                <li class="{{ Request::is('admin/orders*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.orders.index') }}" class="nav-link">
+                        <i class="fas fa-th-list"></i>
+                        <span>{{ __('Manage Order') }}</span>
+                    </a>
+                </li>
+
+              @if(auth()->guard('admin')->user()->type == 'superadmin')
                 <li class="{{ Request::is('admin/sections*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('admin.sections.index')}}">
                         <i class="fa fa-puzzle-piece"></i>
