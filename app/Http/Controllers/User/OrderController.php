@@ -13,4 +13,11 @@ class OrderController extends Controller
             ->where('user_id',auth()->user()->id)->orderByDesc('id')->get();
         return view('frontend.user.orders.index',compact('orders'));
     }
+
+    public function orderDetails($id){
+        $order = Order::with('deliveryAddress','orderProducts','orderProducts.product')
+            ->where('user_id',auth()->user()->id)->where('id',$id)->first();
+
+        return view('frontend.user.orders.details',compact('order'));
+    }
 }

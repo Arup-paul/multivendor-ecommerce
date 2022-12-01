@@ -296,7 +296,7 @@
                                 <li class="menu-item"><a href="{{route('login')}}">Signup/Login</a></li>
                             @endguest
                             @auth
-                                <li class="menu-item"><a href=" ">Account</a></li>
+                                <li class="menu-item"><a href="{{route('user.dashboard')}}">Account</a></li>
                                 <li class="menu-item"><a href="{{route('logout')}}">Logout</a></li>
                             @endauth
 
