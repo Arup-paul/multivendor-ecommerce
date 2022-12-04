@@ -131,6 +131,7 @@
                     data:{code:code},
                     url:"{{route('apply.coupon')}}",
                     success:function (res){
+                        console.log(res)
                         if(res.invalid_coupon){
                             Notify('error',res.invalid_coupon );
                         }

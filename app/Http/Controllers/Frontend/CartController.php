@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Coupon;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductAttributes;
 use Illuminate\Http\Request;
@@ -137,6 +138,16 @@ class CartController extends Controller
                         'invalid_coupon' => 'This Coupon Code is not active'
                     ]);
                 }
+
+                    if($couponDetails->coupon_type == 'single time') {
+                        $orderCount = Order::where('coupon_code', $code)->where('user_id',auth()->user()->id)->count();
+                        if ($orderCount > 0) {
+                            return response()->json([
+                                'invalid_coupon' => 'This Coupon Code is already used'
+                            ]);
+                        }
+                    }
+
                 //check coupon is not started
                 $start_date = $couponDetails->start_date;
                 $current_date = date('Y-m-d');

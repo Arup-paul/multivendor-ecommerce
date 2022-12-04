@@ -95,8 +95,11 @@ class CheckoutController extends Controller
          }
 
          //delete cart items
+
          $session_id = Session::get('session_id');
          Cart::where('user_id',auth()->user()->id)->orWhere('session_id',$session_id)->delete();
+
+         Session::flush();
 
         DB::commit();
         return response()->json([

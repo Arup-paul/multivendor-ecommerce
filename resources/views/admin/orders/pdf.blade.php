@@ -99,7 +99,6 @@
         <th>{{ __('Product Name') }}</th>
         <th>{{ __('Product Color') }}</th>
         <th>{{ __('Product Code') }}</th>
-        <th>{{ __('Barcode') }}</th>
         <th>{{ __('Quantity') }}</th>
         <th>{{ __('Size') }}</th>
         <th class="text-right"> {{ __('Total') }}</th
@@ -111,7 +110,6 @@
         <td>{{$item->product->product_name}}</td>
         <td>{{$item->product->product_color}}</td>
         <td>{{$item->product->product_code}}</td>
-        <td>@php echo DNS1D::getBarcodeHTML($item->product->product_code, 'C39') @endphp</td>
         <td>{{$item->qty}}</td>
         <td>{{$item->size}}</td>
         <td>{{$item->total}}</td>
