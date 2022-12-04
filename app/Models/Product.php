@@ -27,6 +27,13 @@ class Product extends Model
     {
         return $this->belongsTo(Vendor::class)->where('status',1)->with('vendorDetails');
     }
+    public function owner()
+    {
+        return $this->belongsTo(Vendor::class,'vendor_id');
+    }
+
+
+
 
     public function attributes()
     {

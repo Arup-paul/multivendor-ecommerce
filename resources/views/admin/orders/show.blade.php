@@ -142,6 +142,7 @@
                                 <th>{{ __('Product Name') }}</th>
                                 <th>{{ __('Product Color') }}</th>
                                 <th>{{ __('Product Code') }}</th>
+                                <th>{{ __('Owner') }}</th>
                                 <th>{{ __('Quantity') }}</th>
                                 <th>{{ __('Size') }}</th>
                                 <th class="text-right"> {{ __('Total') }}</th>
@@ -155,6 +156,14 @@
                                     <td>{{$item->product->product_name}}</td>
                                     <td>{{$item->product->product_color}}</td>
                                     <td>{{$item->product->product_code}}</td>
+                                    <td>
+                                        @if(is_null($item->product->owner))
+                                            <a href="">Admin</a>
+                                        @else
+                                            <a href="{{route('admin.vendor-details',$item->product->owner->id)}}">{{$item->product->owner->name}}</a>
+                                        @endif
+
+                                    </td>
                                     <td>{{$item->qty}}</td>
                                     <td>{{$item->size}}</td>
                                     <td>{{$item->total}}</td>

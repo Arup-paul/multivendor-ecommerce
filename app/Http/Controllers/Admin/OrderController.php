@@ -51,7 +51,13 @@ class OrderController extends Controller
     }
 
     public function show($id){
-         $order = Order::with('users','orderProducts','deliveryAddress','orderProducts.product')->findOrFail($id);
+         $order = Order::with(['users','orderProducts','deliveryAddress','orderProducts.product.owner' => function($query){
+           $query->select(['id','name']);
+       },'orderProducts.product' => function($query){
+           $query->select(['id','product_name','vendor_id','product_color','product_code','slug']);
+       }])
+
+           ->findOrFail($id);
 
         return view('admin.orders.show',compact('order'));
     }

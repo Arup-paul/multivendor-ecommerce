@@ -74,9 +74,9 @@ class CheckoutController extends Controller
         $order->shipping_charge = 0;
         $order->coupon_code = $couponCode;
         $order->coupon_discount = $couponAmount;
-        $order->order_status = 'new';
+        $order->order_status = 0;
         $order->payment_method = $payment_method;
-        $order->payment_status = 'pending';
+        $order->payment_status = 2;
         $order->payment_gateway = $request->payment_gateway;
         $order->grand_total = $grandTotal;
         $order->save();

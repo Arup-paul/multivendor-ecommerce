@@ -40,32 +40,32 @@
                                 </div>
                             </li>
 
-                            @if($admin->vendor->address)
+                            @if(isset($admin->vendor->address))
                                 <li class="list-group-item">
                                     <div class="font-weight-bolder">{{ __('Address') }}</div>
                                     <div class="font-weight-light"><span></span>{{ $admin->vendor->address ?? '' }}</div>
                                 </li>
                             @endif
 
-                            @if($admin->vendor->city)
+                            @if(isset($admin->vendor->city))
                                 <li class="list-group-item">
                                     <div class="font-weight-bolder">{{ __('City') }}</div>
                                     <div class="font-weight-light"><span></span>{{ $admin->vendor->city ?? '' }}</div>
                                 </li>
                             @endif
-                            @if($admin->vendor->state)
+                            @if(isset($admin->vendor->state))
                                 <li class="list-group-item">
                                     <div class="font-weight-bolder">{{ __('City') }}</div>
                                     <div class="font-weight-light"><span></span>{{ $admin->vendor->state ?? '' }}</div>
                                 </li>
                             @endif
-                            @if($admin->vendor->country)
+                            @if(isset($admin->vendor->country))
                                 <li class="list-group-item">
                                     <div class="font-weight-bolder">{{ __('City') }}</div>
                                     <div class="font-weight-light"><span></span>{{ $admin->vendor->country ?? '' }}</div>
                                 </li>
                             @endif
-                            @if($admin->vendor->pincode)
+                            @if(isset($admin->vendor->pincode))
                                 <li class="list-group-item">
                                     <div class="font-weight-bolder">{{ __('City') }}</div>
                                     <div class="font-weight-light"><span></span>{{ $admin->vendor->pincode ?? '' }}</div>
@@ -97,25 +97,25 @@
 
                         <ul class="list-group">
 
-                            @if($admin->vendorBank->account_holder_name)
+                            @if(isset($admin->vendorBank->account_holder_name))
                                 <li class="list-group-item">
                                     <div class="font-weight-bolder">{{ __('Account Holder Name') }}</div>
                                     <div class="font-weight-light"><span></span>{{ $admin->vendorBank->account_holder_name ?? '' }}</div>
                                 </li>
                             @endif
-                                @if($admin->vendorBank->account_number)
+                                @if(isset($admin->vendorBank->account_number))
                                     <li class="list-group-item">
                                         <div class="font-weight-bolder">{{ __('Account Number') }}</div>
                                         <div class="font-weight-light"><span></span>{{ $admin->vendorBank->account_number ?? '' }}</div>
                                     </li>
                                 @endif
-                                @if($admin->vendorBank->bank_name)
+                                @if(isset($admin->vendorBank->bank_name))
                                     <li class="list-group-item">
                                         <div class="font-weight-bolder">{{ __('Bank Name') }}</div>
                                         <div class="font-weight-light"><span></span>{{ $admin->vendorBank->bank_name ?? '' }}</div>
                                     </li>
                                 @endif
-                                @if($admin->vendorBank->bank_ifsc_code)
+                                @if(isset($admin->vendorBank->bank_ifsc_code))
                                     <li class="list-group-item">
                                         <div class="font-weight-bolder">{{ __('Bank IFSC Code') }}</div>
                                         <div class="font-weight-light"><span></span>{{ $admin->vendorBank->bank_ifsc_code ?? '' }}</div>
@@ -140,82 +140,82 @@
 
                         <ul class="list-group mt-4">
 
-                            @if($admin->vendorBusiness->shop_name)
+                            @if(isset($admin->vendorBusiness->shop_name))
                                 <li class="list-group-item">
                                     <div class="font-weight-bolder">{{ __('Shop Name') }}</div>
                                     <div class="font-weight-light"><span></span>{{ $admin->vendorBusiness->shop_name ?? '' }}</div>
                                 </li>
                             @endif
 
-                                @if($admin->vendorBusiness->shop_city)
+                                @if(isset($admin->vendorBusiness->shop_city))
                                     <li class="list-group-item">
                                         <div class="font-weight-bolder">{{ __('Shop City') }}</div>
                                         <div class="font-weight-light"><span></span>{{ $admin->vendorBusiness->shop_city ?? '' }}</div>
                                     </li>
                                 @endif
 
-                                @if($admin->vendorBusiness->shop_country)
+                                @if(isset($admin->vendorBusiness->shop_country))
                                     <li class="list-group-item">
                                         <div class="font-weight-bolder">{{ __('Shop Country') }}</div>
                                         <div class="font-weight-light"><span></span>{{ $admin->vendorBusiness->shop_country ?? '' }}</div>
                                     </li>
                                 @endif
 
-                                @if($admin->vendorBusiness->shop_pincode)
+                                @if(isset($admin->vendorBusiness->shop_pincode))
                                     <li class="list-group-item">
                                         <div class="font-weight-bolder">{{ __('Shop Pin Code') }}</div>
                                         <div class="font-weight-light"><span></span>{{ $admin->vendorBusiness->shop_pincode ?? '' }}</div>
                                     </li>
                                 @endif
-                                @if($admin->vendorBusiness->shop_mobile)
+                                @if(isset($admin->vendorBusiness->shop_mobile))
                                     <li class="list-group-item">
                                         <div class="font-weight-bolder">{{ __('Shop Mobile') }}</div>
                                         <div class="font-weight-light"><span></span>{{ $admin->vendorBusiness->shop_mobile ?? '' }}</div>
                                     </li>
                                 @endif
-                                @if($admin->vendorBusiness->shop_website)
+                                @if(isset($admin->vendorBusiness->shop_website))
                                     <li class="list-group-item">
                                         <div class="font-weight-bolder">{{ __('Shop Website') }}</div>
                                         <div class="font-weight-light"><span></span>{{ $admin->vendorBusiness->shop_website ?? '' }}</div>
                                     </li>
                                 @endif
 
-                                @if($admin->vendorBusiness->shop_website)
+                                @if(isset($admin->vendorBusiness->shop_website))
                                     <li class="list-group-item">
                                         <div class="font-weight-bolder">{{ __('Shop Website') }}</div>
                                         <div class="font-weight-light"><span></span>{{ $admin->vendorBusiness->shop_website ?? '' }}</div>
                                     </li>
                                 @endif
 
-                                @if($admin->vendorBusiness->address_proof)
+                                @if(isset($admin->vendorBusiness->address_proof))
                                     <li class="list-group-item">
                                         <div class="font-weight-bolder">{{ __('Address Proof ') }}</div>
                                         <div class="font-weight-light"><span></span>{{ $admin->vendorBusiness->address_proof ?? '' }}</div>
                                     </li>
                                 @endif
 
-                                @if($admin->vendorBusiness->address_proof_image)
+                                @if(isset($admin->vendorBusiness->address_proof_image))
                                     <li class="list-group-item">
                                         <div class="font-weight-bolder">{{ __('Address Proof Image') }}</div>
                                        <img src="{{asset($admin->vendorBusiness->address_proof_image)}}" alt="" width="200" height="200">
                                     </li>
                                 @endif
 
-                                @if($admin->vendorBusiness->business_license_number)
+                                @if(isset($admin->vendorBusiness->business_license_number))
                                     <li class="list-group-item">
                                         <div class="font-weight-bolder">{{ __('Business License Number ') }}</div>
                                         <div class="font-weight-light"><span></span>{{ $admin->vendorBusiness->business_license_number ?? '' }}</div>
                                     </li>
                                 @endif
 
-                                @if($admin->vendorBusiness->pan_number)
+                                @if(isset($admin->vendorBusiness->pan_number))
                                     <li class="list-group-item">
                                         <div class="font-weight-bolder">{{ __('Pan Number ') }}</div>
                                         <div class="font-weight-light"><span></span>{{ $admin->vendorBusiness->pan_number ?? '' }}</div>
                                     </li>
                                 @endif
 
-                                @if($admin->vendorBusiness->gst_number)
+                                @if(isset($admin->vendorBusiness->gst_number))
                                     <li class="list-group-item">
                                         <div class="font-weight-bolder">{{ __('Pan Number ') }}</div>
                                         <div class="font-weight-light"><span></span>{{ $admin->vendorBusiness->gst_number ?? '' }}</div>
