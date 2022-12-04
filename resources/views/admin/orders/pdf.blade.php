@@ -26,18 +26,18 @@
 <table width="100%">
     <tr>
         <td valign="top">
-            @php
-                $logos = get_option('logo_setting', true);
-                $path = parse_url($logos->logo ?? null)['path'];
-            @endphp
-            @isset($logos->logo)
-            <img src="{{ public_path($path) }}" alt="" width="150"/>
-            @else
+{{--            @php--}}
+{{--                $logos = get_option('logo_setting', true);--}}
+{{--                $path = parse_url($logos->logo ?? null)['path'];--}}
+{{--            @endphp--}}
+{{--            @isset($logos->logo)--}}
+{{--            <img src="{{ public_path($path) }}" alt="" width="150"/>--}}
+{{--            @else--}}
                 <h2>{{ config('app.name') }}</h2>
-            @endisset
+{{--            @endisset--}}
         </td>
         <td align="right">
-            <h3>{{ __('Order # :number',  ['number' => $order->invoice_no]) }}</h3>
+            <h3>{{ __('Order # :number',  ['number' => $order->id]) }}</h3>
         </td>
     </tr>
 </table>
@@ -49,15 +49,17 @@
         <td valign="top">
             <address>
                 <strong>{{ __('Billed To:') }}</strong><br>
-                {{ $order->user->name }}<br>
-                {{ $order->user->phone }}<br>
-                {{ $order->user->email }}<br>
+                {{ $order->users->name }}<br>
+                {{ $order->users->mobile }}<br>
+                {{ $order->users->email }}<br>
             </address>
         </td>
         <td align="right">
             <address>
-                <strong>{{ __('Billed From:') }}</strong><br>
-                {{ config('app.name') }}<br>
+                <strong>{{ __('Shipped To:') }}</strong><br>
+                {{ $order->deliveryAddress->name }}<br>
+                {{ $order->deliveryAddress->mobile }}<br>
+                {{ $order->deliveryAddress->email }}<br>
             </address>
         </td>
     </tr>
@@ -70,7 +72,7 @@
         <td valign="top">
             <address>
                 <strong>{{ __('Payment Method:') }}</strong><br>
-                {{ $order->gateway->name }}<br>
+                {{ $order->payment_gateway}}<br>
             </address>
         </td>
         <td align="right">
@@ -86,50 +88,34 @@
 
 <h3>{{ __('Order Summary') }}</h3>
 <table width="100%">
-    <thead style="background-color: lightgray;">
+    <thead style="background-color: yellowgreen;">
     <tr>
-        <th>{{ __('Plan') }}</th>
-        <th>{{ __('Price') }}</th>
-        <th>{{ __('Tax') }}</th>
-        <th>{{ __('Payment Status') }}</th>
-        <th>{{ __('Status') }}</th>
+        <th>{{ __('Product Name') }}</th>
+        <th>{{ __('Product Color') }}</th>
+        <th>{{ __('Product Code') }}</th>
+        <th>{{ __('Quantity') }}</th>
+        <th>{{ __('Size') }}</th>
+        <th class="text-right"> {{ __('Total') }}</th
     </tr>
     </thead>
     <tbody>
+    @foreach($order->orderProducts as $item)
     <tr>
-        <th scope="row">{{ $order->plan->name }}</th>
-        <td align="right">{{ number_format($order->price, 2) }}</td>
-        <td align="right">{{ number_format($order->tax, 2) }}</td>
-        <td align="center">
-            @php
-                $payment_status = [
-                0 => ['text' => __('Rejected')],
-                1 => ['text' => __('Accepted')],
-                2 => ['text' => __('Pending')],
-                3 => ['text' => __('Expired')],
-                4 => ['text' => __('Trash')],
-            ][$order->payment_status];
-            @endphp
-            {{ $payment_status['text'] }}
-        </td>
-        <td align="center">
-            @php
-                $status = [
-                  0 => ['text' => __('Rejected')],
-                  1 => ['text' => __('Accepted')],
-                  2 => ['text' => __('Pending')],
-                  3 => ['text' => __('Expired')]
-                 ][$order->status]
-            @endphp
-            {{ $status['text'] }}
-        </td>
+        <td>{{$item->product->product_name}}</td>
+        <td>{{$item->product->product_color}}</td>
+        <td>{{$item->product->product_code}}</td>
+
+        <td>{{$item->qty}}</td>
+        <td>{{$item->size}}</td>
+        <td>{{$item->total}}</td>
     </tr>
+    @endforeach
 </table>
 <br>
 <table width="100%">
     <tr>
         <td align="right">
-            <h2>{{ __('Total') }} {{ number_format($order->price, 2) }}</h2>
+            <h2>{{ __('Total') }} {{ number_format($order->orderProducts->sum('total'),2) }}</h2>
         </td>
     </tr>
 </table>

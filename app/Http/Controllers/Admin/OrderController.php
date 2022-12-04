@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderLog;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
@@ -63,6 +64,29 @@ class OrderController extends Controller
 
         return view('admin.orders.show',compact('order'));
     }
+    public function invoice(Request $request,$id){
+        $order = Order::with(['users','orderProducts','deliveryAddress','orderProducts.product' => function($query){
+            $query->select(['id','product_name','vendor_id','product_color','product_code','slug']);
+        }])
+            ->findOrFail($id);
+
+        $pdf = PDF::loadView('admin.orders.pdf', compact('order'));
+
+        if ($request->get('type') == 'print'){
+            return $pdf->stream('Order%20Invoice-'.$order->invoice_no.'.pdf');
+        }
+        return $pdf->download('Order%20Invoice-'.$order->invoice_no.'.pdf');
+
+    }
+
+    public function orderPdf(Request $request)
+    {
+        $orders = Order::with('users')->get();
+        $pdf = PDF::loadView('admin.orders.allOrderPdf', compact('orders'));
+
+        return $pdf->download('Order%20Invoice.pdf');
+    }
+
 
     public function paymentStatusUpdate(Request $request,$id){
         $order = Order::find($id);

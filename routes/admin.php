@@ -70,7 +70,7 @@ Route::group(['middleware' => ['admin']],function (){
 
     //order
     Route::post('/orders/mass-destroy','OrderController@massDestroy')->name('orders.mass-destroy');
-    Route::get('orders/invoice/{order}/print', 'OrderController@print')->name('orders.print.invoice');
+    Route::get('orders/invoice/{order}', 'OrderController@invoice')->name('orders.invoice');
     Route::get('orders/pdf', 'OrderController@orderPdf')->name('orders.pdf');
     Route::post('orders/payment-status/{id}', 'OrderController@paymentStatusUpdate')->name('orders.payment-status');
     Route::post('orders/order-status/{id}', 'OrderController@orderStatusUpdate')->name('orders.order-status');

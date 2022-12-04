@@ -209,7 +209,7 @@
                         </a>
                     </li>
                 </ul>
-{{--                    <a href="{{route('admin.orders.pdf')}}" class="btn btn-outline-danger btn-pdf pt-2 border-0"><i class="fa fa-file-pdf"></i> {{ __('PDF') }}</a>--}}
+                    <a href="{{route('admin.orders.pdf')}}" class="btn btn-outline-danger btn-pdf pt-2 border-0"><i class="fa fa-file-pdf"></i> {{ __('PDF') }}</a>
                 </div>
 
             </div>
@@ -297,11 +297,11 @@
                                             <i class="fa fa-edit"></i>
                                             {{ __('Edit') }}
                                         </a>
-{{--                                        <a class="dropdown-item has-icon"--}}
-{{--                                           href="{{ route('admin.orders.print.invoice', $order->id) }}">--}}
-{{--                                            <i class="fa fa-print"></i>--}}
-{{--                                            {{ __('Invoice') }}--}}
-{{--                                        </a>--}}
+                                        <a class="dropdown-item has-icon"
+                                           href="{{ route('admin.orders.invoice', $order->id) }}">
+                                            <i class="fa fa-print"></i>
+                                            {{ __('Invoice') }}
+                                        </a>
 
 {{--                                        <a class="dropdown-item has-icon delete-confirm"--}}
 {{--                                           href="javascript:void(0)"--}}
