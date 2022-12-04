@@ -34,25 +34,6 @@
                                       <a href=""><span>@</span>{{$order->users->name}}</a>
                                 </span>
                             </li>
-
-
-                            <form method="post" class="ajaxform"
-                                  action="{{route('admin.orders.order-status',$order->id)}}">
-                                @csrf
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    {{ __('Order Status') }} <span class="font-weight-bold">
-                                    <select class="form-control" name="order_status">
-                                       <option value="3" {{$order->order_status == 3 ? 'selected' : ''}}>{{ __('Complete') }}</option>
-                                       <option value="1" {{$order->order_status == 1 ? 'selected' : ''}}>{{ __('Processing') }}</option>
-                                       <option value="0" {{$order->order_status == 0 ? 'selected' : ''}}>{{ __('Pending') }}</option>
-                                       <option value="2" {{$order->order_status == 2 ? 'selected' : ''}}>{{ __('Shipping') }}</option>
-                                       <option value="4" {{$order->order_status == 4 ? 'selected' : ''}}>{{ __('Cancel') }}</option>
-                                    </select>
-                                    </span>
-                                    <button class="btn btn-primary   basicbtn" type="submit">{{ __('Update') }}</button>
-                                </li>
-
-                            </form>
                             <form method="post" class="ajaxform"
                                   action="{{route('admin.orders.payment-status',$order->id)}}">
                                 @csrf
@@ -68,6 +49,30 @@
                                     <button class="btn btn-primary   basicbtn" type="submit">{{ __('Update') }}</button>
                                 </li>
                             </form>
+
+                            <form method="post" class="ajaxform"
+                                  action="{{route('admin.orders.order-status',$order->id)}}">
+                                @csrf
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    {{ __('Order Status') }} <span class="font-weight-bold">
+                                    <select class="form-control order_status" name="order_status">
+                                       <option value="3" {{$order->order_status == 3 ? 'selected' : ''}}>{{ __('Complete') }}</option>
+                                       <option value="1" {{$order->order_status == 1 ? 'selected' : ''}}>{{ __('Processing') }}</option>
+                                       <option value="0" {{$order->order_status == 0 ? 'selected' : ''}}>{{ __('Pending') }}</option>
+                                       <option value="2" {{$order->order_status == 2 ? 'selected' : ''}}>{{ __('Shipping') }}</option>
+                                       <option value="4" {{$order->order_status == 4 ? 'selected' : ''}}>{{ __('Cancel') }}</option>
+                                    </select>
+                                    </span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center " >
+                                    <input type="text" name="courier_name" value="{{$order->courier_name}}" placeholder="Enter Courier Name" class="form-control @if(empty($order->courier_name)) courierName @endif">
+                                    <input type="text" name="tracking_number" value="{{$order->tracking_number}}" placeholder="Enter Tracking Number" class="form-control @if(empty($order->courier_name)) trackingNumber @endif ">
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <button class="btn btn-primary col-12   basicbtn" type="submit">{{ __('Update') }}</button>
+                                </li>
+                            </form>
+
                         </ul>
                     </div>
                 </div>
@@ -107,3 +112,21 @@
 
 
 @endsection
+
+@push('script')
+    <script>
+        $('.courierName').hide();
+        $('.trackingNumber').hide();
+
+        $(".order_status").change(function () {
+            var status = $(this).val();
+            if (status == 2) {
+                $('.courierName').show();
+                $('.trackingNumber').show();
+            } else {
+                $('.courierName').hide();
+                $('.trackingNumber').hide();
+            }
+        });
+    </script>
+@endpush

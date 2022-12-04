@@ -74,6 +74,12 @@ class OrderController extends Controller
     public function orderStatusUpdate(Request $request,$id){
         $order = Order::find($id);
         $order->order_status = $request->order_status;
+
+        if($request->order_status == 2){
+            $order->courier_name = $request->courier_name;
+            $order->tracking_number = $request->tracking_number;
+        }
+
         $order->save();
 
         //order status
@@ -82,7 +88,10 @@ class OrderController extends Controller
         $orderLog->status = $request->order_status;
         $orderLog->save();
 
-        return response()->json( [ 'message' =>  'Order Status Update Successfully'] );
+        return response()->json( [
+            'message' =>  'Order Status Update Successfully',
+            'redirect' =>  url()->previous()
+        ] );
 
     }
 

@@ -25,6 +25,8 @@ return new class extends Migration
             $table->integer('payment_status'); // 0 = failed, 1 = complete, 2 = pending, 3 = incomplete
             $table->string('payment_gateway');
             $table->float('grand_total');
+            $table->string('courier_name')->nullable();
+            $table->string('tracking_number')->nullable();
             $table->timestamps();
         });
     }

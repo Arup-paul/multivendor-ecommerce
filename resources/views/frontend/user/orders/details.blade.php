@@ -45,6 +45,19 @@
                                       <th>Payment Method</th>
                                       <td>{{$order->payment_method === 'COD' ? 'Cash On Delivery' : 'prepaid'}}</td>
                                   </tr>
+                                  @if(isset($order->courier_name))
+                                      <tr>
+                                          <th>Courier Name</th>
+                                          <td>{{$order->courier_name}}</td>
+                                      </tr>
+                                  @endif
+                                  @if(isset($order->tracking_number))
+                                      <tr>
+                                          <th>Tracking Number</th>
+                                          <td>{{$order->tracking_number}}</td>
+                                      </tr>
+                                  @endif
+
 
 
                               </table>
