@@ -209,28 +209,31 @@
                         </a>
                     </li>
                 </ul>
-                    <a href="{{route('admin.orders.pdf')}}" class="btn btn-outline-danger btn-pdf pt-2 border-0"><i class="fa fa-file-pdf"></i> {{ __('PDF') }}</a>
+{{--                    <a href="{{route('admin.orders.pdf')}}" class="btn btn-outline-danger btn-pdf pt-2 border-0"><i class="fa fa-file-pdf"></i> {{ __('PDF') }}</a>--}}
                 </div>
 
             </div>
         </div>
         <div class="card-body">
-            <form action="{{ route('admin.orders.mass-destroy') }}" method="POST" class="ajaxform_with_mass_delete">
+            <form method="post" action="{{ route('admin.orders.mass-destroy') }}" class="ajaxform_with_reload">
                 @csrf
-                <div class="float-left">
-                    <button class="btn btn-danger btn-lg basicbtn mass-delete-btn" id="submit-button" style="display: none;">{{ __('Delete') }}</button>
+                <div class="float-left mb-3">
+                    <div class="input-group">
+                        <select class="form-control action" name="deleteAction">
+                            <option value="">{{ __('Select Action') }}</option>
+                            <option value="delete">{{ __('Delete Permanently') }}</option>
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary basicbtn" type="submit">{{ __('Submit') }}</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="clearfix mb-3"></div>
                 <div class="table-responsive">
                     <table class="table table-hover table-nowrap card-table text-center">
                         <thead>
                         <tr>
-                            <th class="text-center pt-2">
-                                <div class="custom-checkbox custom-checkbox-table custom-control">
-                                    <input type="checkbox" data-checkboxes="mygroup" data-checkbox-role="dad" class="custom-control-input" id="checkbox-all">
-                                    <label for="checkbox-all" class="custom-control-label">&nbsp;</label>
-                                </div>
-                            </th>
+                            <th><input type="checkbox" class="checkAll"></th>
                             <th class="text-left">{{ __('Order Id') }}</th>
                             <th>{{ __('Payment Gateway') }}</th>
                             <th>{{ __('Date') }}</th>
@@ -244,12 +247,7 @@
                         <tbody class="list font-size-base rowlink" data-link="row">
                         @foreach($orders as $key => $order)
                             <tr>
-                                <td class="text-center">
-                                    <div class="custom-checkbox custom-control">
-                                        <input type="checkbox" name="id[]" id="order-{{ $order->id }}" class="custom-control-input checked_input" value="{{ $order->id }}"  data-checkboxes="mygroup">
-                                        <label for="order-{{ $order->id }}" class="custom-control-label">&nbsp;</label>
-                                    </div>
-                                </td>
+                                <td> <input type="checkbox" name="ids[]" value="{{ $order->id }}"></td>
                                 <td class="text-left">{{ $order->id }}</td>
                                 <td>{{ $order->payment_method }}</td>
                                 <td>{{ formatted_date($order->created_at) }}</td>
@@ -299,18 +297,18 @@
                                             <i class="fa fa-edit"></i>
                                             {{ __('Edit') }}
                                         </a>
-                                        <a class="dropdown-item has-icon"
-                                           href="{{ route('admin.orders.print.invoice', $order->id) }}">
-                                            <i class="fa fa-print"></i>
-                                            {{ __('Invoice') }}
-                                        </a>
+{{--                                        <a class="dropdown-item has-icon"--}}
+{{--                                           href="{{ route('admin.orders.print.invoice', $order->id) }}">--}}
+{{--                                            <i class="fa fa-print"></i>--}}
+{{--                                            {{ __('Invoice') }}--}}
+{{--                                        </a>--}}
 
-                                        <a class="dropdown-item has-icon delete-confirm"
-                                           href="javascript:void(0)"
-                                           data-action={{ route('admin.orders.destroy', $order->id) }}>
-                                            <i class="fa fa-trash"></i>
-                                            {{ __('Delete') }}
-                                        </a>
+{{--                                        <a class="dropdown-item has-icon delete-confirm"--}}
+{{--                                           href="javascript:void(0)"--}}
+{{--                                           data-action={{ route('admin.orders.destroy', $order->id) }}>--}}
+{{--                                            <i class="fa fa-trash"></i>--}}
+{{--                                            {{ __('Delete') }}--}}
+{{--                                        </a>--}}
 
 
                                     </div>

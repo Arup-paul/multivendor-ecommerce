@@ -1,118 +1,177 @@
-@extends('layouts.backend.app', [
+@extends('admin.layout.layout', [
      'prev'=> route('admin.orders.index')
 ])
 
 @section('title', 'Order')
 
 @section('content')
-    <div class="invoice">
-        <div class="invoice-print">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="invoice-title">
-                        <h2>{{ __('Invoice') }}</h2>
-                        <div class="invoice-number">{{ __('Order # :number',  ['number' => $order->invoice_no]) }}</div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <address>
-                                <strong>{{ __('Billed To:') }}</strong><br>
-                                {{ $order->user->name }}<br>
-                                {{ $order->user->phone }}<br>
-                                {{ $order->user->email }}<br>
-                            </address>
-                        </div>
-                        <div class="col-md-6 text-md-right">
-                            <address>
-                                <strong>{{ __('Billed From:') }}</strong><br>
-                                {{ config('app.name') }}<br>
-                            </address>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <address>
-                                <strong>{{ __('Payment Method:') }}</strong><br>
-                                {{ $order->gateway->name }}<br>
-                            </address>
-                        </div>
-                        <div class="col-md-6 text-md-right">
-                            <address>
-                                <strong>{{ __('Order Date:') }}</strong><br>
-                                {{ formatted_date($order->created_at) }}<br>
-                            </address>
-                        </div>
-                    </div>
-                </div>
+    <div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4>{{ __('Order Details') }}</h4>
             </div>
-
-            <div class="row mt-4">
-                <div class="col-md-12">
-                    <div class="section-title">{{ __('Order Summary') }}</div>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-hover table-md">
-                            <tr>
-                                <th>{{ __('Plan') }}</th>
-                                <th class="text-right">{{ __('Price') }}</th>
-                                <th class="text-right">{{ __('Tax') }}</th>
-                                <th class="text-center">{{ __('Payment Status') }}</th>
-                                <th class="text-center">{{ __('Status') }}</th>
-                            </tr>
-                            <tr>
-                                <td>{{ $order->plan->name }}</td>
-                                <td class="text-right">{{ number_format($order->price, 2) }}</td>
-                                <td class="text-right">{{ number_format($order->tax, 2) }}</td>
-                                <td class="text-center">
-                                    @php
-                                        $payment_status = [
-                                        0 => ['text' => __('Rejected')],
-                                        1 => ['text' => __('Accepted')],
-                                        2 => ['text' => __('Pending')],
-                                        3 => ['text' => __('Expired')],
-                                        4 => ['text' => __('Trash')],
-                                    ][$order->payment_status];
-                                    @endphp
-                                    {{ $payment_status['text'] }}
-                                </td>
-                                <td class="text-center">
-                                    @php
-                                        $status = [
-                                          0 => ['text' => __('Rejected')],
-                                          1 => ['text' => __('Accepted')],
-                                          2 => ['text' => __('Pending')],
-                                          3 => ['text' => __('Expired')]
-                                         ][$order->status]
-                                    @endphp
-                                    {{ $status['text'] }}
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-lg-12 text-right">
-                            <hr class="mt-2 mb-2">
-                            <div class="invoice-detail-item">
-                                <div class="invoice-detail-name">{{ __('Total') }}</div>
-                                <div class="invoice-detail-value invoice-detail-value-lg">{{ number_format($order->price, 2) }}</div>
+            <div class="card-body">
+                <div class="d-flex flex-center flex-column">
+                    <ul>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div class="font-weight-bolder">{{ __('User Name') }}</div>
+                            <div class="font-weight-light"><span></span>{{$order->users->name}}</div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div class="font-weight-bolder">{{ __('User Email') }}</div>
+                            <div class="font-weight-light"><span></span>{{$order->users->email}}</div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div class="font-weight-bolder">{{ __('User Mobile') }}</div>
+                            <div class="font-weight-light"><span></span>{{$order->users->mobile}}</div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div class="font-weight-bolder">{{ __('Payment Gateway') }}</div>
+                            <div class="font-weight-light"><span></span>{{$order->payment_gateway}}</div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div class="font-weight-bolder">{{ __('Shipping Charge') }}</div>
+                            <div class="font-weight-light"><span></span>{{$order->shipping_charge}}</div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div class="font-weight-bolder">{{ __('Coupon Discount') }}</div>
+                            <div class="font-weight-light"><span></span>{{$order->users->mobile}}</div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div class="font-weight-bolder">{{ __('Total Amount') }}</div>
+                            <div class="font-weight-light"><span></span>{{$order->grand_total}}</div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div class="font-weight-bolder">{{ __('Payment Status') }}</div>
+                            <div class="font-weight-light"><span></span>
+                                @if($order->payment_status ==2)
+                                    <span class="badge badge-warning">{{ __('Pending') }}</span>
+                                @elseif($order->payment_status ==1)
+                                    <span class="badge badge-success">{{ __('Complete') }}</span>
+                                @elseif($order->payment_status == 0)
+                                    <span class="badge badge-danger">{{ __('Cancel') }}</span>
+                                @elseif($order->payment_status == 3)
+                                    <span class="badge badge-danger">{{ __('Incomplete') }}</span>
+                                @endif
                             </div>
-                        </div>
-                    </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div class="font-weight-bolder">{{ __('Order Status') }}</div>
+                            <div class="font-weight-light"><span></span>
+                                @if($order->order_status ==0)
+                                    <span class="badge badge-warning">{{ __('Pending') }}</span>
+                                @elseif($order->order_status == 3)
+                                    <span class="badge badge-success">{{ __('Complete') }}</span>
+                                @elseif($order->order_status == 4)
+                                    <span class="badge badge-danger">{{ __('Cancel') }}</span>
+                                @elseif($order->order_status == 1)
+                                    <span class="badge badge-info">{{ __('Processing') }}</span>
+                                @elseif($order->order_status == 2)
+                                    <span class="badge badge-info">{{ __('Shipping') }}</span>
+                                @endif
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <hr>
-        <div class="text-md-right">
-            <div class="btn-group">
 
-                <a href="{{ route('admin.orders.print.invoice', $order->id) }}" class="btn btn-danger btn-icon icon-left">
-                    <i class="fas fa-file-pdf"></i>
-                    {{ __('PDF') }}
-                </a>
-                <a href="{{ route('admin.orders.print.invoice', ['order' => $order->id, 'type' => 'print']) }}" class="btn btn-warning btn-icon icon-left">
-                    <i class="fas fa-print"></i>
-                    {{ __('Print') }}
-                </a>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4>{{ __('Delivery Address') }}</h4>
+            </div>
+            <div class="card-body">
+                <div class="d-flex flex-center flex-column">
+                    <ul>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div class="font-weight-bolder">{{ __('Name') }}</div>
+                            <div class="font-weight-light"><span></span>{{$order->deliveryAddress->name}}</div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div class="font-weight-bolder">{{ __('Email') }}</div>
+                            <div class="font-weight-light"><span></span>{{$order->deliveryAddress->email}}</div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div class="font-weight-bolder">{{ __('Mobile') }}</div>
+                            <div class="font-weight-light"><span></span>{{$order->deliveryAddress->mobile}}</div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div class="font-weight-bolder">{{ __('Address Type') }}</div>
+                            <div class="font-weight-light"><span></span>{{$order->deliveryAddress->address_type}}</div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div class="font-weight-bolder">{{ __('Zip Code') }}</div>
+                            <div class="font-weight-light"><span></span>{{$order->deliveryAddress->zip}}</div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div class="font-weight-bolder">{{ __('Address') }}</div>
+                            <div class="font-weight-light"><span></span>{{$order->deliveryAddress->address}}</div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div class="font-weight-bolder">{{ __('City') }}</div>
+                            <div class="font-weight-light"><span></span>{{$order->deliveryAddress->city}}</div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div class="font-weight-bolder">{{ __('State') }}</div>
+                            <div class="font-weight-light"><span></span>{{$order->deliveryAddress->state}}</div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div class="font-weight-bolder">{{ __('Country') }}</div>
+                            <div class="font-weight-light"><span></span>{{$order->deliveryAddress->country}}</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>{{ __('Product') }}</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-nowrap card-table text-center">
+                            <thead>
+                            <tr>
+                                <th>{{ __('Product Name') }}</th>
+                                <th>{{ __('Product Color') }}</th>
+                                <th>{{ __('Product Code') }}</th>
+                                <th>{{ __('Quantity') }}</th>
+                                <th>{{ __('Size') }}</th>
+                                <th class="text-right"> {{ __('Total') }}</th>
+                                <th>{{ __('Action') }}</th>
+                            </tr>
+                            </thead>
+                            <tbody class="list font-size-base rowlink" data-link="row">
+
+                            @foreach($order->orderProducts as $item)
+                                <tr>
+                                    <td>{{$item->product->product_name}}</td>
+                                    <td>{{$item->product->product_color}}</td>
+                                    <td>{{$item->product->product_code}}</td>
+                                    <td>{{$item->qty}}</td>
+                                    <td>{{$item->size}}</td>
+                                    <td>{{$item->total}}</td>
+                                    <td>
+                                        <a target="_blank" href="{{route('product.details',$item->product->slug)}}">
+                                            <button class="btn btn-sm btn-primary">{{ __('View') }}</button>
+                                        </a>
+                                    </td>
+                                </tr>
+                             @endforeach
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>

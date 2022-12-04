@@ -50,6 +50,12 @@ class OrderController extends Controller
         return view('admin.orders.edit',compact('order'));
     }
 
+    public function show($id){
+         $order = Order::with('users','orderProducts','deliveryAddress','orderProducts.product')->findOrFail($id);
+
+        return view('admin.orders.show',compact('order'));
+    }
+
     public function paymentStatusUpdate(Request $request,$id){
         $order = Order::find($id);
         $order->payment_status = $request->payment_status;
@@ -58,5 +64,29 @@ class OrderController extends Controller
         return response()->json( [ 'message' =>  'Status Update Successfully'] );
 
     }
+
+    public function massDestroy(Request $request)
+    {
+
+        if($request->deleteAction == 'delete') {
+            if (isset($request->ids)) {
+                foreach ($request->ids as $id) {
+                    $category = Order::findOrFail($id);
+                    $category->delete();
+                }
+                return response()->json([
+                    'message' =>  __('Order Deleted Successfully'),
+                    'redirect' => route('admin.orders.index')
+                ]);
+            }else{
+                return  response()->json(   __('Please Select Checkbox'),422 );
+            }
+        }else{
+            return  response()->json(   __('Please Select Action'),422 );
+        }
+
+    }
+
+
 
 }
