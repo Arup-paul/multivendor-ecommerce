@@ -37,7 +37,7 @@
 
 
                             <form method="post" class="ajaxform"
-                                  action="{{route('admin.orders.payment-status',$order->id)}}">
+                                  action="{{route('admin.orders.order-status',$order->id)}}">
                                 @csrf
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     {{ __('Order Status') }} <span class="font-weight-bold">
@@ -49,7 +49,13 @@
                                        <option value="4" {{$order->order_status == 4 ? 'selected' : ''}}>{{ __('Cancel') }}</option>
                                     </select>
                                     </span>
+                                    <button class="btn btn-primary   basicbtn" type="submit">{{ __('Update') }}</button>
                                 </li>
+
+                            </form>
+                            <form method="post" class="ajaxform"
+                                  action="{{route('admin.orders.payment-status',$order->id)}}">
+                                @csrf
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     {{ __('Payment Status') }} <span class="font-weight-bold">
                                     <select class="form-control" name="payment_status">
@@ -59,12 +65,7 @@
                                        <option value="2" {{$order->payment_status == 3 ? 'selected' : ''}}>{{ __('Incomplete') }}</option>
                                     </select>
                                     </span>
-                                </li>
-
-
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <button class="btn btn-primary col-12 basicbtn" type="submit">{{ __('Update') }}</button>
-
+                                    <button class="btn btn-primary   basicbtn" type="submit">{{ __('Update') }}</button>
                                 </li>
                             </form>
                         </ul>
@@ -73,5 +74,36 @@
             </div>
         </div>
     </section>
+
+    <section class="section">
+        <div class="row mb-none-30">
+            <div class="col-lg-8 offset-lg-2 mb-30">
+                <div class="card b-radius-10 overflow-hidden box-shadow1">
+                    <div class="card-body">
+                        <h5 class="mb-20 text-muted">{{ __('Orders Status Log') }}  </h5>
+
+                        <ul class="list-group">
+                            @foreach($orderLogs as $log)
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                @if($log->status == 0)
+                                     {{ __('Pending') }}
+                                @elseif($log->status == 3)
+                                     {{ __('Complete') }}
+                                @elseif($log->status == 4)
+                                      {{ __('Cancel') }}
+                                @elseif($log->status == 1)
+                                      {{ __('Processing') }}
+                                @elseif($log->status == 2)
+                                    {{ __('Shipping') }}
+                                @endif<span class="font-weight-bold">{{ date('d M Y h:i A', strtotime($log->created_at)) }}</span>
+                            </li>
+                          @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
 @endsection

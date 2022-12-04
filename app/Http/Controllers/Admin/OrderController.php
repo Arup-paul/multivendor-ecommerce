@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\OrderLog;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
@@ -47,7 +48,8 @@ class OrderController extends Controller
 
     public function edit($id){
         $order = Order::with('users')->findOrFail($id);
-        return view('admin.orders.edit',compact('order'));
+        $orderLogs = OrderLog::where('order_id',$order->id)->orderByDesc('id')->get();
+        return view('admin.orders.edit',compact('order','orderLogs'));
     }
 
     public function show($id){
@@ -65,11 +67,27 @@ class OrderController extends Controller
     public function paymentStatusUpdate(Request $request,$id){
         $order = Order::find($id);
         $order->payment_status = $request->payment_status;
-        $order->order_status = $request->order_status;
         $order->save();
-        return response()->json( [ 'message' =>  'Status Update Successfully'] );
+        return response()->json( [ 'message' =>  'Payment Status Update Successfully'] );
 
     }
+    public function orderStatusUpdate(Request $request,$id){
+        $order = Order::find($id);
+        $order->order_status = $request->order_status;
+        $order->save();
+
+        //order status
+        $orderLog = new OrderLog();
+        $orderLog->order_id = $order->id;
+        $orderLog->status = $request->order_status;
+        $orderLog->save();
+
+        return response()->json( [ 'message' =>  'Order Status Update Successfully'] );
+
+    }
+
+
+
 
     public function massDestroy(Request $request)
     {

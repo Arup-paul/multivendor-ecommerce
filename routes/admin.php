@@ -73,6 +73,7 @@ Route::group(['middleware' => ['admin']],function (){
     Route::get('orders/invoice/{order}/print', 'OrderController@print')->name('orders.print.invoice');
     Route::get('orders/pdf', 'OrderController@orderPdf')->name('orders.pdf');
     Route::post('orders/payment-status/{id}', 'OrderController@paymentStatusUpdate')->name('orders.payment-status');
+    Route::post('orders/order-status/{id}', 'OrderController@orderStatusUpdate')->name('orders.order-status');
     Route::resource('orders', 'OrderController');
 
 
