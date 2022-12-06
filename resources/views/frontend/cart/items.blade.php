@@ -77,6 +77,7 @@
                        $total += $items->product->product_price * $items->quantity;
                     }
                     $totalQuantity += $items->quantity;
+
                 @endphp
             @endforeach
             @endif
@@ -138,9 +139,5 @@
           </div>
 </div>
 
-@push('frontend_scripts')
-    <script>
 
-    </script>
-@endpush
 

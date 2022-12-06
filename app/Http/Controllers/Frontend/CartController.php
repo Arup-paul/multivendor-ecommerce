@@ -98,6 +98,9 @@ class CartController extends Controller
             }
             $cart = Cart::where('id', $request->cartId)->update(['quantity' => $request->qty]);
             $cartItems = Cart::getCartItems();
+            Session::forget('couponAmount');
+            Session::forget('grandTotal');
+            Session::forget('couponCode');
             return response()->json([
                 'status' => true,
                 'view' => (string)View::make('frontend.cart.items', compact('cartItems'))->render(),
@@ -112,6 +115,9 @@ class CartController extends Controller
         if ($request->ajax()) {
             Cart::where('id', $request->cartId)->delete();
             $cartItems = Cart::getCartItems();
+            Session::forget('couponAmount');
+            Session::forget('grandTotal');
+            Session::forget('couponCode');
             return response()->json([
                 'status' => true,
                 'message' => 'Product removed from cart successfully',
