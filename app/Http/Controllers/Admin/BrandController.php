@@ -64,7 +64,7 @@ class BrandController extends Controller
                 }
                 return response()->json([
                     'message' =>  __('Brand Deleted Successfully'),
-                    'redirect' => route('admin.sections.index')
+                    'redirect' => route('admin.brands.index')
                 ]);
             }else{
                 return  response()->json(   __('Please Select Checkbox'),422 );

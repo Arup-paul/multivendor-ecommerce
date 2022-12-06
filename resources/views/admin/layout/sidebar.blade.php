@@ -79,6 +79,12 @@
                     </ul>
                 </li>
             @if(auth()->guard('admin')->user()->type == 'superadmin')
+                <li class="{{ Request::is('admin/shipping-charge*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('admin.shipping-charge.index') }}">
+                        <i class="fa fa-shipping-fast"></i>
+                        <span>{{ __('Shipping Charge') }}</span>
+                    </a>
+                </li>
             <li class="{{ Request::is('admin/media*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.media.list') }}">
                     <i class="far fa-file-image"></i>

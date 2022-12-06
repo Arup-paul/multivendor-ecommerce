@@ -46,15 +46,20 @@
 
                             <p class="form-row">
                                 <label for="country">Country:<span class="required">*</span></label>
-                                <input type="text" id="country" name="country"  value="{{$deliveryAddress->country}}" class="txt-input">
+                                <select name="country" class="form-control txt-input" id="country">
+                                    <option value="">Select Country</option>
+                                    @foreach($countries as $country)
+                                        <option @selected($deliveryAddress->country == $country->country) value="{{$country->country}}">{{$country->country}}</option>
+                                    @endforeach
+                                </select>
                             </p>
                             <p class="form-row">
                                 <label for="zip">Zip Code:<span class="required">*</span></label>
                                 <input type="text" id="zip" name="zip"  value="{{$deliveryAddress->zip}}" class="txt-input">
                             </p>
                             <p class="form-row">
-                                <label for="address">Full Address:<span class="required">*</span></label>
-                                <select name="address_type" class="form-control" id="">
+                                <label for="address_type">Address Type:<span class="required">*</span></label>
+                                <select name="address_type" class="form-control" id="address_type">
                                     <option value="">Select Address Type</option>
                                     <option value="home" @selected($deliveryAddress->address_type == 'home')>Home</option>
                                     <option value="office" @selected($deliveryAddress->address_type == 'office')>Office</option>

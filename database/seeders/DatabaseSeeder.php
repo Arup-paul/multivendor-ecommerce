@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call(FilterTableSeeder::class);
         $this->call(CouponTableSeeder::class);
         $this->call(DeliverAddressSeeder::class);
+        $this->call(ShippingChargeSeeder::class);
 
 
 

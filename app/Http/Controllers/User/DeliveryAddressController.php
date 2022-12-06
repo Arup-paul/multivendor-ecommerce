@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DeliveryAddressRequest;
 use App\Models\DeliveryAddress;
+use App\Models\ShippingCharge;
 use App\Services\FrontendService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,8 @@ use Illuminate\Support\Facades\Auth;
 class DeliveryAddressController extends Controller
 {
     public function create(){
-        return view('frontend.user.delivery_address.create');
+        $countries = ShippingCharge::whereStatus(1)->get();
+        return view('frontend.user.delivery_address.create',compact('countries'));
     }
 
     public function store(DeliveryAddressRequest $request){
@@ -30,11 +32,13 @@ class DeliveryAddressController extends Controller
 
     public function edit($id){
         $deliveryAddress = DeliveryAddress::findOrFail($id);
+        $countries = ShippingCharge::whereStatus(1)->get();
+
         $auth = $deliveryAddress->user_id == auth()->id();
         if(!$auth){
             abort(404);
         }
-        return view('frontend.user.delivery_address.edit',compact('deliveryAddress'));
+        return view('frontend.user.delivery_address.edit',compact('deliveryAddress','countries'));
     }
 
     public function update(DeliveryAddressRequest $request,$id){

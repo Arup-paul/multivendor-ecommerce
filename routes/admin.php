@@ -76,6 +76,10 @@ Route::group(['middleware' => ['admin']],function (){
     Route::post('orders/order-status/{id}', 'OrderController@orderStatusUpdate')->name('orders.order-status');
     Route::resource('orders', 'OrderController');
 
+    //shipping charge
+    Route::post('shipping-charge/mass-destroy','ShippingController@massDestroy')->name('shipping-charge.mass-destroy');
+    Route::resource('shipping-charge','ShippingController');
+
 
     //fronted settings
     Route::post('sliders/mass-destroy','SliderController@massDestroy')->name('sliders.mass-destroy');
