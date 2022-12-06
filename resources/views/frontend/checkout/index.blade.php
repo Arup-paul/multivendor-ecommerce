@@ -66,7 +66,7 @@
                             <li>
                                 <div class="subtotal-line">
                                     <b class="stt-name">Shipping</b>
-                                    <span class="stt-price">$0.00</span>
+                                    <span class="stt-price shipping-charge">$0.00</span>
                                 </div>
                             </li>
                             <li>
@@ -91,7 +91,7 @@
                             <li>
                                 <div class="subtotal-line">
                                     <b class="stt-name">total:</b>
-                                    <span class="stt-price">
+                                    <span class="stt-price total-price">
                                          @if(Session::has('grandTotal'))
                                             $ {{Session::get('grandTotal')}}
                                         @else
@@ -121,7 +121,13 @@
                                          <div class="delivery_address">
                                              <div class="row">
                                                  <div class="col-xs-9">
-                                                     <input name="delivery_address" type="radio" value="{{$address->id}}" id="address-{{$address->id}}"> <br>
+                                                     <input name="delivery_address" type="radio"
+                                                            shipping-charges="{{$address->shipping_charge}}"
+                                                            total-price="{{$total}}"
+                                                            coupon-amount="{{Session::get('couponAmount') ?? 0}}"
+                                                            value="{{$address->id}}"
+                                                            id="address-{{$address->id}}">
+                                                     <br>
                                                      <label for="address-{{$address->id}}">
                                                          <h6><span>Name: </span>{{$address->name}}</h6>
                                                          <h6><span>Mobile: </span>{{$address->mobile}}</h6>
@@ -175,3 +181,21 @@
     </div>
 
 @endsection
+
+@push('frontend_scripts')
+    <script>
+        $(document).ready(function (){
+            $("input[name='delivery_address']").bind('change',function (){
+                var shippingCharges = $(this).attr('shipping-charges');
+                var totalPrice = $(this).attr('total-price');
+                var couponAmount = $(this).attr('coupon-amount');
+
+
+                var grandTotal = parseFloat(totalPrice) + parseFloat(shippingCharges) - parseFloat(couponAmount);
+
+                $('.total-price').text('$ '+grandTotal);
+                $('.shipping-charge').text('$ '+parseFloat(shippingCharges));
+            });
+        })
+    </script>
+@endpush
