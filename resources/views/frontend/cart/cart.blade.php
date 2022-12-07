@@ -19,7 +19,7 @@
                 if ($(this).hasClass('qtyPlus')) {
                     var qty = $(this).data('qty');
                     qty = parseInt(qty) + 1;
-                    console.log(qty)
+                    var qtyClass = 'qtyPlus';
                 }
                 if ($(this).hasClass('qtyMinus')) {
                     var qty = $(this).data('qty');
@@ -28,7 +28,8 @@
                         return false;
                     }
                     qty = parseInt(qty) - 1;
-                    console.log(qty)
+                    var qtyClass = 'qtyMinus';
+
                 }
                 var cartId = $(this).data('cartid');
                 $.ajax({
@@ -38,6 +39,7 @@
                     data:{
                         qty:qty,
                         cartId:cartId,
+                        qtyClass:qtyClass
                     },
                     url: "{{route('cart.update-qty')}}",
                     type: 'POST',

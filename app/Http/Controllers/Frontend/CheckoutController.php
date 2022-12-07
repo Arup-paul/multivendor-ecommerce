@@ -83,6 +83,43 @@ class CheckoutController extends Controller
 
         DB::beginTransaction();
         try {
+        $cartItems = Cart::getCartItems();
+
+        //prevent disable product checkout
+        foreach($cartItems as $item){
+
+            if($item->product->status == 0){
+                return response()->json([
+                    'message' => __($item->product->product_name.'('.$item->product->product_code.')'.' is not available. Please remove from cart'),
+                    'redirect' => route('cart')
+                ], 422);
+            }
+            //product stock
+            $productStock = Product::getProductStock($item->product_id, $item->size);
+            if($productStock < $item->quantity){
+                return response()->json([
+                    'message' => __($item->product->product_name.'('.$item->product->product_code.')'.' stock not available. Available stock is '.$productStock),
+                    'redirect' => route('cart')
+                ], 422);
+            }
+
+            //get attribute
+            $attribute = Product::getProductAttribute($item->product_id, $item->size);
+            if(!$attribute){
+                return response()->json([
+                    'message' => __($item->product->product_name.'('.$item->product->product_code.')'.' is not available. Please remove from cart'),
+                    'redirect' => route('cart')
+                ], 422);
+            }
+
+            $categoryStatus = Product::getCategoryStatus($item->product->category_id);
+            if($categoryStatus == 0){
+                return response()->json([
+                    'message' => __($item->product->product_name.'('.$item->product->product_code.')'.' is not available. Please remove from cart'),
+                    'redirect' => route('cart')
+                ], 422);
+            }
+        }
 
         $order = new Order();
         $order->user_id = auth()->user()->id;
@@ -97,7 +134,7 @@ class CheckoutController extends Controller
         $order->grand_total = $shippingCharge ? $grandTotal + $shippingCharge : $grandTotal;
         $order->save();
 
-        $cartItems = Cart::getCartItems();
+
 
          foreach ($cartItems as $item) {
              $cartItem = new OrderProduct();
@@ -108,10 +145,13 @@ class CheckoutController extends Controller
              $getDiscountedPrice = Product::getDisCountAttributePrice($item->product_id,$item->size);
              $cartItem->total = $getDiscountedPrice['total_price'];
              $cartItem->save();
+
+             //update stock
+             Product::updateProductStock($item->product_id,$item->size,$item->quantity);
+
          }
 
          //delete cart items
-
          $session_id = Session::get('session_id');
          Cart::where('user_id',auth()->user()->id)->orWhere('session_id',$session_id)->delete();
 

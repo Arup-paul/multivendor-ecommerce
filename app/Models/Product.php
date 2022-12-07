@@ -87,5 +87,31 @@ class Product extends Model
         ];
     }
 
+    //get product stock
+    public static function getProductStock($product_id,$size){
+        $productAttribute = ProductAttributes::where('product_id',$product_id)->where('size',$size)->first();
+        return $productAttribute->stock;
+    }
+
+    public static function updateProductStock($product_id,$size,$quantity){
+        $productAttribute = ProductAttributes::where('product_id',$product_id)->where('size',$size)->first();
+        $productAttribute->stock = $productAttribute->stock - $quantity;
+        $productAttribute->save();
+    }
+
+    //get product attributes
+    public static function getProductAttribute($product_id,$size){
+        $productAttribute = ProductAttributes::where('product_id',$product_id)->where('size',$size)->where('status',1)->count();
+        return $productAttribute;
+    }
+
+    //get category status
+    public static function getCategoryStatus($category_id){
+        $category = Category::select(['status'])->where('id',$category_id)->first();
+        return $category->status;
+    }
+
+
+
 
 }

@@ -88,13 +88,17 @@ class CartController extends Controller
             }
 
             $productStock = ProductAttributes::isStockAvailable($cartDetails->product_id, $cartDetails->size);
-            if ($productStock < $request->qty) {
-                return response()->json([
-                    'status' => false,
-                    'message' => __('Product Stock is not available'),
-                    'view' => (string)View::make('frontend.cart.items', compact('cartItems'))->render(),
+            //if current quantity is greater than stock .how to remove product from cart
 
-                ]);
+            if($request->qtyClass != 'qtyMinus'){
+                if ($productStock < $request->qty) {
+                    return response()->json([
+                        'status' => false,
+                        'message' => __('Product quantity is not available'),
+                        'view' => (string)View::make('frontend.cart.items', compact('cartItems'))->render(),
+
+                    ]);
+                }
             }
             $cart = Cart::where('id', $request->cartId)->update(['quantity' => $request->qty]);
             $cartItems = Cart::getCartItems();
