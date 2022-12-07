@@ -8,6 +8,7 @@ use App\Models\DeliveryAddress;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
+use App\Models\ShippingCharge;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -25,12 +26,19 @@ class CheckoutController extends Controller
             return redirect()->route('cart');
         }
 
+        //total product weight
+        $total_weight = 0;
+        foreach($cartItems as $item){
+            $total_weight += $item->product->product_weight * $item->quantity;
+        }
 
          $deliveryAddress = DeliveryAddress::getDeliveryAddress();
 
         foreach ($deliveryAddress as $key => $value) {
-            $deliveryAddress[$key]['shipping_charge'] = DB::table('shipping_charges')->where('country',$value->country)->pluck('shipping_charge')->first();
+            $deliveryAddress[$key]['shipping_charge'] = DeliveryAddress::getShippingCharge($total_weight, $value->country);
          }
+         Session::put('total_weight', $total_weight);
+
 
         return view('frontend.checkout.index',compact('cartItems','deliveryAddress'));
     }
@@ -70,7 +78,7 @@ class CheckoutController extends Controller
         }
 
         $deliveryAddress = DeliveryAddress::where('id',$request->delivery_address)->first();
-        $shippingCharge = DB::table('shipping_charges')->where('country',$deliveryAddress->country)->pluck('shipping_charge')->first();
+        $shippingCharge =  DeliveryAddress::getShippingCharge(Session::get('total_weight') ?? 0, $deliveryAddress->country);
 
 
         DB::beginTransaction();
@@ -110,6 +118,7 @@ class CheckoutController extends Controller
             Session::forget('couponAmount');
             Session::forget('couponCode');
             Session::forget('grandTotal');
+            Session::forget('total_weight');
 
         DB::commit();
         return response()->json([

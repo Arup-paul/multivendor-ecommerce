@@ -18,87 +18,155 @@ class ShippingChargeSeeder extends Seeder
         $data = [
             [
                 "country" => "Afghanistan",
-                "shipping_charge" =>100,
+                'zero_fiveHundred' => 50,
+                'fiveHundredOne_oneThousand' => 100,
+                'oneThousandOne_twoThousand' => 150,
+                'twoThousandOne_fiveThousand' => 200,
+                'above_FiveThousand' => 250,
                 "status" => 1
             ],
             [
                 "country" => "Pakistan",
-                "shipping_charge" =>100,
+                'zero_fiveHundred' => 50,
+                'fiveHundredOne_oneThousand' => 100,
+                'oneThousandOne_twoThousand' => 150,
+                'twoThousandOne_fiveThousand' => 200,
+                'above_FiveThousand' => 250,
                 "status" => 1
             ],
             [
                 "country" => "Albania",
-                "shipping_charge" =>100,
+                'zero_fiveHundred' => 50,
+                'fiveHundredOne_oneThousand' => 100,
+                'oneThousandOne_twoThousand' => 150,
+                'twoThousandOne_fiveThousand' => 200,
+                'above_FiveThousand' => 250,
                 "status" => 1
             ],
             [
                 "country" => "Algeria",
-                "shipping_charge" =>100,
+                'zero_fiveHundred' => 50,
+                'fiveHundredOne_oneThousand' => 100,
+                'oneThousandOne_twoThousand' => 150,
+                'twoThousandOne_fiveThousand' => 200,
+                'above_FiveThousand' => 250,
                 "status" => 1
             ],
             [
                 "country" => "American Samoa",
-                "shipping_charge" =>100,
+                'zero_fiveHundred' => 50,
+                'fiveHundredOne_oneThousand' => 100,
+                'oneThousandOne_twoThousand' => 150,
+                'twoThousandOne_fiveThousand' => 200,
+                'above_FiveThousand' => 250,
                 "status" => 1
             ],
             [
                 "country" => "American Samoa",
-                "shipping_charge" =>100,
+                'zero_fiveHundred' => 50,
+                'fiveHundredOne_oneThousand' => 100,
+                'oneThousandOne_twoThousand' => 150,
+                'twoThousandOne_fiveThousand' => 200,
+                'above_FiveThousand' => 250,
                 "status" => 1
             ],
             [
                 "country" => "Andorra",
-                "shipping_charge" =>100,
+                'zero_fiveHundred' => 50,
+                'fiveHundredOne_oneThousand' => 100,
+                'oneThousandOne_twoThousand' => 150,
+                'twoThousandOne_fiveThousand' => 200,
+                'above_FiveThousand' => 250,
                 "status" => 1
             ],
             [
                 "country" => "Armenia",
-                "shipping_charge" =>100,
+                'zero_fiveHundred' => 50,
+                'fiveHundredOne_oneThousand' => 100,
+                'oneThousandOne_twoThousand' => 150,
+                'twoThousandOne_fiveThousand' => 200,
+                'above_FiveThousand' => 250,
                 "status" => 1
             ],
             [
                 "country" => "Australia",
-                "shipping_charge" =>100,
+                'zero_fiveHundred' => 50,
+                'fiveHundredOne_oneThousand' => 100,
+                'oneThousandOne_twoThousand' => 150,
+                'twoThousandOne_fiveThousand' => 200,
+                'above_FiveThousand' => 250,
                 "status" => 1
             ],
             [
                 "country" => "India",
-                "shipping_charge" =>100,
+                'zero_fiveHundred' => 50,
+                'fiveHundredOne_oneThousand' => 100,
+                'oneThousandOne_twoThousand' => 150,
+                'twoThousandOne_fiveThousand' => 200,
+                'above_FiveThousand' => 250,
                 "status" => 1
             ],
             [
                 "country" => "Austria",
-                "shipping_charge" =>100,
+                'zero_fiveHundred' => 50,
+                'fiveHundredOne_oneThousand' => 100,
+                'oneThousandOne_twoThousand' => 150,
+                'twoThousandOne_fiveThousand' => 200,
+                'above_FiveThousand' => 250,
                 "status" => 1
             ],
             [
                 "country" => "Bahrain",
-                "shipping_charge" =>100,
+                'zero_fiveHundred' => 50,
+                'fiveHundredOne_oneThousand' => 100,
+                'oneThousandOne_twoThousand' => 150,
+                'twoThousandOne_fiveThousand' => 200,
+                'above_FiveThousand' => 250,
                 "status" => 1
             ],
             [
                 "country" => "Belgium",
-                "shipping_charge" =>100,
+                'zero_fiveHundred' => 50,
+                'fiveHundredOne_oneThousand' => 100,
+                'oneThousandOne_twoThousand' => 150,
+                'twoThousandOne_fiveThousand' => 200,
+                'above_FiveThousand' => 250,
                 "status" => 1
             ],
             [
                 "country" => "Bhutan",
-                "shipping_charge" =>100,
+                'zero_fiveHundred' => 50,
+                'fiveHundredOne_oneThousand' => 100,
+                'oneThousandOne_twoThousand' => 150,
+                'twoThousandOne_fiveThousand' => 200,
+                'above_FiveThousand' => 250,
                 "status" => 1
             ],
             [
                 "country" => "Brazil",
-                "shipping_charge" =>100,
+                'zero_fiveHundred' => 50,
+                'fiveHundredOne_oneThousand' => 100,
+                'oneThousandOne_twoThousand' => 150,
+                'twoThousandOne_fiveThousand' => 200,
+                'above_FiveThousand' => 250,
                 "status" => 1
             ],
             [
                 "country" => "Canada",
-                "shipping_charge" =>100,
+                'zero_fiveHundred' => 50,
+                'fiveHundredOne_oneThousand' => 100,
+                'oneThousandOne_twoThousand' => 150,
+                'twoThousandOne_fiveThousand' => 200,
+                'above_FiveThousand' => 250,
                 "status" => 1
             ],
             [
                 "country" => "Bangladesh",
-                "shipping_charge" =>100,
+                'zero_fiveHundred' => 50,
+                'fiveHundredOne_oneThousand' => 100,
+                'oneThousandOne_twoThousand' => 150,
+                'twoThousandOne_fiveThousand' => 200,
+                'above_FiveThousand' => 250,
                 "status" => 1
             ],
 

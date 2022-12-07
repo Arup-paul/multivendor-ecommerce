@@ -28,7 +28,7 @@ class AuthController extends Controller
                 'redirect' => route('home')
             ]);
         }
-        return response()->json( [ 'message' =>  'The provided credentials do not match our records'],401 );
+        return response()->json( [ 'message' =>  'The provided credentials do not match our records'],401);
 
 
 

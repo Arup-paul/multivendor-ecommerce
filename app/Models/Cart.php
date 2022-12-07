@@ -12,7 +12,7 @@ class Cart extends Model
     protected $guarded= [];
 
     public function product(){
-        return $this->belongsTo(Product::class,'product_id')->select('id','product_name','product_image','product_price','product_code','product_color','category_id','slug');
+        return $this->belongsTo(Product::class,'product_id')->select('id','product_name','product_image','product_price','product_code','product_color','category_id','slug','product_weight');
     }
 
     public static function getCartItems(){

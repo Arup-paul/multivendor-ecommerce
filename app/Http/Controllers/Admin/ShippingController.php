@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ShippingChargeRequest;
 use App\Models\ShippingCharge;
+use App\Services\ShippingService;
 use Illuminate\Http\Request;
 
 class ShippingController extends Controller
@@ -19,17 +21,12 @@ class ShippingController extends Controller
         return view('admin.shipping_charge.create');
     }
 
-    public function store(Request $request)
+    public function store(ShippingChargeRequest $request)
     {
-        $request->validate([
-            'country' => 'required',
-            'shipping_charge' => 'required|numeric',
-        ]);
 
         $data = new ShippingCharge();
-        $data->country = $request->country;
-        $data->shipping_charge = $request->shipping_charge;
-        $data->status = $request->status;
+        $shippingCharge = new ShippingService();
+        $shippingCharge->shippingChargeCreateUpdate($request, $data);
         $data->save();
 
         return response()->json( [ 'message' =>  'Shipping Charge created successfully'] );
@@ -44,14 +41,16 @@ class ShippingController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'country' => 'required',
-            'shipping_charge' => 'required|numeric',
+            'country' =>  'required|unique:shipping_charges,country,'.$id,
+            'zero_fiveHundred' => 'required|numeric',
+            'fiveHundredOne_oneThousand' => 'required|numeric',
+            'oneThousandOne_twoThousand' => 'required|numeric',
+            'twoThousandOne_fiveThousand' => 'required|numeric',
+            'above_FiveThousand' => 'required|numeric',
         ]);
-
         $data = ShippingCharge::findOrFail($id);
-        $data->country = $request->country;
-        $data->shipping_charge = $request->shipping_charge;
-        $data->status = $request->status;
+        $shippingCharge = new ShippingService();
+        $shippingCharge->shippingChargeCreateUpdate($request, $data);
         $data->save();
 
         return response()->json( [ 'message' =>  'Shipping Charge updated successfully'] );

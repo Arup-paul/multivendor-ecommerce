@@ -19,8 +19,24 @@
                                 <input type="text"  name="country" class="form-control"   >
                             </div>
                             <div class="form-group">
-                                <label for="name" class="required">{{ __('Shipping Charge') }} </label>
-                                <input type="text"  name="shipping_charge" class="form-control"   >
+                                <label for="name" class="required">{{ __('0 to 500 GM Shipping Charge') }} </label>
+                                <input type="text"  name="zero_fiveHundred" class="form-control"   >
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="required">{{ __('501 to 1000 GM Shipping Charge') }} </label>
+                                <input type="text"  name="fiveHundredOne_oneThousand" class="form-control"   >
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="required">{{ __('1001 to 2000 GM Shipping Charge') }} </label>
+                                <input type="text"  name="oneThousandOne_twoThousand" class="form-control"   >
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="required">{{ __('2001 to 5000 GM Shipping Charge') }} </label>
+                                <input type="text"  name="twoThousandOne_fiveThousand" class="form-control"   >
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="required">{{ __('Above 5000 GM Shipping Charge') }} </label>
+                                <input type="text"  name="above_FiveThousand" class="form-control"   >
                             </div>
                             <div class="form-group">
                                 <label for="password" class="required">{{ __('Status') }}</label>

@@ -16,7 +16,11 @@ return new class extends Migration
         Schema::create('shipping_charges', function (Blueprint $table) {
             $table->id();
             $table->string('country');
-            $table->float('shipping_charge');
+            $table->float('zero_fiveHundred')->nullable();
+            $table->float('fiveHundredOne_oneThousand')->nullable();
+            $table->float('oneThousandOne_twoThousand')->nullable();
+            $table->float('twoThousandOne_fiveThousand')->nullable();
+            $table->float('above_FiveThousand')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });

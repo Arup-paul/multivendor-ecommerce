@@ -57,7 +57,6 @@ $(document).on('submit', '.ajaxform', function (e) {
         },
 
         success: function (response) {
-            console.log(response);
             $submitBtn.removeAttr('disabled');
             $submitBtn.html($submitBtnOld);
             Notify('success', response)
@@ -69,13 +68,14 @@ $(document).on('submit', '.ajaxform', function (e) {
             }
         },
         error: function (xhr, status, error) {
+            console.log(xhr)
             $submitBtn.html($submitBtnOld);
             $submitBtn.removeAttr('disabled');
 
 
-            // if(xhr.responseJSON.message){
-            //     Notify('error', null, xhr.responseJSON.message)
-            // }
+            if(xhr.responseJSON.message){
+                Notify('error', null, xhr.responseJSON.message)
+            }
 
             if (xhr.responseJSON.errors){
                 $.each(xhr.responseJSON.errors, function (i, error) {

@@ -30,7 +30,11 @@
                             <th><input type="checkbox" class="checkAll"></th>
                             <th>{{ __('SL') }}</th>
                             <th>{{ __('Country') }}</th>
-                            <th>{{ __('Charge') }}</th>
+                            <th>{{ __('0 to 500 gm') }}</th>
+                            <th>{{ __('501 to 1000 gm') }}</th>
+                            <th>{{ __('1001 to 2000 gm') }}</th>
+                            <th>{{ __('2001 to 5000 gm') }}</th>
+                            <th>{{ __('Above 5000 gm') }}</th>
                             <th>{{ __('Status') }}</th>
                             <th>{{ __('Action') }}</th>
                         </tr>
@@ -41,7 +45,11 @@
                                 <td> <input type="checkbox" name="ids[]" value="{{ $data->id }}"></td>
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $data->country }}</td>
-                                <td>{{ $data->shipping_charge }}</td>
+                                <td>{{ $data->zero_fiveHundred }}</td>
+                                <td>{{ $data->fiveHundredOne_oneThousand }}</td>
+                                <td>{{ $data->oneThousandOne_twoThousand }}</td>
+                                <td>{{ $data->twoThousandOne_fiveThousand }}</td>
+                                <td>{{ $data->above_FiveThousand }}</td> 
                                 <td>
                                     @if($data->status == 1)
                                         <span class="badge badge-success">{{ __('Active') }}</span>
