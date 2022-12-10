@@ -43,6 +43,12 @@
                 </li>
 
               @if(auth()->guard('admin')->user()->type == 'superadmin')
+                <li class="{{ Request::is('admin/customers*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('admin.customers.index') }}">
+                        <i class="fa fa-users"></i>
+                        <span>{{ __('Customer List') }}</span>
+                    </a>
+                </li>
                 <li class="{{ Request::is('admin/sections*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('admin.sections.index')}}">
                         <i class="fa fa-puzzle-piece"></i>
@@ -63,6 +69,7 @@
                         <span>{{ __('Brand') }}</span>
                     </a>
                 </li>
+
             @endif
 
 

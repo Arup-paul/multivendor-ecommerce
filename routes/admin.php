@@ -68,6 +68,10 @@ Route::group(['middleware' => ['admin']],function (){
     Route::post('coupons/mass-destroy','CouponController@massDestroy')->name('coupons.mass-destroy');
     Route::resource('coupons','CouponController');
 
+    //customer
+    Route::post('customers/mass-destroy','CustomerController@massDestroy')->name('customers.mass-destroy');
+    Route::resource('customers','CustomerController');
+
     //order
     Route::post('/orders/mass-destroy','OrderController@massDestroy')->name('orders.mass-destroy');
     Route::get('orders/invoice/{order}', 'OrderController@invoice')->name('orders.invoice');
@@ -86,6 +90,7 @@ Route::group(['middleware' => ['admin']],function (){
     Route::resource('sliders','SliderController');
 
     //
+
 
 
 
