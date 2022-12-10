@@ -62,7 +62,12 @@ class CartController extends Controller
         $cart->quantity = $request->qty;
         $cart->save();
 
-        return response()->json(['message' => __('Product added to cart successfully')]);
+        $totalCartItems = total_cart_items();
+
+        return response()->json([
+            'totalCartItems' => $totalCartItems,
+            'message' => __('Product added to cart successfully')
+        ]);
 
     }
 
@@ -102,11 +107,13 @@ class CartController extends Controller
             }
             $cart = Cart::where('id', $request->cartId)->update(['quantity' => $request->qty]);
             $cartItems = Cart::getCartItems();
+            $totalCartItems = total_cart_items();
             Session::forget('couponAmount');
             Session::forget('grandTotal');
             Session::forget('couponCode');
             return response()->json([
                 'status' => true,
+                'totalCartItems' => $totalCartItems,
                 'view' => (string)View::make('frontend.cart.items', compact('cartItems'))->render(),
             ]);
 
@@ -119,11 +126,13 @@ class CartController extends Controller
         if ($request->ajax()) {
             Cart::where('id', $request->cartId)->delete();
             $cartItems = Cart::getCartItems();
+            $totalCartItems = total_cart_items();
             Session::forget('couponAmount');
             Session::forget('grandTotal');
             Session::forget('couponCode');
             return response()->json([
                 'status' => true,
+                'totalCartItems' => $totalCartItems,
                 'message' => 'Product removed from cart successfully',
                 'view' => (string)View::make('frontend.cart.items', compact('cartItems'))->render(),
             ]);
