@@ -57,8 +57,8 @@
                         </div>
 
                         <div class="biolife-panigations-block">
-                            @if(isset($_GET['sort']))
-                                {{$products->appends(['sort' => $_GET['sort']])->links('vendor.pagination.custom')}}
+                            @if(isset($_GET['sort']) || isset($_GET['size']) || isset($_GET['color']) || isset($_GET['brand']))
+                                {{ $products->appends(['sort' => $_GET['sort'], 'size' => $_GET['size'], 'color' => $_GET['color'], 'brand' => $_GET['brand']])->links('vendor.pagination.custom') }}
                             @else
                                 {{$products->links('vendor.pagination.custom')}}
                             @endif

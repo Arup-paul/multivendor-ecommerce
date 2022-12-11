@@ -25,9 +25,10 @@ public function index()
 
     public function store(Request $request){
        $request->validate([
-          'category_name' => 'required',
+           'category_name' => 'required',
            'category_discount' => 'numeric',
            'section_id' => 'required',
+           'category_image' => 'required',
            'url' => 'required|unique:categories',
        ],[
            'section_id.required' => 'Section is required',
@@ -54,7 +55,7 @@ public function index()
     public function edit($id){
         $sections = Section::where('status',1)->get();
         $category = Category::findOrFail($id);
-        $getCategories = Category::where(['section_id'=>$category->section_id,'parent_id' => $category->parent_id])->get();
+         $getCategories = Category::where(['parent_id' => null])->get();
 
         return view('admin.categories.edit',compact('getCategories','sections','category'));
     }
@@ -64,6 +65,7 @@ public function index()
             'category_name' => 'required',
             'category_discount' => 'numeric',
             'section_id' => 'required',
+            'category_image' => 'required',
             'url' => 'required|unique:categories,url,'.$id,
         ],[
             'section_id.required' => 'Section is required',

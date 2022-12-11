@@ -19,7 +19,7 @@ class HomeController extends Controller
       $discountProducts = Product::with('category','brand')->where('product_discount' ,'>',0)->whereStatus(1)->inRandomOrder()->take(10)->get();
       $bestRatedProducts = Product::with('category','brand')->whereFeatured('is_best_rated')->whereStatus(1)->inRandomOrder()->take(10)->get();
 
-       $categories = Category::where('parent_id', null)->whereStatus(1)->get();
+       $categories = Category::withCount('products')->where('parent_id', null)->whereStatus(1)->get();
       return view('frontend.index',compact('sliders','newProducts','bestSellerProducts','featuredProducts','discountProducts','bestRatedProducts','categories'));
     }
 }

@@ -1,41 +1,50 @@
  @extends('frontend.layouts.layouts')
 
-
+       @section('frontend_css')
+            <style>
+                .category-image img{
+                    width: 150px !important;
+                    height: 150px !important;
+                }
+            </style>
+       @endsection
      @section('content')
 
          @if($sliders->count() > 0)
              @include('frontend.layouts.banner')
          @endif
 
-         <div class="product-tab z-index-20 sm-margin-top-30px xs-margin-top-30px">
+         <div class="wrap-category xs-margin-top-80px">
              <div class="container container-xxl">
-                 <div class="biolife-title-box mb-10">
-                     <h3 class="main-title">Browse by Category</h3>
+                 <div class="biolife-title-box style-02 xs-margin-bottom-33px">
+                     <h3 class="main-title">Featured Categories</h3>
+
                  </div>
+                 <ul class="biolife-carousel nav-center-bold nav-none-on-mobile" data-slick='{"arrows":true,"dots":false,"infinite":false,"speed":400,"slidesMargin":30,"slidesToShow":4, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 3}},{"breakpoint":992, "settings":{ "slidesToShow": 3}},{"breakpoint":768, "settings":{ "slidesToShow": 2, "slidesMargin":10}}, {"breakpoint":500, "settings":{ "slidesToShow": 1}}]}'>
 
-                 <div class="block-item recently-products-cat md-margin-bottom-39">
-                     <ul class="products-list biolife-carousel nav-center-02 nav-none-on-mobile" data-slick='{"rows":1,"arrows":true,"dots":false,"infinite":false,"speed":400,"slidesMargin":0,"slidesToShow":5, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 3}},{"breakpoint":992, "settings":{ "slidesToShow": 3, "slidesMargin": 10}},{"breakpoint":768, "settings":{ "slidesToShow": 2, "slidesMargin":10 }}]}' >
-                        @foreach($categories as $category)
-
-                         <li class="product-item category-product">
-                             <div class="contain-product layout-02">
-                                 <div class="product-thumb">
-                                     <a href="{{$category->url}}" class="link-to-product">
-                                         <img src="{{asset($category->category_image)}}" alt="dd" width="150" height="150" class="product-thumnail">
+                     @foreach($categories as $category)
+                         <li>
+                             <div class="biolife-cat-box-item">
+                                 <div class="cat-thumb category-image">
+                                     <a href="{{$category->url}}" class="cat-link">
+                                         <img src="{{asset($category->category_image)}}" width="277" height="185" alt="">
                                      </a>
                                  </div>
-                                 <div class="info">
-                                     <h4 class="product-title"><a href="#" class="pr-name">{{ucfirst($category->category_name)}}</a></h4>
-                                 </div>
+                                 <a class="cat-info" href="{{$category->url}}">
+                                     <h4 class="cat-name">{{ucfirst($category->category_name)}}</h4>
+                                     <span class="cat-number">({{$category->products_count}} items)</span>
+                                 </a>
                              </div>
                          </li>
 
-                         @endforeach
 
-                     </ul>
-                 </div>
+                     @endforeach
+
+                 </ul>
+
              </div>
          </div>
+
 
          <div class="product-tab z-index-20 sm-margin-top-30px xs-margin-top-30px">
              <div class="container container-xxl">
@@ -43,7 +52,7 @@
                      <h3 class="main-title">Just Landing</h3>
                  </div>
                  <div class="block-item recently-products-cat md-margin-bottom-39">
-                     <ul class="products-list biolife-carousel nav-center-02 nav-none-on-mobile eq-height-contain" data-slick='{"rows":1 ,"arrows":true,"dots":false,"infinite":true,"speed":400,"slidesMargin":10,"slidesToShow":4, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 4}},{"breakpoint":992, "settings":{ "slidesToShow": 3, "slidesMargin":25 }},{"breakpoint":768, "settings":{ "slidesToShow": 2, "slidesMargin":15}}]}'>
+                     <ul class="products-list biolife-carousel nav-center-02 nav-none-on-mobile eq-height-contain" data-slick='{"arrows":true,"dots":false,"infinite":false,"speed":400,"slidesMargin":30,"slidesToShow":4, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 3}},{"breakpoint":992, "settings":{ "slidesToShow": 3}},{"breakpoint":768, "settings":{ "slidesToShow": 2, "slidesMargin":10}}, {"breakpoint":500, "settings":{ "slidesToShow": 1}}]}'>
 
                          @foreach($newProducts as $product)
                              @include('frontend.products.product')
