@@ -1,7 +1,11 @@
    <!-- FOOTER -->
+   @php
+     $leftPages = \App\Models\CmsPage::where('position', 'left')->whereStatus(1)->select(['title','url'])->get();
+     $rightPages = \App\Models\CmsPage::where('position', 'right')->whereStatus(1)->select(['title','url'])->get();
+   @endphp
    <footer id="footer" class="footer layout-03">
     <div class="footer-content background-footer-03">
-        <div class="container">
+        <div class="container container-xxl">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-9">
                     <section class="footer-item">
@@ -31,24 +35,19 @@
                             <div class="col-lg-6 col-sm-6 col-xs-6">
                                 <div class="wrap-custom-menu vertical-menu-2">
                                     <ul class="menu">
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">About Our Shop</a></li>
-                                        <li><a href="#">Secure Shopping</a></li>
-                                        <li><a href="#">Delivery infomation</a></li>
-                                        <li><a href="#">Privacy Policy</a></li>
-                                        <li><a href="#">Our Sitemap</a></li>
+                                        @foreach($leftPages as $page)
+                                        <li><a href="{{url('page/'.$page->url)}}">{{ ucfirst($page->title) }}</a></li>
+                                        @endforeach
+
                                     </ul>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-xs-6">
                                 <div class="wrap-custom-menu vertical-menu-2">
                                     <ul class="menu">
-                                        <li><a href="#">Who We Are</a></li>
-                                        <li><a href="#">Our Services</a></li>
-                                        <li><a href="#">Projects</a></li>
-                                        <li><a href="#">Contacts Us</a></li>
-                                        <li><a href="#">Innovation</a></li>
-                                        <li><a href="#">Testimonials</a></li>
+                                        @foreach($rightPages as $page)
+                                            <li><a href="{{url('page/'.$page->url)}}">{{ ucfirst($page->title) }}</a></li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
@@ -103,7 +102,7 @@
                     <div class="separator sm-margin-top-70px xs-margin-top-40px"></div>
                 </div>
                 <div class="col-lg-6 col-sm-6 col-xs-12">
-                    <div class="copy-right-text"><p><a href="templateshub.net">Templates Hub</a></p></div>
+                    <div class="copy-right-text"><p><a href="#">BioLife</a></p></div>
                 </div>
                 <div class="col-lg-6 col-sm-6 col-xs-12">
                     <div class="payment-methods">

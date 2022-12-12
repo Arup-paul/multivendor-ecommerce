@@ -57,6 +57,9 @@ Route::namespace('App\Http\Controllers\Frontend')->group(function(){
     Route::post('/checkout','CheckoutController@processCheckout')->name('checkout');
 
 
+    //page
+    Route::get('/page/{slug}','PageController@page')->name('page');
+
 
 
 

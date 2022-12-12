@@ -5937,7 +5937,7 @@ body.open-overlay #overlay{
     clear: both;
 }
 .welcome-us-block{
-    background: url("../images/about-us/bn01.jpg");
+    /*background: url("../images/about-us/bn01.jpg");*/
     background-position: center bottom;
     /*height: 499px;*/
     height: 555px;
