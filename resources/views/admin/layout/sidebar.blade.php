@@ -99,6 +99,13 @@
                 </a>
             </li>
 
+                <li class="{{ Request::is('admin/pages*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('admin.pages.index') }}">
+                        <i class="far fa-file-image"></i>
+                        <span>{{ __('Pages') }}</span>
+                    </a>
+                </li>
+
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-cog"></i> <span>Frontend Setting</span></a>
                     <ul class="dropdown-menu">

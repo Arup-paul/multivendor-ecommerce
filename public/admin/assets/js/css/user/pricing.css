@@ -1,0 +1,152 @@
+.pricing-topper.text-center h3 {
+    font-size: 50px;
+    font-weight: 700;
+    font-family: 'Roboto Slab';
+}
+
+.pricing-topper.text-center h3 span {
+    color: #473BF0;
+}
+
+.pricing-area {
+    background: #EDF1FF;
+}
+
+.pricing-area span {
+    font-family: var(--slab);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 28px;
+    color: #000000;
+}
+
+.pricing-topper.text-center p {
+    font-size: 24px;
+    font-weight: 400;
+    color: #84817f;
+    padding: 0 100px;
+}
+
+.single-top h5 {
+    font-size: 21px;
+    font-weight: 400;
+    color: #666666;
+    margin-bottom: 8px;
+}
+
+.single-pricing {
+    background: white;
+    padding: 45px 40px;
+    border-radius: 20px;
+    margin-top: 30px;
+}
+
+.pricing-area {
+    padding: 150px 0;
+}
+
+.single-top {
+    margin-bottom: 30px;
+}
+
+.single-top h2 span strong {
+    font-size: 43px;
+    font-weight: 700;
+    font-family: 'Roboto Slab';
+    color: #473BF0;
+}
+
+.single-top h2 span span {
+    font-size: 19px;
+    font-weight: 400;
+    color: #666666;
+    margin-left: 10px;
+    font-family: 'Roboto Slab';
+}
+
+.plan-text nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.plan-text ul li {
+    padding: 16px 0;
+    color: #666666;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: 'Roboto Slab';
+}
+
+.plan-text ul li svg {
+    fill: #52ECB4;
+}
+
+.plan-text nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.plan-text ul li {
+    color: #666666;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: 'Roboto Slab';
+}
+
+.plan-text ul li svg {
+    fill: #52ECB4;
+    margin-right: 10px;
+}
+.plan-text ul li svg.error-fill {
+    fill: #ff004c;
+    margin-right: 10px;
+}
+
+.pricing-btn a {
+    color: white;
+    text-decoration: none;
+    background: #473BF0;
+    padding: 16px 0px;
+    border-radius: 7px;
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: 'Roboto Slab';
+}
+.pricing-btn-disable a {
+    color: black;
+    text-decoration: none;
+    background: #EBEBE4;
+    padding: 16px 0px;
+    border-radius: 7px;
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: 'Roboto Slab';
+}
+
+.pricing-btn {
+    margin-top: 40px;
+    margin-bottom: 14px;
+}
+
+.pricing-period.text-center {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pricing-header .form-check .form-check-input {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%2871, 59, 240, 1'/%3e%3c/svg%3e");
+    width: 70px;
+    height: 30px;
+    padding: 11px;
+    margin-right: 10px;
+    border: none;
+}

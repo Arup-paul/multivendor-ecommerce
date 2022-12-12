@@ -84,6 +84,8 @@ Route::group(['middleware' => ['admin']],function (){
     Route::post('shipping-charge/mass-destroy','ShippingController@massDestroy')->name('shipping-charge.mass-destroy');
     Route::resource('shipping-charge','ShippingController');
 
+    Route::post('/pages/mass-destroy','PageController@massDestroy')->name('pages.mass-destroy');
+    Route::resource('pages','PageController');
 
     //fronted settings
     Route::post('sliders/mass-destroy','SliderController@massDestroy')->name('sliders.mass-destroy');
