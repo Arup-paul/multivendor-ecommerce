@@ -3563,14 +3563,14 @@ body.open-overlay #overlay{
 }
 .sidebar .price-filter .frm-contain .f-item{
     display: inline-block;
-    margin: 0 4px 0 0;
+    margin-right: 2px;
     font-size: 16px;
     color: #222222;
     float: left;
 }
 .sidebar .price-filter .frm-contain .f-item:last-child{
     margin-left: 0;
-    margin-right: 9px;
+    margin-right: 0px;
 }
 .sidebar .price-filter .frm-contain .f-item label{
     margin: 0;
@@ -3985,6 +3985,7 @@ body.open-overlay #overlay{
     text-align: center;
     font-size: 0;
     line-height: 0;
+    display: block !important;
 }
 .biolife-panigations-block ul li{
     list-style: none;
@@ -5022,6 +5023,9 @@ body.open-overlay #overlay{
     display: inline-block;
     line-height: 1;
     margin: 0;
+}
+.width-400{
+    width: 400px;
 }
 .biolife-title-box.link-all .blog-link{
     display: inline-block;

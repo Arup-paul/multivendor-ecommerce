@@ -1,4 +1,7 @@
-@foreach($products as $product)
+@if($products->count() >  0)
+    <div class="row">
+        <ul class="products-list filter-products">
+    @foreach($products as $product)
     <li class="product-item @if(isset($vendor)) col-lg-2 col-md-3 col-sm-4 col-xs-6 @else col-lg-3 col-md-3 col-sm-4 col-xs-6 @endif">
         <div class="contain-product layout-default">
             <div class="product-thumb">
@@ -34,3 +37,17 @@
         </div>
     </li>
 @endforeach
+        </ul>
+    </div>
+     <div class="biolife-panigations-block">
+
+            {{$products->links('vendor.pagination.custom')}}
+    </div>
+@else
+    <div class="row">
+        <ul class="products-list filter-products text-center">
+            Product Not found
+        </ul>
+    </div>
+@endif
+

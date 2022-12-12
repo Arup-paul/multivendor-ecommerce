@@ -15,9 +15,6 @@
             </div>
        </div>
     </div>
-@endsection
-
-@section('styles')
     <style>
         .page-contain.about-us {
             background: #e7e8ec;
@@ -40,5 +37,7 @@
             line-height: 30px;
         }
     </style>
+@endsection
+
 
 

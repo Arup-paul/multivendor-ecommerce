@@ -149,26 +149,27 @@
                             <ul class="menu clone-main-menu">
                                 @foreach($sections as $section)
                                     <li class="menu-item menu-item-has-children has-megamenu">
-                                        <a href="javascript:;" class="menu-name" data-title="Fruit & Nut Gifts"><i class="biolife-icon icon-fruits"></i>{{$section->name}}  </a>
+                                        <a href="javascript:;" class="menu-name" data-title="{{$section->name}}"><i class="biolife-icon icon-fruits"></i>{{$section->name}}  </a>
                                          @if(count($section->categories) > 0)
-                                           <div class="wrap-megamenu lg-width-900 md-width-640">
+                                           <div class="wrap-megamenu width-400">
                                             <div class="mega-content">
                                                 <div class="row">
-                                                    @foreach($section->categories as $category)
 
-                                                    <div class="col-lg-3 col-md-4 col-sm-12 xs-margin-bottom-25 md-margin-bottom-0">
+
+                                                    <div class="  col-sm-12 xs-margin-bottom-25  ">
+                                                        @foreach($section->categories as $category)
                                                         <div class="wrap-custom-menu vertical-menu">
                                                             <h4><a href="{{url($category->url)}}" class="menu-title">{{$category->category_name}}</a></h4>
                                                             <ul class="menu">
                                                                 @foreach($category->subcategories as $subcategory)
                                                                     <li><a href="{{url($subcategory->url)}}">{{$subcategory->category_name}}</a></li>
                                                                 @endforeach
-
                                                             </ul>
                                                         </div>
+                                                        @endforeach
                                                     </div>
 
-                                                    @endforeach
+
 
 
                                                 </div>
@@ -188,24 +189,10 @@
                     <div class="primary-menu">
                         <ul class="menu biolife-menu clone-main-menu clone-primary-menu" id="primary-menu" data-menuname="main menu">
                             <li class="menu-item"><a href="{{route('home')}}">Home</a></li>
-                            <li class="menu-item menu-item-has-children has-megamenu">
-                                <a href="#" class="menu-name" data-title="Shop" >Shop</a>
-                                <div class="wrap-megamenu lg-width-900 md-width-750">
-                                    <div class="mega-content">
-                                        <div class="col-lg-3 col-md-3 col-xs-12 md-margin-bottom-0 xs-margin-bottom-25">
-                                            <div class="wrap-custom-menu vertical-menu">
-                                                <h4 class="menu-title">Fresh Berries</h4>
-                                                <ul class="menu">
-                                                    <li><a href="#">Fruit & Nut Gifts</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-
+                            <li class="menu-item"><a href="{{route('shop')}}">Shop</a></li>
                             <li class="menu-item"><a href="#">Blog</a></li>
-                            <li class="menu-item"><a href="#">Contact</a></li>
+                            <li class="menu-item"><a href="{{route('contact')}}">Contact</a></li>
+                            <li class="menu-item"><a href="{{route('contact')}}">Contact</a></li>
                             @guest
                                 <li class="menu-item"><a href="{{route('login')}}">Signup/Login</a></li>
                             @endguest

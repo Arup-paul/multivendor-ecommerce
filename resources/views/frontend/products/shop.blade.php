@@ -1,16 +1,20 @@
 @php
     use \App\Models\ProductFilter;
     $productFilters = ProductFilter::getFilter();
-    $productSizes =  ProductFilter::getSizes($url);
-    $productColors =  ProductFilter::getColors($url);
-    $productBrands =  ProductFilter::getBrands($url);
 
 @endphp
 
 @extends('frontend.layouts.layouts')
 @section('content')
 
-   @include('frontend.partials.category_nav')
+    <div class="container container-xxl">
+        <nav class="biolife-nav">
+            <ul>
+                <li class="nav-item"><a href="{{route('home')}}" class="permal-link">Home</a></li>
+                <li class="nav-item"><a href="{{route('shop')}}" class="permal-link">Shop</a></li>
+            </ul>
+        </nav>
+    </div>
 
     <div class="page-contain category-page left-sidebar">
         <div class="container container-xxl">
@@ -33,7 +37,7 @@
                                 <div class="wrap-selectors">
                                         <div class="selector-item orderby-selector">
                                             <form name="sortProducts" id="sortProducts">
-                                                <input type="hidden" name="url" id="url" value="{{$url}}">
+                                             <input type="hidden" name="url" id="url" value="{{route('shop')}}">
                                             <select name="sort" id="sort" class="orderby" aria-label="Shop order">
                                                 <option value="" selected="selected">Sorting</option>
                                                 <option value="latest" @if(isset($_GET['sort']) && $_GET['sort'] == 'latest') selected @endif>Latest</option>
@@ -49,10 +53,11 @@
                                 </div>
                             </div>
                         </div>
+
                         @include('frontend.products.ajax_listing')
 
+                    </div>
 
-                </div>
                 </div>
                 <!-- Sidebar -->
                 <aside id="sidebar" class="sidebar col-lg-2 col-md-3 col-sm-12 col-xs-12">
@@ -63,8 +68,6 @@
                     <div class="sidebar-contain">
 
                       @foreach($productFilters as $filter)
-                        @php $filterAvailable = ProductFilter::filterAvailable($filter->id,$category->id);  @endphp
-                           @if($filterAvailable)
                               @if(count($filter->filterValues) > 0)
                                 <div class="widget biolife-filter">
                                     <h4 class="wgt-title">{{$filter->filter_name}}</h4>
@@ -84,48 +87,11 @@
                                     </div>
                                 </div>
                                @endif
-                           @endif
                       @endforeach
 
 
-                          <div class="widget biolife-filter">
-                              <h4 class="wgt-title">Size</h4>
-                              <div class="wgt-content">
-                                  <div class="check-list-new ">
-                                      @foreach($productSizes as $key => $size)
-                                          <div>
-                                              <input type="checkbox" class="size"
-                                                     id="size{{$key}}"
-                                                     value="{{$size}}"
-                                                     name="size[]"
-                                              >
-                                              <label for="size{{$key}}" class=" ">{{ucwords($size)}}</label>
-                                          </div>
 
-                                      @endforeach
 
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="widget biolife-filter">
-                              <h4 class="wgt-title">Brand</h4>
-                              <div class="wgt-content">
-                                  <div class="check-list-new ">
-                                      @foreach($productBrands as $key => $brand)
-                                          <div>
-                                              <input type="checkbox" class="brand"
-                                                     id="brand{{$key}}"
-                                                     value="{{$brand->id}}"
-                                                     name="brand[]"
-                                              >
-                                              <label for="brand{{$key}}" class=" ">{{ucwords($brand->name)}}</label>
-                                          </div>
-
-                                      @endforeach
-
-                                  </div>
-                              </div>
-                          </div>
                           <div class="widget price-filter biolife-filter">
                               <h4 class="wgt-title">Price</h4>
                               <div class="wgt-content">
@@ -145,25 +111,6 @@
                               </div>
                           </div>
 
-                          <div class="widget biolife-filter">
-                              <h4 class="wgt-title">Color</h4>
-                              <div class="wgt-content">
-                                  <div class="check-list-new ">
-                                      @foreach($productColors as $key => $color)
-                                          <div>
-                                              <input type="checkbox" class="product_color"
-                                                     id="product_color{{$key}}"
-                                                     value="{{$color}}"
-                                                     name="product_color[]"
-                                              >
-                                              <label for="product_color{{$key}}" class=" ">{{ucwords($color)}}</label>
-                                          </div>
-
-                                      @endforeach
-
-                                  </div>
-                              </div>
-                          </div>
 
 
 
@@ -200,7 +147,7 @@
                 var {{$filters->filter_column}} = get_filter('{{$filters->filter_column}}');
                 @endforeach
                 $.ajax({
-                    url:url,
+                    url: url,
                     method:'POST',
                     data:{
                         @foreach($productFilters as $filters)
@@ -209,7 +156,6 @@
                         sort:sort,url:url,size:size,product_color:product_color,price_from:price_from,price_to:price_to,brand:brand
                     },
                     success:function(data) {
-
                         $('.filter-products').html(data);
                     },error:function() {
                         Notify('error', 'Oops! Something went wrong');
@@ -239,7 +185,6 @@
                         sort:sort,url:url,product_color:product_color,size:size,price_from:price_from,price_to:price_to
                     },
                     success:function(data) {
-                        console.log(data)
                         $('.filter-products').html(data);
                     },error:function() {
                         Notify('error', 'Oops! Something went wrong');

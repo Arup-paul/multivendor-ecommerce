@@ -35,6 +35,9 @@ Route::namespace('App\Http\Controllers\Frontend')->group(function(){
         }
     }
 
+    Route::match(['get','post'],'shop','ProductController@shop')->name('shop');
+
+
     Route::get('/product/{slug}','ProductController@productDetails')->name('product.details');
     Route::post('get-product-price','ProductController@getProductPrice')->name('get.product.price');
 
@@ -59,6 +62,9 @@ Route::namespace('App\Http\Controllers\Frontend')->group(function(){
 
     //page
     Route::get('/page/{slug}','PageController@page')->name('page');
+
+
+    Route::get('/contact','ContactController@contact')->name('contact');
 
 
 
