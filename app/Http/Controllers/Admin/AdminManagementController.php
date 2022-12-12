@@ -10,20 +10,20 @@ use Illuminate\Http\Request;
 class AdminManagementController extends Controller
 {
     public function admins(Request $request){
-        $admins = Admin::query()
-            ->when($request->get('type') !== null, function (Builder $query) use ($request) {
+          $admins = Admin::query()
+            ->where('type', '!=', 'vendor')
+            ->when($request->get('type') != 'vendor' && $request->get('type') != null, function (Builder $query) use ($request) {
                 $query->where('type', '=', $request->get('type'));
             })
             ->latest()
             ->paginate(10);
 
 
-        $all = Admin::get();
+        $all = Admin::where('type', '!=', 'vendor')->get();
         $adminCount = Admin::where('type','admin')->get();
         $superAdminCount = Admin::where('type','superadmin')->get();
-        $vendorCount = Admin::where('type','vendor')->get();
 
-        return view('admin.admins.admin',compact('admins','all','adminCount','superAdminCount','vendorCount'));
+        return view('admin.admins.admin',compact('admins','all','adminCount','superAdminCount'));
     }
 
 

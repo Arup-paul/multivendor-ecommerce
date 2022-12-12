@@ -1,57 +1,11 @@
-@extends('admin.layout.layout')
+@extends('admin.layout.layout',[
+//    'button_name' => 'Add New',
+//    'button_link' => route('admin.categories.create')
+])
 
-
+@section('title', 'Vendor')
 @section('content')
 
-    <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-            <div class="card card-statistic-1">
-                <div class="card-icon bg-primary">
-                    <i class="far fa-clipboard"></i>
-                </div>
-                <div class="card-wrap">
-                    <div class="card-header">
-                        <h4>{{ __('Total') }}</h4>
-                    </div>
-                    <div class="card-body">
-                        {{$all->count()}}
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-            <div class="card card-statistic-1">
-                <div class="card-icon bg-success">
-                    <i class="fas fa-wallet"></i>
-                </div>
-                <div class="card-wrap">
-                    <div class="card-header">
-                        <h4>{{ __('Total Super Admin') }}</h4>
-                    </div>
-                    <div class="card-body">
-                        {{$superAdminCount->count()}}
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-            <div class="card card-statistic-1">
-                <div class="card-icon bg-warning">
-                    <i class="fas fa-wallet"></i>
-                </div>
-                <div class="card-wrap">
-                    <div class="card-header">
-                        <h4>{{ __('Total Admin') }}</h4>
-                    </div>
-                    <div class="card-body">
-                        {{$adminCount->count()}}
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-    </div>
 
     <div class="card">
         <div class="card-header">
@@ -59,18 +13,18 @@
                 <div class="d-flex justify-content-between">
                     <ul class="nav nav-pills">
                         <li class="nav-item">
-                            <a class="nav-link {{ request('type') == null ? 'active  bg-success' : '' }} " href="{{ route('admin.admins') }}">
-                                {{ __('All') }}<span class="badge  {{ request('type') == null ? 'badge-white' : 'badge-primary' }} ">{{$all->count()}}</span>
+                            <a class="nav-link {{ request('status') == null ? 'active  bg-primary' : '' }} " href="{{ route('admin.vendors.index') }}">
+                                {{ __('All') }}<span class="badge  {{ request('status') == null ? 'badge-white' : 'badge-primary' }} ">{{$all->count()}}</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request('type') == 'superadmin' ? 'active bg-success' : '' }} " href="{{ route('admin.admins', ['type' => 'superadmin']) }}">
-                                {{ __('Super Admin') }} <span class="badge  {{ request('type') == 'superadmin' ? 'badge-white' : 'badge-primary' }} ">{{$superAdminCount->count()}}</span>
+                            <a class="nav-link {{ request('status') == 1 ? 'active bg-success' : '' }} " href="{{ route('admin.vendors.index', ['status' => 1]) }}">
+                                {{ __('Active') }} <span class="badge  {{ request('status') == 0 ? 'badge-white' : 'badge-primary' }} ">{{$active->count()}}</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request('type') == 'admin' ? 'active bg-success' : '' }} " href="{{ route('admin.admins', ['type' => 'admin']) }}">
-                                {{ __('Admin') }} <span class="badge  {{ request('type') == 'admin' ? 'badge-white' : 'badge-primary' }} ">{{$adminCount->count()}}</span>
+                            <a class="nav-link {{ request('status') ==  '0' ? 'active bg-danger' : '' }} " href="{{ route('admin.vendors.index', ['status' => '0']) }}">
+                                {{ __('In Active') }} <span class="badge  {{ request('status') == '0' ? 'badge-white' : 'badge-primary' }} ">{{$inactive->count()}}</span>
                             </a>
                         </li>
 
@@ -98,7 +52,7 @@
                         </tr>
                         </thead>
                         <tbody class="list font-size-base rowlink" data-link="row">
-                        @foreach($admins as $key => $admin)
+                        @foreach($vendors as $key => $admin)
                             <tr>
                                 <td class="text-left">{{ $admin->name }}</td>
                                 <td>{{ $admin->type }}</td>
@@ -125,13 +79,12 @@
                                             <i class="fa fa-check-circle @if($admin->status == 1) text text-success @else text text-danger @endif "></i>
                                             {{ __('Change Status') }}
                                         </a>
-                                        @if($admin->type == 'vendor')
                                             <a class="dropdown-item has-icon"
                                                href="{{route('admin.vendor-details',$admin->id)}}">
                                                 <i class="fa fa-eye"></i>
                                                 {{ __('View') }}
                                             </a>
-                                        @endif
+
 
 
                                     </div>
@@ -144,7 +97,7 @@
                 </div>
         </div>
         <div class="card-footer">
-            {{ $admins->links('vendor.pagination.bootstrap-4') }}
+            {{ $vendors->links('vendor.pagination.bootstrap-4') }}
         </div>
     </div>
 

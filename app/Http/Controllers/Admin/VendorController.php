@@ -8,11 +8,28 @@ use App\Models\Country;
 use App\Models\Vendor;
 use App\Models\VendorsBankDetail;
 use App\Models\VendorsBusinessDetail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use DB;
 
 class VendorController extends Controller
 {
+    public function index(Request $request){
+        $vendors = Admin::query()
+            ->where('type', '=', 'vendor')
+            ->when($request->get('status')  != null, function (Builder $query) use ($request) {
+                $query->where('status', '=', $request->get('status'));
+            })
+            ->latest()
+            ->paginate(10);
+
+
+        $all = Admin::where('type', '=', 'vendor')->get();
+        $active = Admin::where('type', '=', 'vendor')->whereStatus(1)->get();
+        $inactive = Admin::where('type', '=', 'vendor')->whereStatus(0)->get();
+
+        return view('admin.vendors.index',compact('vendors','all','active','inactive'));
+    }
     public function updateVendorDetails(Request $request, $slug)
     {
         if ($slug == 'personal') {

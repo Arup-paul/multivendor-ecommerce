@@ -30,9 +30,15 @@
              <li class="{{ Request::is('admin/admins*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('admin.admins')}}">
                         <i class="fa fa-users"></i>
-                        <span>{{ __('Admin Management') }}</span>
+                        <span>{{ __('Admin/Subadmin') }}</span>
                     </a>
             </li>
+                <li class="{{ Request::is('admin/vendors*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{route('admin.vendors.index')}}">
+                        <i class="fa fa-users"></i>
+                        <span>{{ __('Vendor') }}</span>
+                    </a>
+                </li>
             @endif
 
                 <li class="{{ Request::is('admin/orders*') ? 'active' : '' }}">
