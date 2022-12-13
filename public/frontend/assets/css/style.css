@@ -14812,3 +14812,19 @@ user-info-wrapper .user-info .user-avatar {
     border: 1px solid #ddd;
 }
 
+.cart-btn{
+    border: none;
+    background: none;
+}
+.new-btn-icon{
+    background: #fab528;
+    color: #fff !important;
+    padding: 2px;
+    width: 35px !important;
+    height: 35px !important;
+    margin-left: 2px;
+}
+.new-btn-icon:hover{
+    background: #666666 !important;
+    color: #fab528 !important;
+}

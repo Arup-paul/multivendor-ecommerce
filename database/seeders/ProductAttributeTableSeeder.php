@@ -49,5 +49,7 @@ class ProductAttributeTableSeeder extends Seeder
        ];
 
        ProductAttributes::insert($data);
+
+       ProductAttributes::factory()->count(100)->create();
     }
 }

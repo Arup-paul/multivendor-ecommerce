@@ -26,13 +26,26 @@
                     @endif
                 </div>
 
-                <div class="slide-down-box">
-                    <div class="buttons">
-                        <a href="#" class="btn wishlist-btn"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                        <a href="#" class="btn add-to-cart-btn"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>add to cart</a>
-                        <a href="#" class="btn compare-btn"><i class="fa fa-random" aria-hidden="true"></i></a>
+                <form action="{{route('cart.add')}}" method="post" class="cartForm">
+                    @csrf
+
+                    <input type="hidden" name="product_id" value="{{$product->id}}" class="cart_product_id_{{$product->id}}">
+                    <input type="hidden" name="qty" value="1"   class="cart_product_price_{{$product->id}}">
+                    @if(isset($product->attributes[0]))
+                        <input type="hidden" name="size" value="{{$product->attributes[0]->size}}"  class="cart_product_size_{{$product->id}}">
+
+                    @else
+                        <input type="hidden"  value="No Size" class="cart_product_size_{{$product->id}}">
+                    @endif
+                    <div class="slide-down-box">
+                        <div class="buttons">
+                            <a href="#" class="btn wishlist-btn new-btn-icon"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                            <button type="submit" class="btn cart-btn new-btn-icon" ><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </button>
+                            <a href="#" class="btn compare-btn new-btn-icon"><i class="fa fa-random" aria-hidden="true"></i></a>
+                        </div>
                     </div>
-                </div>
+                </form>
+
             </div>
         </div>
     </li>
@@ -50,4 +63,7 @@
         </ul>
     </div>
 @endif
+
+
+
 
