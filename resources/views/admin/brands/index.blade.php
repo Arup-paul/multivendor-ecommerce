@@ -29,6 +29,7 @@
                         <tr>
                             <th><input type="checkbox" class="checkAll"></th>
                             <th>{{ __('SL') }}</th>
+                            <th>{{ __('Image') }}</th>
                             <th>{{ __('Name') }}</th>
                             <th>{{ __('Status') }}</th>
                             <th>{{ __('Action') }}</th>
@@ -39,6 +40,7 @@
                             <tr>
                                 <td> <input type="checkbox" name="ids[]" value="{{ $brand->id }}"></td>
                                 <td>{{ $key+1 }}</td>
+                                <td><img src="{{asset($brand->image ?? '')}}" height="200" width="200" alt=""></td>
                                 <td>{{ $brand->name }}</td>
                                 <td>
                                     @if($brand->status == 1)

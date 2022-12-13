@@ -16,10 +16,10 @@ class BrandTableSeeder extends Seeder
     public function run()
     {
         $data = [
-            ['name' => 'SameSung','status' => '1','created_at' => now(),'updated_at' => now()],
-            ['name' => 'Puma','status' => '1','created_at' => now(),'updated_at' => now()],
-            ['name' => 'MI','status' => '1','created_at' => now(),'updated_at' => now()],
-            ['name' => 'Minister','status' => '1','created_at' => now(),'updated_at' => now()],
+            ['name' => 'SameSung','image'=> 'brand','status' => '1','created_at' => now(),'updated_at' => now()],
+            ['name' => 'Puma','image'=> 'brand','status' => '1','created_at' => now(),'updated_at' => now()],
+            ['name' => 'MI','image'=> 'brand','status' => '1','created_at' => now(),'updated_at' => now()],
+            ['name' => 'Minister','image'=> 'brand','status' => '1','created_at' => now(),'updated_at' => now()],
         ];
 
         Brand::insert($data);

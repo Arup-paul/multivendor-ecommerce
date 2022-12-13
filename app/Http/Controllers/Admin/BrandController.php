@@ -23,10 +23,12 @@ class BrandController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'image' => 'required',
         ]);
 
         $section = new Brand();
         $section->name = $request->name;
+        $section->image = $request->image;
         $section->status = $request->status;
         $section->save();
 
@@ -47,6 +49,7 @@ class BrandController extends Controller
 
         $section = Brand::findOrFail($id);
         $section->name = $request->name;
+        $section->image = $request->image;
         $section->status = $request->status;
         $section->save();
 

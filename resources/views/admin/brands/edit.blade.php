@@ -19,6 +19,14 @@
                                 <label for="name" class="required">{{ __('Name') }} </label>
                                 <input type="text" value="{{$brand->name}}"  name="name" class="form-control"   >
                             </div>
+                            <label for="url"  >{{ __('Brand Image') }} </label>
+                            {{ mediasection([
+                                        'input_name' => 'image',
+                                        'input_id' => 'image',
+                                        'preview' => $brand->image ?? null,
+                                        'value' => $brand->image ?? null,
+                            ]) }}
+
                             <div class="form-group">
                                 <label for="password" class="required">{{ __('Status') }}</label>
                                 <select name="status" class="form-control">
@@ -41,5 +49,15 @@
         </div>
     </section>
 
+    {{ mediasingle() }}
 @endsection
+@push('style')
+    <link rel="stylesheet" href="{{ asset('admin/plugins/dropzone/dropzone.css') }}">
+@endpush
+
+
+@push('script')
+    <script src="{{ asset('admin/plugins/dropzone/dropzone.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/media.js') }}"></script>
+@endpush
 
