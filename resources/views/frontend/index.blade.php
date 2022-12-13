@@ -135,24 +135,27 @@
             <!--Block 07: Brands-->
          <div class="product-tab z-index-20 sm-margin-top-30px xs-margin-top-30px">
              <div class="container container-xxl">
-
-
+                 <div class="biolife-title-box mb-10">
+                     <h3 class="main-title">Popular Brands</h3>
+                 </div>
                  <div class="block-item recently-products-cat md-margin-bottom-39">
-                     <ul class="products-list biolife-carousel nav-center-02 nav-none-on-mobile" data-slick='{"rows":1,"arrows":true,"dots":false,"infinite":false,"speed":400,"slidesMargin":0,"slidesToShow":5, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 3}},{"breakpoint":992, "settings":{ "slidesToShow": 3, "slidesMargin": 10}},{"breakpoint":768, "settings":{ "slidesToShow": 2, "slidesMargin":10 }}]}' >
-                         @foreach($categories as $category)
+                     <ul class="biolife-carousel nav-center-bold nav-none-on-mobile" data-slick='{"arrows":true,"dots":false,"infinite":false,"speed":400,"slidesMargin":30,"slidesToShow":4, "responsive":[{"breakpoint":1200, "settings":{ "slidesToShow": 3}},{"breakpoint":992, "settings":{ "slidesToShow": 3}},{"breakpoint":768, "settings":{ "slidesToShow": 2, "slidesMargin":10}}, {"breakpoint":500, "settings":{ "slidesToShow": 1}}]}'>
 
-                             <li class="product-item category-product">
-                                 <div class="contain-product layout-02">
-                                     <div class="product-thumb">
-                                         <a href="{{$category->url}}" class="link-to-product">
-                                             <img src="{{asset($category->category_image)}}" alt="dd" width="150" height="150" class="product-thumnail">
+                         @foreach($brands as $brand)
+                             <li>
+                                 <div class="biolife-cat-box-item">
+                                     <div class="cat-thumb category-image">
+                                         <a href="#" class="cat-link">
+                                             <img src="{{asset($brand->image)}}" width="277" height="185" alt="">
                                          </a>
                                      </div>
-                                     <div class="info">
-                                         <h4 class="product-title"><a href="#" class="pr-name">{{ucfirst($category->category_name)}}</a></h4>
-                                     </div>
+                                     <a class="cat-info" href="#">
+                                         <h4 class="cat-name">{{ucfirst($brand->name)}}</h4>
+{{--                                         <span class="cat-number">({{$category->products_count}} items)</span>--}}
+                                     </a>
                                  </div>
                              </li>
+
 
                          @endforeach
 

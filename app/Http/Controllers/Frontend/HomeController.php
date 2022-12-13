@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Option;
 use App\Models\Product;
@@ -21,6 +22,7 @@ class HomeController extends Controller
 
 
        $categories = Category::withCount('products')->where('parent_id', null)->whereStatus(1)->get();
-      return view('frontend.index',compact('sliders','newProducts','bestSellerProducts','featuredProducts','discountProducts','bestRatedProducts','categories'));
+       $brands = Brand::whereStatus(1)->get();
+      return view('frontend.index',compact('sliders','newProducts','bestSellerProducts','featuredProducts','discountProducts','bestRatedProducts','categories','brands'));
     }
 }
