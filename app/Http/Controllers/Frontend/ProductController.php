@@ -118,6 +118,18 @@ class ProductController extends Controller
 
       public function shop(Request $request){
             $products = Product::with('category','category.subcategories','brand')->where('status', 1);
+
+            if($request->input('search')){
+                $search = $request->input('search');
+                $products = $products->where('product_name','like','%'.$search.'%')
+                            ->orWhere('product_color','like','%'.$search.'%')
+                            ->orWhere('product_code','like','%'.$search.'%')
+                            ->orWhereHas('category',function ($q) use ($search) {
+                               $q->where('category_name','like','%'.$search.'%');
+                            }) ->orWhereHas('brand',function ($q) use ($search) {
+                               $q->where('name','like','%'.$search.'%');
+                            });
+            }
           if($request->ajax()) {
               $url = $request->input('url');
               $sort = $request->input('sort');

@@ -34,8 +34,9 @@
                 </div>
                 <div class="col-lg-6 col-md-7 hidden-sm hidden-xs">
                     <div class="header-search-bar layout-01">
-                        <form action="#" class="form-search" name="desktop-seacrh" method="get">
-                            <input type="text" name="s" class="input-text" value="" placeholder="Search here...">
+                        <form action="{{route('shop')}}" class="form-search" method="post">
+                            @csrf
+                            <input type="text" name="search" class="input-text" value="" placeholder="Search here...">
                             <select name="category">
                                 <option value="-1" selected>All Sections</option>
                                 @foreach($sections as $section)
@@ -52,15 +53,15 @@
                         <div class="mobile-search">
                             <a href="javascript:void(0)" class="open-searchbox"><i class="biolife-icon icon-search"></i></a>
                             <div class="mobile-search-content">
-                                <form action="#" class="form-search" name="mobile-seacrh" method="get">
+                                <form action="{{route('shop')}}" class="mobile-search" method="post">
+                                    @csrf
                                     <a href="#" class="btn-close"><span class="biolife-icon icon-close-menu"></span></a>
-                                    <input type="text" name="s" class="input-text" value="" placeholder="Search here...">
+                                    <input type="text" name="search" class="input-text" value="" placeholder="Search here...">
                                     <select name="category">
                                         <option value="0" selected>All Sections</option>
                                         @foreach($sections as $section)
                                             <option value="">{{$section->name}}</option>
                                         @endforeach
-
                                     </select>
                                     <button type="submit" class="btn-submit">go</button>
                                 </form>
