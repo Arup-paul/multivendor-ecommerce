@@ -40,7 +40,9 @@
                                   <td>${{$order->grand_total}}</td>
                                   <td>{{$order->payment_method === 'COD' ? 'Cash On Delivery' : 'prepaid'}}</td>
                                   <td>{{$order->created_at->format('d M Y')}}</td>
-                                  <td><a href="{{route('user.orders.details',$order->id)}}" class="btn btn-warning"><i class="fa fa-eye"></i></a></td>
+                                  <td>
+                                      <a href="{{route('user.orders.details',$order->id)}}" title="View" class="btn btn-warning"><i class="fa fa-eye"></i></a>
+                                  </td>
                               </tr>
                             @endforeach
 

@@ -102,9 +102,9 @@
                         </div>
                         <div class="buttons">
                             <div class="d-flex">
-                                <button type="submit" class="btn add-to-cart-btn">add to cart</button>
-                                <a href="#" class="btn add-to-cart-btn">Wish List</a>
-                                <a href="#" class="btn add-to-cart-btn">Compare</a>
+                                <button type="submit" class="btn add-to-cart-btn mr-5">add to cart</button>
+                                <a href="#" class="btn add-to-cart-btn mr-5">Wish List</a>
+                                <a href="#" class="btn add-to-cart-btn mr-5">Compare</a>
                             </div>
 
                         </div>
@@ -209,6 +209,37 @@
                     <div id="tab_4th" class="tab-contain review-tab">
                         <div class="container">
                             <div class="row">
+                                <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12 d-none">
+                                    @if(auth()->user() && $orderCount > 0)
+
+                                    <div class="review-form-wrapper">
+                                        <span class="title">Submit your review</span>
+
+                                            <form method="POST" action="{{route('user.review.store')}}" class="reviewRating"  >
+                                                @csrf
+                                            <div class="comment-form-rating">
+                                                <label>1. Your rating of this products:</label>
+                                                <input type="hidden" value="{{$product->id}}" class="product_id" name="product_id">
+                                                <p class="stars">
+                                                        <span>
+                                                            <a class="btn-rating"  data-value="1" href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                                            <a class="btn-rating" data-value="2" href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                                            <a class="btn-rating" data-value="3" href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                                            <a class="btn-rating" data-value="4" href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                                            <a class="btn-rating" data-value="5" href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                                        </span>
+                                                </p>
+                                            </div>
+                                            <p class="form-row">
+                                                <textarea name="comment" id="txt-comment"  class="review" cols="30" rows="10" placeholder="Write your review here..."></textarea>
+                                            </p>
+                                            <p class="form-row">
+                                                <button type="submit" class="basicbtn" name="submit">submit review</button>
+                                            </p>
+                                        </form>
+                                    </div>
+                                    @endif
+                                </div>
                                 <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                                     <div class="rating-info">
                                         <p class="index"><strong class="rating">4.4</strong>out of 5</p>
@@ -263,37 +294,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
-                                    <div class="review-form-wrapper">
-                                        <span class="title">Submit your review</span>
-{{--                                        <form action="#" name="frm-review" method="post">--}}
-{{--                                            <div class="comment-form-rating">--}}
-{{--                                                <label>1. Your rating of this products:</label>--}}
-{{--                                                <p class="stars">--}}
-{{--                                                        <span>--}}
-{{--                                                            <a class="btn-rating" data-value="star-1" href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>--}}
-{{--                                                            <a class="btn-rating" data-value="star-2" href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>--}}
-{{--                                                            <a class="btn-rating" data-value="star-3" href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>--}}
-{{--                                                            <a class="btn-rating" data-value="star-4" href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>--}}
-{{--                                                            <a class="btn-rating" data-value="star-5" href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>--}}
-{{--                                                        </span>--}}
-{{--                                                </p>--}}
-{{--                                            </div>--}}
-{{--                                            <p class="form-row wide-half">--}}
-{{--                                                <input type="text" name="name" value="" placeholder="Your name">--}}
-{{--                                            </p>--}}
-{{--                                            <p class="form-row wide-half">--}}
-{{--                                                <input type="email" name="email" value="" placeholder="Email address">--}}
-{{--                                            </p>--}}
-{{--                                            <p class="form-row">--}}
-{{--                                                <textarea name="comment" id="txt-comment" cols="30" rows="10" placeholder="Write your review here..."></textarea>--}}
-{{--                                            </p>--}}
-{{--                                            <p class="form-row">--}}
-{{--                                                <button type="submit" name="submit">submit review</button>--}}
-{{--                                            </p>--}}
-{{--                                        </form>--}}
-                                    </div>
-                                </div>
+
                             </div>
                             <div id="comments">
                                 <ol class="commentlist">
@@ -418,13 +419,14 @@
 </div>
 @endsection
 
-@section('frontend_scripts')
+@push('frontend_scripts')
 <script>
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
     $(document).ready(function() {
         $('#getPrice').on('change', function() {
             var size = $(this).val();
@@ -452,8 +454,20 @@
         });
     });
 
-    $(document).on("submit", ".cartForm", function (e) {
+
+
+
+    $(document).on("submit", ".reviewRating", function (e) {
         e.preventDefault();
+       let rating = $(".selected").data('value');
+       let product_id = $('.product_id').val();
+       let review = $('.review').val();
+
+       var formData = new FormData();
+       formData.append('rating',rating);
+       formData.append('product_id',product_id);
+       formData.append('review',review);
+
 
         var $this = $(this);
         var basicBtnHtml = $this.find(".basicbtn").html();
@@ -461,7 +475,7 @@
         $.ajax({
             type: "POST",
             url: this.action,
-            data: new FormData(this),
+            data: formData,
             dataType: "json",
             contentType: false,
             cache: false,
@@ -473,21 +487,24 @@
             success: function (response) {
                 $this.find(".basicbtn").removeAttr("disabled");
                 $this.find(".basicbtn").html(basicBtnHtml);
+                $('.reviewRating').trigger('reset');
                 Notify("success", response);
-                if(response.totalCartItems){
-                    $('#totalCartItems').html(response.totalCartItems);
-                }
                 if (response.redirect) {
                     location.href = response.redirect;
                 }
             },
             error: function (xhr, status, error) {
+                console.log(xhr)
                 $this.find(".basicbtn").html(basicBtnHtml);
                 $this.find(".basicbtn").removeAttr("disabled");
-                Notify("error", xhr.responseText);
+                Notify("error", xhr.responseJSON.message);
             },
         });
     });
+
+
+
+
 </script>
-@endsection
+@endpush
 

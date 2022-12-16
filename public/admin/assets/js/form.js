@@ -23,8 +23,8 @@ $(document).on("submit", ".auth-form", function (e) {
         success: function (response) {
             $this.find(".basicbtn").removeAttr("disabled");
             $this.find(".basicbtn").html(basicBtnHtml);
-            Notify('success', response)
-            if (response.redirect) {
+            Notify("success", response);
+            if (response.redirect){
                 window.setTimeout(function () {
                     location.href = response.redirect;
                 }, 1000)
@@ -59,6 +59,7 @@ $(document).on('submit', '.ajaxform', function (e) {
         },
 
         success: function (response) {
+            console.log(response);
             $submitBtn.removeAttr('disabled');
             $submitBtn.html($submitBtnOld);
             Notify('success', response)

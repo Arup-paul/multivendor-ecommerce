@@ -11,5 +11,6 @@
     <nav class="list-group">
         <a class="list-group-item {{ Request::is('user/dashboard*') ? 'active' : '' }} " href="{{route('user.dashboard')}}" href="#"><i class="icon-command"></i>Dashboard</a>
         <a class="list-group-item  {{ Request::is('user/orders*') ? 'active' : '' }} " href="{{route('user.orders.index')}}"><i class="icon-command"></i>Orders</a>
+        <a class="list-group-item  {{ Request::is('user/review*') ? 'active' : '' }} " href="{{route('user.review.index')}}"><i class="icon-command"></i>Review</a>
     </nav>
 </aside>

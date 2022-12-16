@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Order;
+use App\Models\OrderProduct;
 use App\Models\Product;
 use App\Models\ProductFilter;
 use App\Models\Vendor;
@@ -265,9 +267,15 @@ class ProductController extends Controller
 
 
 
+              if(auth()->check()){
+                     $order = Order::where('user_id',auth()->id())->pluck('id');
+                      $orderCount = OrderProduct::whereIn('order_id',$order)->where('product_id',$product->id)->count();
+              }else{
+                  $orderCount = 0;
+              }
 
 
-              return view('frontend.products.product_details', compact('product','breadCrumb','parentCategory','relatedProducts','recent_viewed_products'));
+              return view('frontend.products.product_details', compact('product','breadCrumb','parentCategory','relatedProducts','recent_viewed_products','orderCount'));
 
           }
       }
