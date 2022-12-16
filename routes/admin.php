@@ -25,8 +25,18 @@ Route::group(['middleware' => ['admin']],function (){
        //admin management
     Route::get('admins','AdminManagementController@admins')->name('admins');
     Route::post('admins/update-status/{id}','AdminManagementController@updateStatus')->name('admins.update-status');
+    Route::get('/admins/create','AdminManagementController@create')->name('admins.create');
+    Route::post('/admins/store','AdminManagementController@store')->name('admins.store');
+    Route::get('/admins/edit/{id}','AdminManagementController@edit')->name('admins.edit');
+    Route::put('/admins/update/{id}','AdminManagementController@update')->name('admins.update');
+    Route::post('/admins/mass-destroy','AdminManagementController@massDestroy')->name('admins.mass-destroy');
+
+
     Route::get('/send-email/{id}','AdminManagementController@sendEmail')->name('admins.send-email');
     Route::get('vendor-details/{id}','AdminManagementController@vendorDetails')->name('vendor-details');
+
+    //role permission
+
 
     //vendor management
     Route::resource('vendors','VendorController');

@@ -14,7 +14,7 @@ class AdminController extends Controller
     public function login(Request $request) {
         if($request->isMethod('post')) {
             $data = $request->all();
-            $validated = $request->validate([
+            $request->validate([
                 'email' => 'required',
                 'password' => 'required',
             ]);

@@ -12,7 +12,7 @@
                 <a href="{{route('admin.dashboard')}}" class="nav-link "><i class="fas fa-fire"></i><span>Dashboard</span></a>
 
             </li>
-            <li class="menu-header">Starter</li>
+            <li class="menu-header">User Management </li>
             @if(auth()->guard('admin')->user()->type == 'vendor')
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fa fa-app-store "></i> <span>Vendor Details</span></a>
@@ -32,15 +32,21 @@
                         <i class="fa fa-users"></i>
                         <span>{{ __('Admin/Subadmin') }}</span>
                     </a>
-            </li>
+               </li>
                 <li class="{{ Request::is('admin/vendors*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('admin.vendors.index')}}">
                         <i class="fa fa-users"></i>
                         <span>{{ __('Vendor') }}</span>
                     </a>
                 </li>
+                <li class="{{ Request::is('admin/customers*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('admin.customers.index') }}">
+                        <i class="fa fa-users"></i>
+                        <span>{{ __('Customer List') }}</span>
+                    </a>
+                </li>
             @endif
-
+            <li class="menu-header">Ecommerce </li>
                 <li class="{{ Request::is('admin/orders*') ? 'active' : '' }}">
                     <a href="{{ route('admin.orders.index') }}" class="nav-link">
                         <i class="fas fa-th-list"></i>
@@ -49,12 +55,7 @@
                 </li>
 
               @if(auth()->guard('admin')->user()->type == 'superadmin')
-                <li class="{{ Request::is('admin/customers*') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('admin.customers.index') }}">
-                        <i class="fa fa-users"></i>
-                        <span>{{ __('Customer List') }}</span>
-                    </a>
-                </li>
+
                 <li class="{{ Request::is('admin/sections*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('admin.sections.index')}}">
                         <i class="fa fa-puzzle-piece"></i>
@@ -98,6 +99,7 @@
                         <span>{{ __('Shipping Charge') }}</span>
                     </a>
                 </li>
+                <li class="menu-header">Settings </li>
             <li class="{{ Request::is('admin/media*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.media.list') }}">
                     <i class="far fa-file-image"></i>
