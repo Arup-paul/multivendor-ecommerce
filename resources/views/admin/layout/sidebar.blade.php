@@ -1,3 +1,6 @@
+ @php
+     $categoryModule =  \App\Models\Role::where('admin_id',auth()->guard('admin')->id())->where('module','categories')->first();
+ @endphp
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
@@ -73,12 +76,21 @@
                 </li>
 
             @endif
+            @if(auth()->guard('admin')->user()->type == 'superadmin')
             <li class="{{ Request::is('admin/categories*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{route('admin.categories.index')}}">
                     <i class="fa fa-tasks"></i>
                     <span>{{ __('Category') }}</span>
                 </a>
             </li>
+            @elseif($categoryModule->view || $categoryModule->all)
+                <li class="{{ Request::is('admin/categories*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{route('admin.categories.index')}}">
+                        <i class="fa fa-tasks"></i>
+                        <span>{{ __('Category') }}</span>
+                    </a>
+                </li>
+            @endif
 
 
                 <li class="nav-item dropdown {{ Request::is('admin/products*') ||  Request::is('admin/coupons*') ||  Request::is('admin/filters*') ||  Request::is('admin/filter-values*')  ? 'active' : '' }}">
