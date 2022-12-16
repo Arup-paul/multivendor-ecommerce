@@ -36,6 +36,8 @@ Route::group(['middleware' => ['admin']],function (){
     Route::get('vendor-details/{id}','AdminManagementController@vendorDetails')->name('vendor-details');
 
     //role permission
+    Route::get('role-permission/{id}','RoleController@rolePermission')->name('role-permission');
+    Route::post('role-permission/{id}','RoleController@rolePermissionUpdate')->name('role-permission');
 
 
     //vendor management

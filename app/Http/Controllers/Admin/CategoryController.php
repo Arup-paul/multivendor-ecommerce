@@ -4,20 +4,46 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Role;
 use App\Models\Section;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-public function index()
+    public function index()
     {
+
+        $permissionExist = Role::where('admin_id',auth()->guard('admin')->id())->where('module','categories')->first();
+
+        if(auth('admin')->user()->type == 'superadmin'){
+            $permission = [];
+        }else{
+            if($permissionExist){
+                if(!$permissionExist->view && !$permissionExist->create && !$permissionExist->edit && !$permissionExist->all){
+                    abort(404);
+                }else{
+                    $permission = $permissionExist;
+                }
+            }else{
+                $permission = [];
+            }
+        }
+
+
+
         $categories = Category::with('parentCategory','section')->paginate(20);
 
-        return view('admin.categories.index',compact('categories'));
+        return view('admin.categories.index',compact('categories','permission'));
     }
 
     public function create()
     {
+        if(!auth('admin')->user()->type == 'superadmin'){
+            $permissionExist = Role::where('admin_id',auth()->guard('admin')->id())->where('module','categories')->first();
+            if(!$permissionExist->create &&   !$permissionExist->all){
+                abort(404);
+            }
+        }
         $getCategories = [];
         $sections = Section::where('status',1)->get();
         return view('admin.categories.create',compact('getCategories','sections'));
@@ -53,6 +79,13 @@ public function index()
     }
 
     public function edit($id){
+        if(!auth('admin')->user()->type == 'superadmin') {
+            $permissionExist = Role::where('admin_id', auth()->guard('admin')->id())->where('module', 'categories')->first();
+            if (!$permissionExist->edit && !$permissionExist->all) {
+                abort(404);
+            }
+        }
+
         $sections = Section::where('status',1)->get();
         $category = Category::findOrFail($id);
          $getCategories = Category::where(['parent_id' => null])->get();
@@ -92,7 +125,10 @@ public function index()
 
     public function massDestroy(Request $request)
     {
-
+        $permissionExist = Role::where('admin_id',auth()->guard('admin')->id())->where('module','categories')->first();
+        if(!$permissionExist->edit &&   !$permissionExist->all){
+            return  response()->json(   __('Permission Restricted'),422 );
+        }
         if($request->deleteAction == 'delete') {
             if (isset($request->ids)) {
                 foreach ($request->ids as $id) {
@@ -126,4 +162,7 @@ public function index()
        }
 
     }
+
+
+
 }

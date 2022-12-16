@@ -1,11 +1,26 @@
-@extends('admin.layout.layout',[
-    'button_name' => 'Add New',
-    'button_link' => route('admin.categories.create')
-])
+@php
+    if($permission && $permission->create){
+        $data =  [
+           'button_name' => 'Add New',
+          'button_link' => route('admin.categories.create')
+         ];
+    } else{
+        $data = [];
+    }
+    if(auth()->guard('admin')->user()->type == 'superadmin'){
+        $data =  [
+           'button_name' => 'Add New',
+          'button_link' => route('admin.categories.create')
+         ];
+    }
+@endphp
+@extends('admin.layout.layout',$data)
+
 
 @section('title', 'Categories')
 
 @section('content')
+
 
     <div class="card">
         <div class="card-body">
@@ -56,10 +71,20 @@
                                     @endif
                                 </td>
                                 <td>
+                                    @if($permission)
+                                    @if($permission->edit || $permission->all)
                                     <a class="btn btn-primary"
                                        href="{{route('admin.categories.edit',$category->id)}}">
                                         <i class="fa fa-edit"></i>
                                     </a>
+                                   @endif
+                                 @endif
+                                    @if(auth()->guard('admin')->user()->type == 'superadmin')
+                                            <a class="btn btn-primary"
+                                               href="{{route('admin.categories.edit',$category->id)}}">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                   @endif
                                 </td>
                             </tr>
                         @endforeach

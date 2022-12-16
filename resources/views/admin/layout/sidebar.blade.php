@@ -63,12 +63,7 @@
                     </a>
                 </li>
 
-                <li class="{{ Request::is('admin/categories*') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{route('admin.categories.index')}}">
-                        <i class="fa fa-tasks"></i>
-                        <span>{{ __('Category') }}</span>
-                    </a>
-                </li>
+
 
                 <li class="{{ Request::is('admin/brands*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('admin.brands.index')}}">
@@ -78,7 +73,12 @@
                 </li>
 
             @endif
-
+            <li class="{{ Request::is('admin/categories*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('admin.categories.index')}}">
+                    <i class="fa fa-tasks"></i>
+                    <span>{{ __('Category') }}</span>
+                </a>
+            </li>
 
 
                 <li class="nav-item dropdown {{ Request::is('admin/products*') ||  Request::is('admin/coupons*') ||  Request::is('admin/filters*') ||  Request::is('admin/filter-values*')  ? 'active' : '' }}">

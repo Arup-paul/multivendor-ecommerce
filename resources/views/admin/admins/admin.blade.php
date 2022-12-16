@@ -154,7 +154,7 @@
                                             {{ __('Edit') }}
                                         </a>
                                             <a class="dropdown-item has-icon"
-                                               href="{{route('admin.vendor-details',$admin->id)}}">
+                                               href="{{route('admin.role-permission',$admin->id)}}">
                                                 <i class="fa fa-unlock"></i>
                                                 {{ __('Role/Permission') }}
                                             </a>
