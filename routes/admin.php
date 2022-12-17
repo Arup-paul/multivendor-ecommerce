@@ -106,7 +106,11 @@ Route::group(['middleware' => ['admin']],function (){
     Route::post('sliders/mass-destroy','SliderController@massDestroy')->name('sliders.mass-destroy');
     Route::resource('sliders','SliderController');
 
-    //
+    //review
+     Route::get('ratings','RatingController@index')->name('ratings.index');
+     Route::get('ratings/edit/{id}','RatingController@edit')->name('ratings.edit');
+     Route::put('ratings/update/{id}','RatingController@update')->name('ratings.update');
+    Route::post('ratings/mass-destroy','RatingController@massDestroy')->name('ratings.mass-destroy');
 
 
 

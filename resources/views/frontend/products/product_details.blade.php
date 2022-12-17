@@ -241,13 +241,16 @@
                                     @endif
                                 </div>
                                 <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+                                    @if($reviews->count() > 0)
                                     <div class="rating-info">
                                         <p class="index"><strong class="rating">{{number_format($reviews->sum('rating') / $reviews->count(),2)}}</strong>out of 5</p>
                                         <div class="rating"><p class="star-rating"><span class="width-{{number_format(number_format($reviews->sum('rating') / $reviews->count(),2) * 20)}}percent"></span></p></div>
                                     </div>
+                                        @endif
                                 </div>
 
                             </div>
+                            @if($reviews->count() > 0)
                             <div id="comments">
                                 <ol class="commentlist">
                                     @foreach($reviews as $review)
@@ -266,9 +269,10 @@
 
                                 </ol>
                                 <div class="biolife-panigations-block version-2">
-
+                                    {{$reviews->links('vendor.pagination.custom')}}
                                 </div>
                             </div>
+                                @endif
                         </div>
                     </div>
                 </div>

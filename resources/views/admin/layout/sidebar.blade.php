@@ -111,6 +111,13 @@
                         <span>{{ __('Shipping Charge') }}</span>
                     </a>
                 </li>
+
+                <li class="{{ Request::is('admin/ratings*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('admin.ratings.index') }}">
+                        <i class="fa fa-shipping-fast"></i>
+                        <span>{{ __('Rating') }}</span>
+                    </a>
+                </li>
                 <li class="menu-header">Settings </li>
             <li class="{{ Request::is('admin/media*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.media.list') }}">

@@ -10,7 +10,7 @@ class RatingController extends Controller
 {
     public function index(){
         $reviews = Ratings::withWhereHas('product', function($q){
-            $q->select(['id','product_name','slug']);
+            $q->select(['id','product_name','slug','product_image']);
         })->where('user_id',auth()->id())->get();
        return view('frontend.user.review.index',compact('reviews'));
     }

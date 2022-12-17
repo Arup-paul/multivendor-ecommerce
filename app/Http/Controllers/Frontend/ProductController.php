@@ -276,7 +276,7 @@ class ProductController extends Controller
               }
 
 
-              $reviews = Ratings::with('user')->where('product_id',$product->id)->whereStatus(1)->orderByDesc('id')->get();
+              $reviews = Ratings::with('user')->where('product_id',$product->id)->whereStatus(1)->orderByDesc('id')->paginate(5);
 
 
               return view('frontend.products.product_details', compact('product','breadCrumb','parentCategory','relatedProducts','recent_viewed_products','orderCount','reviews'));

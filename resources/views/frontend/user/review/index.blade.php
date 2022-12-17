@@ -13,12 +13,13 @@
 
                 <div class="signin-container user-container  panel  ">
                     <div class="panel-body ">
-                        <h3>Orders</h3>
+                        <h3>Review Rating</h3>
                         <table>
                             <thead>
                               <tr>
                                   <th>SL</th>
                                   <th>Product Name</th>
+                                  <th>Product Image</th>
                                   <th>Rating</th>
                                   <th>Review</th>
                                   <th>View</th>
@@ -30,6 +31,7 @@
                               <tr>
                                   <td>{{$key+1}}</td>
                                   <td>{{$review->product->product_name}}</td>
+                                  <td><img src="{{asset($review->product->product_image)}}" width="150" height="150" alt=""></td>
                                   <td>{{$review->rating}}</td>
                                   <td>{{$review->review ?? ''}}</td>
                                   <td>
