@@ -14671,6 +14671,9 @@ body.open-quickview-block .biolife-quickview-block{
 .d-flex{
     display: flex;
 }
+.justify-content-between{
+    justify-content: space-between;
+}
 
 /*delivery address*/
 .delivery_box{

@@ -37,7 +37,9 @@
                 <div class="product-attribute">
                     <h3 class="title">{{$product->product_name}}</h3>
                     <div class="rating">
-                        <p class="star-rating"><span class="width-80percent"></span></p>
+                        @if($reviews->count() > 0)
+                          <p class="star-rating"><span class="width-{{0 ? 0 : number_format(number_format($reviews->sum('rating') / $reviews->count(),2) * 20) }}percent"></span></p>
+                        @endif
                         @if($product->attributes->sum('stock') > 0)
                         <span class="review-count main-font-color">In Stock</span>
                         @else
@@ -101,21 +103,26 @@
                             </div>
                         </div>
                         <div class="buttons">
-                            <div class="d-flex">
-                                <button type="submit" class="btn add-to-cart-btn mr-5">add to cart</button>
-                                <a href="#" class="btn add-to-cart-btn mr-5">Wish List</a>
-                                <a href="#" class="btn add-to-cart-btn mr-5">Compare</a>
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <button type="submit" class="btn add-to-cart-btn mr-5">add to cart</button>
+                                    <a href="#" class="btn add-to-cart-btn mr-5">Wish List</a>
+                                    <a href="#" class="btn add-to-cart-btn mr-5">Compare</a>
+                                </div>
+                                <div>
+                                    <ul class="social-list a2a_kit a2a_kit_size_32 a2a_default_style" data-a2a-icon-color="#fab528">
+                                        <a class="a2a_button_facebook"></a>
+                                        <a class="a2a_button_twitter"></a>
+                                        <a class="a2a_button_linkedin"></a>
+                                        <a class="a2a_button_pinterest"></a>
+                                    </ul>
+                                </div>
+
                             </div>
 
                         </div>
                         <div class="social-media">
-                            <ul class="social-list">
-                                <li><a href="#" class="social-link"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                <li><a href="#" class="social-link"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                <li><a href="#" class="social-link"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-                                <li><a href="#" class="social-link"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-                                <li><a href="#" class="social-link"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                            </ul>
+
                         </div>
                     </div>
                     </form>
@@ -319,6 +326,7 @@
 @endsection
 
 @push('frontend_scripts')
+    <script async src="https://static.addtoany.com/menu/page.js"></script>
 <script>
     $.ajaxSetup({
         headers: {
@@ -413,6 +421,5 @@
                 width: {{$i}}%;
               }
         @endfor
-
     </style>
 @endpush
