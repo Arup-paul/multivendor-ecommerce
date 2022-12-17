@@ -8,8 +8,11 @@ use Illuminate\Http\Request;
 
 class RatingController extends Controller
 {
-    public function create($id){
-
+    public function index(){
+        $reviews = Ratings::withWhereHas('product', function($q){
+            $q->select(['id','product_name','slug']);
+        })->where('user_id',auth()->id())->get();
+       return view('frontend.user.review.index',compact('reviews'));
     }
 
     public function store(Request $request){

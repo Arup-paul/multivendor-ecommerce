@@ -129,7 +129,7 @@
                         <li class="tab-element active"><a href="#tab_1st" class="tab-link">Products Descriptions</a></li>
                         <li class="tab-element" ><a href="#tab_2nd" class="tab-link">Addtional information</a></li>
                         <li class="tab-element" ><a href="#tab_3rd" class="tab-link">Shipping & Delivery</a></li>
-                        <li class="tab-element" ><a href="#tab_4th" class="tab-link">Customer Reviews <sup>(3)</sup></a></li>
+                        <li class="tab-element" ><a href="#tab_4th" class="tab-link">Customer Reviews <sup>({{$reviews->count()}})</sup></a></li>
                     </ul>
                 </div>
                 <div class="tab-content">
@@ -242,136 +242,31 @@
                                 </div>
                                 <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                                     <div class="rating-info">
-                                        <p class="index"><strong class="rating">4.4</strong>out of 5</p>
-                                        <div class="rating"><p class="star-rating"><span class="width-80percent"></span></p></div>
-                                        <p class="see-all">See all 68 reviews</p>
-                                        <ul class="options">
-                                            <li>
-                                                <div class="detail-for">
-                                                    <span class="option-name">5stars</span>
-                                                    <span class="progres">
-                                                            <span class="line-100percent"><span class="percent width-90percent"></span></span>
-                                                        </span>
-                                                    <span class="number">90</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="detail-for">
-                                                    <span class="option-name">4stars</span>
-                                                    <span class="progres">
-                                                            <span class="line-100percent"><span class="percent width-30percent"></span></span>
-                                                        </span>
-                                                    <span class="number">30</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="detail-for">
-                                                    <span class="option-name">3stars</span>
-                                                    <span class="progres">
-                                                            <span class="line-100percent"><span class="percent width-40percent"></span></span>
-                                                        </span>
-                                                    <span class="number">40</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="detail-for">
-                                                    <span class="option-name">2stars</span>
-                                                    <span class="progres">
-                                                            <span class="line-100percent"><span class="percent width-20percent"></span></span>
-                                                        </span>
-                                                    <span class="number">20</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="detail-for">
-                                                    <span class="option-name">1star</span>
-                                                    <span class="progres">
-                                                            <span class="line-100percent"><span class="percent width-10percent"></span></span>
-                                                        </span>
-                                                    <span class="number">10</span>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                        <p class="index"><strong class="rating">{{number_format($reviews->sum('rating') / $reviews->count(),2)}}</strong>out of 5</p>
+                                        <div class="rating"><p class="star-rating"><span class="width-{{number_format(number_format($reviews->sum('rating') / $reviews->count(),2) * 20)}}percent"></span></p></div>
                                     </div>
                                 </div>
 
                             </div>
                             <div id="comments">
                                 <ol class="commentlist">
+                                    @foreach($reviews as $review)
                                     <li class="review">
                                         <div class="comment-container">
                                             <div class="row">
                                                 <div class="comment-content col-lg-8 col-md-9 col-sm-8 col-xs-12">
-                                                    <p class="comment-in"><span class="post-name">Quality is our way of life</span><span class="post-date">01/04/2018</span></p>
-                                                    <div class="rating"><p class="star-rating"><span class="width-80percent"></span></p></div>
-                                                    <p class="author">by: <b>Shop organic</b></p>
-                                                    <p class="comment-text">There are few things in life that please people more than the succulence of quality fresh fruit and vegetables.  At Fresh Fruits we work to deliver the world’s freshest, choicest, and juiciest produce to discerning customers across the UAE and GCC.</p>
-                                                </div>
-                                                <div class="comment-review-form col-lg-3 col-lg-offset-1 col-md-3 col-sm-4 col-xs-12">
-                                                    <span class="title">Was this review helpful?</span>
-                                                    <ul class="actions">
-                                                        <li><a href="#" class="btn-act like" data-type="like"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Yes (100)</a></li>
-                                                        <li><a href="#" class="btn-act hate" data-type="dislike"><i class="fa fa-thumbs-down" aria-hidden="true"></i>No (20)</a></li>
-                                                        <li><a href="#" class="btn-act report" data-type="dislike"><i class="fa fa-flag" aria-hidden="true"></i>Report</a></li>
-                                                    </ul>
+                                                    <div class="rating"><p class="star-rating"><span class="width-{{$review->rating*20}}percent"></span></p></div>
+                                                    <p class="author">by: <b>{{$review->user->name}}</b></p>
+                                                    <p class="comment-text">{{$review->review ?? ''}}</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="review">
-                                        <div class="comment-container">
-                                            <div class="row">
-                                                <div class="comment-content col-lg-8 col-md-9 col-sm-8 col-xs-12">
-                                                    <p class="comment-in"><span class="post-name">Quality is our way of life</span><span class="post-date">01/04/2018</span></p>
-                                                    <div class="rating"><p class="star-rating"><span class="width-80percent"></span></p></div>
-                                                    <p class="author">by: <b>Shop organic</b></p>
-                                                    <p class="comment-text">There are few things in life that please people more than the succulence of quality fresh fruit and vegetables.  At Fresh Fruits we work to deliver the world’s freshest, choicest, and juiciest produce to discerning customers across the UAE and GCC.</p>
-                                                </div>
-                                                <div class="comment-review-form col-lg-3 col-lg-offset-1 col-md-3 col-sm-4 col-xs-12">
-                                                    <span class="title">Was this review helpful?</span>
-                                                    <ul class="actions">
-                                                        <li><a href="#" class="btn-act like" data-type="like"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Yes (100)</a></li>
-                                                        <li><a href="#" class="btn-act hate" data-type="dislike"><i class="fa fa-thumbs-down" aria-hidden="true"></i>No (20)</a></li>
-                                                        <li><a href="#" class="btn-act report" data-type="dislike"><i class="fa fa-flag" aria-hidden="true"></i>Report</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="review">
-                                        <div class="comment-container">
-                                            <div class="row">
-                                                <div class="comment-content col-lg-8 col-md-9 col-sm-8 col-xs-12">
-                                                    <p class="comment-in"><span class="post-name">Quality is our way of life</span><span class="post-date">01/04/2018</span></p>
-                                                    <div class="rating"><p class="star-rating"><span class="width-80percent"></span></p></div>
-                                                    <p class="author">by: <b>Shop organic</b></p>
-                                                    <p class="comment-text">There are few things in life that please people more than the succulence of quality fresh fruit and vegetables.  At Fresh Fruits we work to deliver the world’s freshest, choicest, and juiciest produce to discerning customers across the UAE and GCC.</p>
-                                                </div>
-                                                <div class="comment-review-form col-lg-3 col-lg-offset-1 col-md-3 col-sm-4 col-xs-12">
-                                                    <span class="title">Was this review helpful?</span>
-                                                    <ul class="actions">
-                                                        <li><a href="#" class="btn-act like" data-type="like"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Yes (100)</a></li>
-                                                        <li><a href="#" class="btn-act hate" data-type="dislike"><i class="fa fa-thumbs-down" aria-hidden="true"></i>No (20)</a></li>
-                                                        <li><a href="#" class="btn-act report" data-type="dislike"><i class="fa fa-flag" aria-hidden="true"></i>Report</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
+                                  @endforeach
+
                                 </ol>
                                 <div class="biolife-panigations-block version-2">
-                                    <ul class="panigation-contain">
-                                        <li><span class="current-page">1</span></li>
-                                        <li><a href="#" class="link-page">2</a></li>
-                                        <li><a href="#" class="link-page">3</a></li>
-                                        <li><span class="sep">....</span></li>
-                                        <li><a href="#" class="link-page">20</a></li>
-                                        <li><a href="#" class="link-page next"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                                    </ul>
-                                    <div class="result-count">
-                                        <p class="txt-count"><b>1-5</b> of <b>126</b> reviews</p>
-                                        <a href="#" class="link-to">See all<i class="fa fa-caret-right" aria-hidden="true"></i></a>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -507,4 +402,13 @@
 
 </script>
 @endpush
+@push('frontend_css')
+    <style>
+        @for($i = 1; $i <= 100; $i++)
+             .width-{{$i}}percent{
+                width: {{$i}}%;
+              }
+        @endfor
 
+    </style>
+@endpush

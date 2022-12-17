@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
 use App\Models\ProductFilter;
+use App\Models\Ratings;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -275,7 +276,10 @@ class ProductController extends Controller
               }
 
 
-              return view('frontend.products.product_details', compact('product','breadCrumb','parentCategory','relatedProducts','recent_viewed_products','orderCount'));
+              $reviews = Ratings::with('user')->where('product_id',$product->id)->whereStatus(1)->orderByDesc('id')->get();
+
+
+              return view('frontend.products.product_details', compact('product','breadCrumb','parentCategory','relatedProducts','recent_viewed_products','orderCount','reviews'));
 
           }
       }
