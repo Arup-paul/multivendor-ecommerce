@@ -53,41 +53,5 @@
         });
 
 
-        $(document).on("submit", ".cartForm", function (e) {
-            e.preventDefault();
-
-            var $this = $(this);
-            var basicBtnHtml = $this.find(".basicbtn").html();
-
-            $.ajax({
-                type: "POST",
-                url: this.action,
-                data: new FormData(this),
-                dataType: "json",
-                contentType: false,
-                cache: false,
-                processData: false,
-                beforeSend: function () {
-                    $this.find(".basicbtn").html("Please Wait....");
-                    $this.find(".basicbtn").attr("disabled", "");
-                },
-                success: function (response) {
-                    $this.find(".basicbtn").removeAttr("disabled");
-                    $this.find(".basicbtn").html(basicBtnHtml);
-                    Notify("success", response);
-                    if(response.totalCartItems){
-                        $('#totalCartItems').html(response.totalCartItems);
-                    }
-                    if (response.redirect) {
-                        location.href = response.redirect;
-                    }
-                },
-                error: function (xhr, status, error) {
-                    $this.find(".basicbtn").html(basicBtnHtml);
-                    $this.find(".basicbtn").removeAttr("disabled");
-                    Notify("error", xhr.responseText);
-                },
-            });
-        });
     </script>
 @endsection

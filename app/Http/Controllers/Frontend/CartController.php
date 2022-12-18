@@ -64,9 +64,12 @@ class CartController extends Controller
 
         $totalCartItems = total_cart_items();
 
+        $cartItems = getCartItems();
         return response()->json([
             'totalCartItems' => $totalCartItems,
-            'message' => __('Product added to cart successfully')
+            'message' => __('Product added to cart successfully'),
+            'minicart' => (string)View::make('frontend.layouts.minicart', compact('cartItems'))->render(),
+
         ]);
 
     }
@@ -88,6 +91,7 @@ class CartController extends Controller
                     'status' => false,
                     'message' => __('Product Size is not  available. Please remove this product from cart'),
                     'view' => (string)View::make('frontend.cart.items', compact('cartItems'))->render(),
+                    'minicart' => (string)View::make('frontend.layouts.minicart', compact('cartItems'))->render(),
 
                 ]);
             }
@@ -101,6 +105,7 @@ class CartController extends Controller
                         'status' => false,
                         'message' => __('Product quantity is not available'),
                         'view' => (string)View::make('frontend.cart.items', compact('cartItems'))->render(),
+                        'minicart' => (string)View::make('frontend.layouts.minicart', compact('cartItems'))->render(),
 
                     ]);
                 }
@@ -115,6 +120,7 @@ class CartController extends Controller
                 'status' => true,
                 'totalCartItems' => $totalCartItems,
                 'view' => (string)View::make('frontend.cart.items', compact('cartItems'))->render(),
+                'minicart' => (string)View::make('frontend.layouts.minicart', compact('cartItems'))->render(),
             ]);
 
         }
@@ -135,6 +141,7 @@ class CartController extends Controller
                 'totalCartItems' => $totalCartItems,
                 'message' => 'Product removed from cart successfully',
                 'view' => (string)View::make('frontend.cart.items', compact('cartItems'))->render(),
+                'minicart' => (string)View::make('frontend.layouts.minicart', compact('cartItems'))->render(),
             ]);
 
         }
@@ -249,6 +256,8 @@ class CartController extends Controller
                     'status' => true,
                     'message' => 'Coupon Code is successfully applied',
                     'view' => (string)View::make('frontend.cart.items', compact('cartItems'))->render(),
+                    'minicart' => (string)View::make('frontend.layouts.minicart', compact('cartItems'))->render(),
+
                 ]);
             }
         }

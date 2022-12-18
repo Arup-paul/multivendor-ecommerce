@@ -24,7 +24,7 @@
                 <tr class="cart_item">
                     <td class="product-thumbnail" data-title="Product Name">
                         <a class="prd-thumb" href="#">
-                            <figure><img width="113" height="113" src="{{$items->product->product_image ?? ''}}" alt="shipping cart"></figure>
+                            <figure><img width="113" height="113" src="{{asset($items->product->product_image ?? '')}}" alt="shipping cart"></figure>
                         </a>
                         <a class="prd-name" href="{{route('product.details',$items->product->slug)}}">
                             Name: <small>{{$items->product->product_name}}</small> <br>
@@ -65,7 +65,7 @@
                     </td>
                     <td>
                         <div class="action">
-                            <a href="#" class="remove removeCartItem" data-cartid="{{$items->id}}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                            <a href="#" class="remove removeCartItem" data-cartid="{{$items->id}}" data-url="{{route('cart.remove-item')}}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                         </div>
                     </td>
                 </tr>

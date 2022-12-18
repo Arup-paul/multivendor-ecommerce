@@ -1339,7 +1339,7 @@ body.open-mobile-search .header-area.layout-02{
     box-shadow: 0 0 5px 0 rgba(0,0,0,0.2);
     border-radius: 0;
     line-height: 0;
-    width: 370px;
+    width: 300px;
     margin-top: 9px;
 }
 .biolife-cart-info .minicart-block ul.products{
@@ -1365,7 +1365,6 @@ body.open-mobile-search .header-area.layout-02{
 }
 .biolife-cart-info .minicart-block .minicart-item{
     display: inline-block;
-    padding-bottom: 20px;
     position: relative;
     width: 100%;
 }
@@ -1644,10 +1643,10 @@ body.open-mobile-search .header-area.layout-02{
     font-size: 0;
     line-height: 0;
 }
-.biolife-cart-info .minicart-block .btn-control .btn{
+.biolife-cart-info .minicart-block .btn-control .btn {
     display: inline-block;
     width: calc( 50% - 8px );
-    padding: 16px 10px 17px;
+    padding: 11px 6px 14px;
     float: left;
     font-size: 14px;
     color: #666666;
@@ -1656,8 +1655,7 @@ body.open-mobile-search .header-area.layout-02{
     text-transform: uppercase;
     background-color: #eeeeee;
     border: none;
-    border-radius: 99999999px;
-    margin-top: 20px;
+    margin-top: 13px;
 }
 .biolife-cart-info .minicart-block .btn-control .view-cart{
     margin-right: 16px;

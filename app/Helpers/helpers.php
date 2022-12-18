@@ -566,3 +566,20 @@ if (!function_exists('total_cart_items')){
        }
     }
 }
+
+if (!function_exists('getCartItems')) {
+    function getCartItems()
+    {
+        $session_id = Session::get('session_id');
+        if (auth()->check()) {
+            $cartItems = Cart::with('product')->orderByDesc('id')
+                ->where('user_id', auth()->user()->id)
+                ->orWhere('session_id', $session_id)
+                ->get();
+
+        } else {
+            $cartItems = Cart::with('product')->orderByDesc('id')->where('session_id', $session_id)->get();
+        }
+        return $cartItems;
+    }
+}
