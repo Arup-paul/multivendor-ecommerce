@@ -246,7 +246,7 @@ $(document).on("click", ".addWishlist", function (e) {
 
     $.ajax({
         type: "POST",
-        url: '/wishlist',
+        url: '/user/wishlist',
         data: formData,
         dataType: "json",
         contentType: false,

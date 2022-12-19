@@ -59,8 +59,7 @@ Route::namespace('App\Http\Controllers\Frontend')->group(function(){
     Route::get('/checkout','CheckoutController@checkout')->name('checkout');
     Route::post('/checkout','CheckoutController@processCheckout')->name('checkout');
 
-    //wishlist
-    Route::post('wishlist','WishlistController@addWishlist')->name('wishlist');
+
 
 
     //page

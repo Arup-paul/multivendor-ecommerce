@@ -14766,6 +14766,7 @@ body.open-quickview-block .biolife-quickview-block{
     overflow: hidden;
     background: #fff;
     border-radius: 10px;
+    margin-bottom: 10px;
 }
 .user-info-wrapper .user-info {
     display: block;

@@ -6,10 +6,14 @@
     <div class="page-contain about-us mt-5 pt-5">
         <div id="main-content" class="main-content pt-5 mt-5">
             <div class="welcome-us-block pt-5">
-                <div class="container">
+                <div class="container container-xxl">
+                    <div class="panel">
+                    <div class="panel-body">
                     <h4 class="title">{{ucwords($page->title)}}</h4>
                     <div class="text-wraper">
                         <p class="text-info">{!! $page->description !!}</p>
+                    </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -27,6 +31,7 @@
             color: #000;
             text-align: center;
             margin-bottom: 30px;
+            font-size: 24px;
         }
         .page-contain.about-us .welcome-us-block .text-wraper {
             text-align: center;

@@ -12,5 +12,8 @@ Route::group(['middleware' => ['auth']],function (){
     Route::post('review/store','RatingController@store')->name('review.store');
     Route::get('review','RatingController@index')->name('review.index');
 
+    //wishlist
+    Route::post('wishlist','WishlistController@addWishlist')->name('wishlist');
+    Route::post('wishlist','WishlistController@index')->name('wishlist');
 
 });

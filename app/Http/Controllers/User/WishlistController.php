@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Wishlist;
@@ -11,7 +11,7 @@ class WishlistController extends Controller
     public function addWishlist(Request $request){
         if(!auth()->check()){
             return response([
-               'redirect' => route('login')
+                'redirect' => route('login')
             ]);
         }
         $product_id = $request->input('product_id');
