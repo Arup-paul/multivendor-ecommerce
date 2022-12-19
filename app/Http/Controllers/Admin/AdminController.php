@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Order;
 use App\Models\OrderProduct;
+use App\Models\Product;
+use App\Models\Ratings;
 use App\Models\User;
 use App\Models\Vendor;
 use Carbon\Carbon;
@@ -37,70 +41,100 @@ class AdminController extends Controller
         return view('admin.login');
     }
     public function dashboard() {
-           $currentMonthOrder = Order::whereMonth('created_at', Carbon::now()->month)
-            ->whereYear('created_at',Carbon::now()->year)->count();
-           $beforeOneMonthOrder = Order::whereMonth('created_at', Carbon::now()->subMonth(1))
-            ->whereYear('created_at',Carbon::now()->year)->count();
-           $beforeTwoMonthOrder = Order::whereMonth('created_at', Carbon::now()->subMonth(2))
-            ->whereYear('created_at',Carbon::now()->year)->count();
-           $beforeThreeMonthOrder = Order::whereMonth('created_at', Carbon::now()->subMonth(3))
-            ->whereYear('created_at',Carbon::now()->year)->count();
-          $beforeFourMonthOrder = Order::whereMonth('created_at', Carbon::now()->subMonth(4))
-            ->whereYear('created_at',Carbon::now()->year)->count();
-          $beforeFiveMonthOrder = Order::whereMonth('created_at', Carbon::now()->subMonth(5))
-            ->whereYear('created_at',Carbon::now()->year)->count();
-
-          $orderCount = [$currentMonthOrder,$beforeOneMonthOrder,$beforeTwoMonthOrder,$beforeThreeMonthOrder,$beforeFourMonthOrder,$beforeFiveMonthOrder];
-          $orderMonth = [Carbon::now()->format('F'),Carbon::now()->subMonth(1)->format('F'),Carbon::now()->subMonth(2)->format('F'),Carbon::now()->subMonth(3)->format('F'),Carbon::now()->subMonth(4)->format('F'),Carbon::now()->subMonth(5)->format('F')];
-
-
           for($i = 0; $i < 12; $i++){
                  $userCount =  User::whereMonth('created_at', Carbon::now()->subMonth($i))
                   ->whereYear('created_at',Carbon::now()->year)->count();
+                 $orderCount = Order::whereMonth('created_at', Carbon::now()->subMonth($i))
+                  ->whereYear('created_at',Carbon::now()->year)->count();
+                 $sellerCount = Admin::where('type','vendor')->whereMonth('created_at', Carbon::now()->subMonth($i))
+                  ->whereYear('created_at',Carbon::now()->year)->count();
                 if($i == 0){
                     $currentMonthUser = $userCount;
+                    $currentMonthOrder = $orderCount;
+                    $currentMonthSeller = $sellerCount;
                     $currentMonthName = Carbon::now()->subMonth($i)->format('F');
                 }else if($i == 1){
                     $beforeOneMonthUser = $userCount;
+                    $beforeOneMonthOrder = $orderCount;
+                    $beforeOneMonthSeller = $sellerCount;
                     $beforeOneMonthName =  Carbon::now()->subMonth($i)->format('F');
                 }else if($i == 2){
                     $beforeTwoMonthUser = $userCount;
+                    $beforeTwoMonthOrder = $orderCount;
+                    $beforeTwoMonthSeller = $sellerCount;
                     $beforeTwoMonthName =  Carbon::now()->subMonth($i)->format('F');
                 } else if($i == 3){
                     $beforeThreeMonthUser = $userCount;
+                    $beforeThreeMonthOrder = $orderCount;
+                    $beforeThreeMonthSeller = $sellerCount;
                     $beforeThreeMonthName =  Carbon::now()->subMonth($i)->format('F');
                 } else if($i == 4){
                     $beforeFourMonthUser = $userCount;
+                    $beforeFourMonthOrder = $orderCount;
+                    $beforeFourMonthSeller = $sellerCount;
                     $beforeFourMonthName =  Carbon::now()->subMonth($i)->format('F');
                 } else if($i == 5){
                     $beforeFiveMonthUser = $userCount;
+                    $beforeFiveMonthOrder = $orderCount;
+                    $beforeFiveMonthSeller = $sellerCount;
                     $beforeFiveMonthName =  Carbon::now()->subMonth($i)->format('F');
                 } else if($i == 6){
                     $beforeSixMonthUser = $userCount;
+                    $beforeSixMonthOrder = $orderCount;
+                    $beforeSixMonthSeller = $sellerCount;
                     $beforeSixMonthName =  Carbon::now()->subMonth($i)->format('F');
                 } else if($i == 7){
                     $beforeSevenMonthUser = $userCount;
+                    $beforeSevenMonthOrder = $orderCount;
+                    $beforeSevenMonthSeller = $sellerCount;
                     $beforeSevenMonthName =  Carbon::now()->subMonth($i)->format('F');
                 } else if($i == 8){
                     $beforeEightMonthUser = $userCount;
+                    $beforeEightMonthOrder = $orderCount;
+                    $beforeEightMonthSeller = $sellerCount;
                     $beforeEightMonthName =  Carbon::now()->subMonth($i)->format('F');
                 } else if($i == 9){
                     $beforeNineMonthUser = $userCount;
+                    $beforeNineMonthOrder = $orderCount;
+                    $beforeNineMonthSeller = $sellerCount;
                     $beforeNineMonthName =  Carbon::now()->subMonth($i)->format('F');
                 } else if($i == 10){
                     $beforeTenMonthUser = $userCount;
+                    $beforeTenMonthOrder = $orderCount;
+                    $beforeTenMonthSeller = $sellerCount;
                     $beforeTenMonthName =  Carbon::now()->subMonth($i)->format('F');
                 } else if($i == 11){
                     $beforeElevenMonthUser = $userCount;
+                    $beforeElevenMonthOrder = $orderCount;
+                    $beforeElevenMonthSeller = $sellerCount;
                     $beforeElevenMonthName =  Carbon::now()->subMonth($i)->format('F');
                 }
           }
 
         $userCount =  [$currentMonthUser,$beforeOneMonthUser,$beforeTwoMonthUser,$beforeThreeMonthUser,$beforeFourMonthUser,$beforeFiveMonthUser,$beforeSixMonthUser,$beforeSevenMonthUser,$beforeEightMonthUser,$beforeNineMonthUser,$beforeTenMonthUser,$beforeElevenMonthUser];
-        $userMonthName = [$currentMonthName,$beforeOneMonthName,$beforeTwoMonthName,$beforeThreeMonthName,$beforeFourMonthName,$beforeFiveMonthName,$beforeSixMonthName,$beforeSevenMonthName,$beforeEightMonthName,$beforeNineMonthName,$beforeTenMonthName,$beforeElevenMonthName];
+        $orderCount =  [$currentMonthOrder,$beforeOneMonthOrder,$beforeTwoMonthOrder,$beforeThreeMonthOrder,$beforeFourMonthOrder,$beforeFiveMonthOrder,$beforeSixMonthOrder,$beforeSevenMonthOrder,$beforeEightMonthOrder,$beforeNineMonthOrder,$beforeTenMonthOrder,$beforeElevenMonthOrder];
+        $sellerCount =  [$currentMonthSeller,$beforeOneMonthSeller,$beforeTwoMonthSeller,$beforeThreeMonthSeller,$beforeFourMonthSeller,$beforeFiveMonthSeller,$beforeSixMonthSeller,$beforeSevenMonthSeller,$beforeEightMonthSeller,$beforeNineMonthSeller,$beforeTenMonthSeller,$beforeElevenMonthSeller];
+        $monthName = [$currentMonthName,$beforeOneMonthName,$beforeTwoMonthName,$beforeThreeMonthName,$beforeFourMonthName,$beforeFiveMonthName,$beforeSixMonthName,$beforeSevenMonthName,$beforeEightMonthName,$beforeNineMonthName,$beforeTenMonthName,$beforeElevenMonthName];
 
 
-        return view('admin.dashboard',compact('orderCount','orderMonth','userCount','userMonthName'));
+        //order
+        $orders = Order::with('users')->latest()->limit(10)->get();
+
+        $allOrder = Order::get();
+        $pendingOrder = Order::whereOrderStatus(0)->get();
+        $completeOrder = Order::whereOrderStatus(3)->get();
+        $cancelOrder = Order::whereOrderStatus(4)->get();
+
+         $thisMonthEarning = Order::whereMonth('created_at', Carbon::now()->month)
+            ->whereYear('created_at',Carbon::now()->year)->sum('grand_total');
+        $thisYearEarning = Order::whereYear('created_at',Carbon::now()->year)->sum('grand_total');
+        $totalProducts = Product::count();
+        $totalCategory = Category::count();
+        $totalBrand = Brand::count();
+        $totalRating = Ratings::count();
+
+
+        return view('admin.dashboard',compact('orderCount', 'userCount','monthName','sellerCount','orders','allOrder','pendingOrder','completeOrder','cancelOrder','thisMonthEarning','thisYearEarning','totalProducts','totalBrand','totalCategory','totalRating'));
     }
 
     public function updatePassword(Request $request) {
