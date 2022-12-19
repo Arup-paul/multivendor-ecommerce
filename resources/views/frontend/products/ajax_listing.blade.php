@@ -39,7 +39,7 @@
                     @endif
                     <div class="slide-down-box">
                         <div class="buttons">
-                            <a href="#" class="btn wishlist-btn new-btn-icon"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                            <button type="button" class="btn new-btn-icon -btn mr-5 addWishlist"    data-productid="{{$product->id}}"><i class="fa fa-heart" aria-hidden="true"></i></button>
                             <button type="submit" class="btn cart-btn new-btn-icon" ><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </button>
                             <a href="#" class="btn compare-btn new-btn-icon"><i class="fa fa-random" aria-hidden="true"></i></a>
                         </div>

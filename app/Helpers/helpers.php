@@ -14,6 +14,7 @@ use App\Models\Follower;
 use App\Models\LevelUser;
 use App\Models\FrontendData;
 use App\Models\Message;
+use App\Models\Wishlist;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Optional;
@@ -564,6 +565,12 @@ if (!function_exists('total_cart_items')){
        }else{
               return Cart::where('session_id',$session_id)->sum('quantity');
        }
+    }
+}
+//total wishlist items
+if (!function_exists('total_wishlist_items')){
+    function total_wishlist_items() {
+        return Wishlist::where('user_id',auth()->id())->count();
     }
 }
 

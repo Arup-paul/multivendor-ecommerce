@@ -234,3 +234,39 @@ $(document).on('click','.removeCartItem',function (){
 });
 
 
+$(document).on("click", ".addWishlist", function (e) {
+    e.preventDefault();
+
+    let product_id = $(this).data("productid")
+
+    var formData = new FormData();
+    formData.append('product_id',product_id);
+
+
+
+    $.ajax({
+        type: "POST",
+        url: '/wishlist',
+        data: formData,
+        dataType: "json",
+        contentType: false,
+        cache: false,
+        processData: false,
+
+        success: function (response) {
+            Notify("success", response);
+            if(response.total_wish_list){
+                $('#totalWishlistItems').html(response.total_wish_list);
+            }
+            if (response.redirect) {
+                location.href = response.redirect;
+            }
+        },
+        error: function (xhr, status, error) {
+            Notify("error", xhr.responseText);
+        },
+    });
+});
+
+
+

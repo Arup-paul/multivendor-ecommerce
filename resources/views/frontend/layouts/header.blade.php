@@ -71,7 +71,7 @@
                             <a href="#" class="link-to">
                                     <span class="icon-qty-combine">
                                         <i class="icon-heart-bold biolife-icon"></i>
-                                        <span class="qty">4</span>
+                                        <span class="qty" id="totalWishlistItems">{{total_wishlist_items()}}</span>
                                     </span>
                             </a>
                         </div>

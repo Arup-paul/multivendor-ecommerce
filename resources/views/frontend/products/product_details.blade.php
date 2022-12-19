@@ -106,8 +106,9 @@
                             <div class="d-flex justify-content-between">
                                 <div>
                                     <button type="submit" class="btn add-to-cart-btn mr-5">add to cart</button>
-                                    <a href="#" class="btn add-to-cart-btn mr-5">Wish List</a>
-                                    <a href="#" class="btn add-to-cart-btn mr-5">Compare</a>
+                                    <button type="button" class="btn add-to-cart-btn mr-5 addWishlist"   data-productid="{{$product->id}}">Wish List</button>
+                                    <button type="button" class="btn add-to-cart-btn mr-5">Compare</button>
+
                                 </div>
                                 <div>
                                     <ul class="social-list a2a_kit a2a_kit_size_32 a2a_default_style" data-a2a-icon-color="#fab528">

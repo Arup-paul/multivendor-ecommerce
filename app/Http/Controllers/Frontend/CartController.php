@@ -41,12 +41,12 @@ class CartController extends Controller
                             ->where('size', $request->size)
                             ->count();
             if ($countProducts > 0) {
-                return response()->json(__('product is already exist'), 422);
+                return response()->json(__('Already Added To Cart'), 422);
             }
         } else {
             $countProducts = Cart::where(['product_id' => $request->product_id, 'size' => $request->size, 'session_id' => $session_id])->count();
             if ($countProducts > 0) {
-                return response()->json(__('product is already exist'), 422);
+                return response()->json(__('Already Added To Cart'), 422);
             }
         }
 
