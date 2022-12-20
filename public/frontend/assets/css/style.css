@@ -14876,6 +14876,9 @@ user-info-wrapper .user-info .user-avatar {
 .d-inline{
     display: inline-block;
 }
+.justify-content-between{
+    justify-content: space-between;
+}
 .table-wishlist>tbody>tr>td{
     vertical-align: middle;
 }

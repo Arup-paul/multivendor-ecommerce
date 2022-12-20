@@ -95,7 +95,7 @@
                                 @elseif($log->status == 3)
                                      {{ __('Complete') }}
                                 @elseif($log->status == 4)
-                                      {{ __('Cancel') }}
+                                      {{ __('Cancel for ') }}   {{$log->reason ?? 'Admin'}} {{$log->additional_reason ?? ''}}
                                 @elseif($log->status == 1)
                                       {{ __('Processing') }}
                                 @elseif($log->status == 2)

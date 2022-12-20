@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('order_logs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('order_id')->constrained()->onDelete('cascade');
+            $table->string('reason')->nullable();
+            $table->text('additional_reason')->nullable();
             $table->integer('status');
             $table->timestamps();
         });

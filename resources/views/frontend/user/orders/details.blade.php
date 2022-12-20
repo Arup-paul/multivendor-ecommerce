@@ -14,7 +14,10 @@
                   <div class="row">
                       <div class="col-md-6">
                           <div class="panel-body panel">
-                              <h4>Order #{{$order->id}} Details</h4>
+                               <h4 class="pull-left">Order #{{$order->id}} Details</h4>
+                                @if($order->order_status == '0')
+                                   <a  href="{{route('user.orders.cancel',$order->id)}}" class="btn btn-danger pull-right">Cancel Order</a>
+                                @endif
                               <table>
 
                                   <tr>
@@ -23,7 +26,31 @@
                                   </tr>
                                   <tr>
                                       <th>Order Status</th>
-                                      <td>{{$order->order_status}}</td>
+                                      <td>  @if($order->order_status ==0)
+                                              <span class="text text-warning">{{ __('Pending') }}</span>
+                                          @elseif($order->order_status == 3)
+                                              <span class="text text-success">{{ __('Complete') }}</span>
+                                          @elseif($order->order_status == 4)
+                                              <span class="text text-danger">{{ __('Cancel') }}</span>
+                                          @elseif($order->order_status == 1)
+                                              <span class="text text-info">{{ __('Processing') }}</span>
+                                          @elseif($order->order_status == 2)
+                                              <span class="text text-info">{{ __('Shipping') }}</span>
+                                          @endif</td>
+                                  </tr>
+                                  <tr>
+                                      <th>Payment Status</th>
+                                      <td>
+                                          @if($order->payment_status ==2)
+                                              <span class="text text-warning">{{ __('Pending') }}</span>
+                                          @elseif($order->payment_status ==1)
+                                              <span class="text text-success">{{ __('Complete') }}</span>
+                                          @elseif($order->payment_status == 0)
+                                              <span class="text text-danger">{{ __('Cancel') }}</span>
+                                          @elseif($order->payment_status == 3)
+                                              <span class="text text-danger">{{ __('Incomplete') }}</span>
+                                          @endif
+                                      </td>
                                   </tr>
                                   <tr>
                                       <th>Order Total</th>
