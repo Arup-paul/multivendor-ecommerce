@@ -25,7 +25,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
             return  response()->json([
                 'message' => __('Login Successfully'),
-                'redirect' => route('home')
+                'redirect' => route('user.dashboard')
             ]);
         }
         return response()->json( [ 'message' =>  'The provided credentials do not match our records'],401);

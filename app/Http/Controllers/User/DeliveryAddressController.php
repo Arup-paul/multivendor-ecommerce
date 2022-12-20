@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Auth;
 
 class DeliveryAddressController extends Controller
 {
+
+    public function index(){
+        $deliveryAddress = DeliveryAddress::getDeliveryAddress();
+        return view('frontend.user.delivery_address.index',compact('deliveryAddress'));
+    }
     public function create(){
         $countries = ShippingCharge::whereStatus(1)->get();
         return view('frontend.user.delivery_address.create',compact('countries'));

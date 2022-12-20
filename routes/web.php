@@ -23,7 +23,7 @@ Route::namespace('App\Http\Controllers\Frontend')->group(function(){
     Route::post('/login','AuthController@processLogin')->name('login');
     Route::get('/register','AuthController@register')->name('register');
     Route::post('/register','AuthController@processRegister')->name('register');
-    Route::get('/logout','AuthController@logout')->name('logout');
+    Route::get('/logout','AuthController@logout')->name('logout')->middleware('auth');
 
 
 
