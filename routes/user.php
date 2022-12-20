@@ -14,6 +14,8 @@ Route::group(['middleware' => ['auth']],function (){
 
     //wishlist
     Route::post('wishlist','WishlistController@addWishlist')->name('wishlist');
-    Route::post('wishlist','WishlistController@index')->name('wishlist');
+    Route::get('wishlist','WishlistController@index')->name('wishlist.index');
+    Route::post('wishlist/delete','WishlistController@destroy')->name('wishlist.destroy');
+    Route::post('wishlist/mass-destroy','WishlistController@massDestroy')->name('wishlist.mass-destroy');
 
 });

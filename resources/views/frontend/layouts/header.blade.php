@@ -68,7 +68,7 @@
                             </div>
                         </div>
                         <div class="wishlist-block hidden-sm hidden-xs">
-                            <a href="#" class="link-to">
+                            <a href="{{route('user.wishlist.index')}}" class="link-to">
                                     <span class="icon-qty-combine">
                                         <i class="icon-heart-bold biolife-icon"></i>
                                         <span class="qty" id="totalWishlistItems">{{total_wishlist_items()}}</span>

@@ -247,6 +247,9 @@ $(document).on("click", ".addWishlist", function (e) {
     $.ajax({
         type: "POST",
         url: '/user/wishlist',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         data: formData,
         dataType: "json",
         contentType: false,
@@ -267,6 +270,57 @@ $(document).on("click", ".addWishlist", function (e) {
         },
     });
 });
+
+//wishlist remove
+$(document).on('click','.removeWishlistItem',function (){
+    var wishlistId = $(this).data('wishlistid');
+    var url = $(this).data('url');
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data:{
+            wishlistId:wishlistId,
+        },
+        type: "POST",
+        url: url,
+        success: function (response) {
+            Notify("success", response);
+            if (response.redirect){
+                window.setTimeout(function () {
+                    location.href = response.redirect;
+                }, 2000)
+            }
+        },
+        error: function (xhr, status, error) {
+            Notify("error", xhr.responseText);
+        },
+    });
+});
+
+$(document).on('click','.removeWishlistALlItem',function (){
+    var url = $(this).data('url');
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: "POST",
+        url: url,
+        success: function (response) {
+            Notify("success", response);
+            if (response.redirect){
+                window.setTimeout(function () {
+                    location.href = response.redirect;
+                }, 2000)
+            }
+        },
+        error: function (xhr, status, error) {
+            Notify("error", xhr.responseText);
+        },
+    });
+});
+
+
 
 
 

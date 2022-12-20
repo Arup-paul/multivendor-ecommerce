@@ -14838,3 +14838,46 @@ user-info-wrapper .user-info .user-avatar {
 .mr-5{
     margin-right: 5px;
 }
+/*wishlist*/
+.wishlist-table .product-item {
+    display: table;
+    width: 100%;
+    min-width: 150px;
+    margin-top: 5px;
+    margin-bottom: 3px;
+}
+.wishlist-table .product-item .product-thumb {
+    display: table-cell;
+}
+ .wishlist-table .product-item .product-thumb>img {
+    display: block;
+    width: 80px;
+    height: 80px;
+}
+.wishlist-table .product-item .product-info, .wishlist-table .product-item .product-thumb {
+    display: table-cell;
+    vertical-align: top;
+}
+
+.wishlist-table .product-item .product-title {
+    margin-bottom: 6px;
+    padding-top: 5px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.wishlist-table .product-item .product-title>a {
+    transition: color .3s;
+    color: #232323;
+    line-height: 1.5;
+    text-decoration: none;
+}
+
+.d-inline{
+    display: inline-block;
+}
+.table-wishlist>tbody>tr>td{
+    vertical-align: middle;
+}
+
+
