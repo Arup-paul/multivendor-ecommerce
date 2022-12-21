@@ -61,6 +61,7 @@
                                        <option value="0" {{$order->order_status == 0 ? 'selected' : ''}}>{{ __('Pending') }}</option>
                                        <option value="2" {{$order->order_status == 2 ? 'selected' : ''}}>{{ __('Shipping') }}</option>
                                        <option value="4" {{$order->order_status == 4 ? 'selected' : ''}}>{{ __('Cancel') }}</option>
+                                       <option value="5" {{$order->order_status == 5 ? 'selected' : ''}}>{{ __('Delivered') }}</option>
                                     </select>
                                     </span>
                                 </li>

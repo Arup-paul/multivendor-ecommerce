@@ -146,6 +146,7 @@
                                 <th>{{ __('Quantity') }}</th>
                                 <th>{{ __('Size') }}</th>
                                 <th class="text-right"> {{ __('Total') }}</th>
+                                <th class="text-right"> {{ __('Item Status') }}</th>
                                 <th>{{ __('Action') }}</th>
                             </tr>
                             </thead>
@@ -167,6 +168,7 @@
                                     <td>{{$item->qty}}</td>
                                     <td>{{$item->size}}</td>
                                     <td>{{$item->total}}</td>
+                                    <td>{{$item->item_status}}</td>
                                     <td>
                                         <a target="_blank" href="{{route('product.details',$item->product->slug)}}">
                                             <button class="btn btn-sm btn-primary">{{ __('View') }}</button>

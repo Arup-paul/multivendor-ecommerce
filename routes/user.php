@@ -12,6 +12,8 @@ Route::group(['middleware' => ['auth']],function (){
     Route::get('orders/{id}','OrderController@orderDetails')->name('orders.details');
     Route::get('orders/cancel/{id}','OrderController@orderCancel')->name('orders.cancel');
     Route::post('orders/cancel/{id}','OrderController@orderCancelProcess')->name('orders.cancel');
+    Route::get('orders/return/{id}','OrderController@orderReturn')->name('orders.return');
+    Route::post('orders/return/{id}','OrderController@orderReturnProcess')->name('orders.return');
 
     Route::post('review/store','RatingController@store')->name('review.store');
     Route::get('review','RatingController@index')->name('review.index');

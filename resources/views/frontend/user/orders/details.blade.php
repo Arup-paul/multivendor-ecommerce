@@ -18,6 +18,9 @@
                                 @if($order->order_status == '0')
                                    <a  href="{{route('user.orders.cancel',$order->id)}}" class="btn btn-danger pull-right">Cancel Order</a>
                                 @endif
+                              @if($order->order_status == 5)
+                                  <a  href="{{route('user.orders.return',$order->id)}}" class="btn btn-danger pull-right">Return Order</a>
+                              @endif
                               <table>
 
                                   <tr>
@@ -36,7 +39,10 @@
                                               <span class="text text-info">{{ __('Processing') }}</span>
                                           @elseif($order->order_status == 2)
                                               <span class="text text-info">{{ __('Shipping') }}</span>
-                                          @endif</td>
+                                          @elseif($order->order_status == 5)
+                                              <span class="text text-info">{{ __('Delivered') }}</span>
+                                          @endif
+                                      </td>
                                   </tr>
                                   <tr>
                                       <th>Payment Status</th>
@@ -131,6 +137,7 @@
                                         <th>Product Size</th>
                                         <th>Product Color</th>
                                         <th>Product Quantity</th>
+                                        <th>Item Status</th>
                                     </tr>
                                     @foreach($order->orderProducts as $item)
                                         <tr>
@@ -142,6 +149,7 @@
                                             <td>{{$item->size}}</td>
                                             <td>{{$item->product->product_color}}</td>
                                             <td>{{$item->qty}}</td>
+                                            <td>{{$item->item_status}}</td>
                                         </tr>
                                     @endforeach
                               </table>

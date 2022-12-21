@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('qty');
             $table->string('size')->nullable();
             $table->float('total');
+            $table->string('item_status')->nullable();
             $table->timestamps();
         });
     }

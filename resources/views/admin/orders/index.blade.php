@@ -277,6 +277,8 @@
                                         <span class="badge badge-info">{{ __('Processing') }}</span>
                                     @elseif($order->order_status == 2)
                                         <span class="badge badge-info">{{ __('Shipping') }}</span>
+                                    @elseif($order->order_status == 5)
+                                        <span class="badge badge-success">{{ __('Delivered') }}</span>
                                     @endif
                                 </td>
                                 <td>
