@@ -95,6 +95,12 @@ Route::group(['middleware' => ['admin']],function (){
     Route::post('orders/order-status/{id}', 'OrderController@orderStatusUpdate')->name('orders.order-status');
     Route::resource('orders', 'OrderController');
 
+    //return order
+
+    Route::get('orders-return','ReturnOrderController@index')->name('orders.return');
+    Route::post('orders-return/update/{id}','ReturnOrderController@updateStatus')->name('orders.return.update');
+
+
     //shipping charge
     Route::post('shipping-charge/mass-destroy','ShippingController@massDestroy')->name('shipping-charge.mass-destroy');
     Route::resource('shipping-charge','ShippingController');

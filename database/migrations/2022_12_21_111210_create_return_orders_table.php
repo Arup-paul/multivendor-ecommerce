@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->string('product_size')->nullable();
             $table->string('reason')->nullable();
-            $table->enum('return_status',['Pending','Approved','Rejected']);
+            $table->enum('return_status',['Pending','Approved','Rejected'])->default('Pending');
             $table->string('comment')->nullable();
             $table->timestamps();
         });

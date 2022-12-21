@@ -50,12 +50,15 @@
                 </li>
             @endif
             <li class="menu-header">Ecommerce </li>
-                <li class="{{ Request::is('admin/orders*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.orders.index') }}" class="nav-link">
-                        <i class="fas fa-th-list"></i>
-                        <span>{{ __('Manage Order') }}</span>
-                    </a>
-                </li>
+
+            <li class="nav-item dropdown {{ Request::is('admin/orders*') ? 'active' : '' }} ">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"> <i class="fas fa-th-list"></i>
+                    <span>{{ __('Manage Order') }}</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ Request::is('admin/orders') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.orders.index') }}">Orders</a></li>
+                    <li class=""{{ Request::is('admin/orders-return') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.orders.return') }}">Return Orders</a></li>
+                </ul>
+            </li>
 
               @if(auth()->guard('admin')->user()->type == 'superadmin')
 
