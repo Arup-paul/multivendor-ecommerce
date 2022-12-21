@@ -96,10 +96,12 @@ Route::group(['middleware' => ['admin']],function (){
     Route::resource('orders', 'OrderController');
 
     //return order
-
     Route::get('orders-return','ReturnOrderController@index')->name('orders.return');
     Route::post('orders-return/update/{id}','ReturnOrderController@updateStatus')->name('orders.return.update');
 
+    //exchange order
+    Route::get('orders-exchange','ExchangeOrderController@index')->name('orders.exchange');
+    Route::post('orders-exchange/update/{id}','ExchangeOrderController@updateStatus')->name('orders.exchange.update');
 
     //shipping charge
     Route::post('shipping-charge/mass-destroy','ShippingController@massDestroy')->name('shipping-charge.mass-destroy');

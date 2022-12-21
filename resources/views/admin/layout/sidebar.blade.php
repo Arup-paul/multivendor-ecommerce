@@ -57,6 +57,7 @@
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('admin/orders') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.orders.index') }}">Orders</a></li>
                     <li class=""{{ Request::is('admin/orders-return') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.orders.return') }}">Return Orders</a></li>
+                    <li class=""{{ Request::is('admin/orders-exchange') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin.orders.exchange') }}">Exchange Orders</a></li>
                 </ul>
             </li>
 
