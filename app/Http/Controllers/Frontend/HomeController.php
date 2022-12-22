@@ -9,6 +9,8 @@ use App\Models\Option;
 use App\Models\Product;
 use App\Models\Section;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,13 @@ class HomeController extends Controller
 
        $categories = Category::withCount('products')->where('parent_id', null)->whereStatus(1)->get();
        $brands = Brand::whereStatus(1)->get();
+        //set session recently product
+        if(empty(Session::get('session_id'))){
+            $session_id = Hash::make(time());
+            Session::put('session_id',$session_id);
+        }else{
+            $session_id = Session::get('session_id');
+        }
       return view('frontend.index',compact('sliders','newProducts','bestSellerProducts','featuredProducts','discountProducts','bestRatedProducts','categories','brands'));
     }
 }

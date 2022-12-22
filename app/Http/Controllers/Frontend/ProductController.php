@@ -19,6 +19,13 @@ class ProductController extends Controller
 {
       public function listing(Request $request){
 
+          if(empty(Session::get('session_id'))){
+              $session_id = Hash::make(time());
+              Session::put('session_id',$session_id);
+          }else{
+              $session_id = Session::get('session_id');
+          }
+
           if($request->ajax()){
               $url = $request->input('url');
               $sort = $request->input('sort');
@@ -122,6 +129,13 @@ class ProductController extends Controller
       public function shop(Request $request){
             $products = Product::with('category','category.subcategories','brand')->where('status', 1);
 
+          if(empty(Session::get('session_id'))){
+              $session_id = Hash::make(time());
+              Session::put('session_id',$session_id);
+          }else{
+              $session_id = Session::get('session_id');
+          }
+
             if($request->input('search')){
                 $search = $request->input('search');
                 $products = $products->where('product_name','like','%'.$search.'%')
@@ -204,6 +218,13 @@ class ProductController extends Controller
       public function vendorListing($vendorId){
            $vendor = Vendor::getVendorShop($vendorId);
 
+          if(empty(Session::get('session_id'))){
+              $session_id = Hash::make(time());
+              Session::put('session_id',$session_id);
+          }else{
+              $session_id = Session::get('session_id');
+          }
+
            $products = Product::with('brand')
                ->where('vendor_id',$vendorId)
                ->where('status',1)
@@ -216,11 +237,14 @@ class ProductController extends Controller
 
       public function productDetails($slug)
       {
+
              $product = Product::with(['section','category', 'brand', 'vendor','images','vendor', 'attributes' => function($query){
                 $query->where('stock','>',0);
              }])->whereSlug($slug)->whereStatus(1)->first();
 
               abort_if(!$product,404);
+
+
 
 
           if ($product->category->url) {

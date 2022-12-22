@@ -6,7 +6,7 @@
                 <ul class="horizontal-menu">
 
                     <li class="menu-item"> <a href="{{route('seller.login')}}" class="link-to-item"> <i class="fa fa-user-circle"></i>Seller Login</a>   </li>
-                    <li class="menu-item"> <a href="#" class="link-to-item"> <i class="fa fa-venus-double"></i>Order Tracking</a>   </li>
+                    <li class="menu-item"> <a href="{{route('order.track')}}" class="link-to-item"> <i class="fa fa-map-marker" aria-hidden="true"></i> Order Tracking</a>   </li>
                 </ul>
             </div>
             <div class="top-bar right">

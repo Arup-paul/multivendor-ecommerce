@@ -11,12 +11,20 @@ use App\Models\Product;
 use App\Models\ShippingCharge;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class CheckoutController extends Controller
 {
     public function checkout()
     {
+        if(empty(Session::get('session_id'))){
+            $session_id = Hash::make(time());
+            Session::put('session_id',$session_id);
+         }else{
+            $session_id = Session::get('session_id');
+        }
         if(!auth()->check()){
             return redirect()->route('login');
         }
@@ -122,6 +130,7 @@ class CheckoutController extends Controller
         }
 
         $order = new Order();
+        $order->order_id = Str::random(8).auth()->id().random_int(1,100);
         $order->user_id = auth()->user()->id;
         $order->delivery_address_id = $request->delivery_address;
         $order->shipping_charge = $shippingCharge ?? 0;

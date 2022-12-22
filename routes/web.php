@@ -68,6 +68,9 @@ Route::namespace('App\Http\Controllers\Frontend')->group(function(){
 
     Route::get('/contact','ContactController@contact')->name('contact');
 
+    //order track
+    Route::get('/order/track','OrderTrackController@index')->name('order.track');
+
 
 
 

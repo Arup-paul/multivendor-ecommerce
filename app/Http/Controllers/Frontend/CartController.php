@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductAttributes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 
@@ -27,11 +28,11 @@ class CartController extends Controller
             return response()->json(__('quantity is not available'), 422);
         }
 
-        //session
-        $session_id = Session::get('session_id');
-        if (empty($session_id)) {
+        if(empty(Session::get('session_id'))){
+            $session_id = Hash::make(time());
+            Session::put('session_id',$session_id);
+        }else{
             $session_id = Session::get('session_id');
-            Session::put('session_id', $session_id);
         }
         //check product is already exist
         if (auth()->check()) {
@@ -77,6 +78,12 @@ class CartController extends Controller
     public function cart()
     {
         $cartItems = Cart::getCartItems();
+        if(empty(Session::get('session_id'))){
+            $session_id = Hash::make(time());
+            Session::put('session_id',$session_id);
+        }else{
+            $session_id = Session::get('session_id');
+        }
         return view('frontend.cart.cart', compact('cartItems'));
     }
 
