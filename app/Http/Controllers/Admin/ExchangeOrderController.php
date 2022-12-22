@@ -22,16 +22,16 @@ class ExchangeOrderController extends Controller
         OrderProduct::where('order_id',$request->input('order_id'))
             ->where('product_id',$request->input('product_id'))
             ->update([
-                'item_status' => 'Return '. $request->input('return_status')
+                'item_status' => 'exchange '. $request->input('exchange_status')
             ]);
 
         ExchangeOrder::where('id',$id)->update([
-            'return_status' => $request->input('return_status')
+            'exchange_status' => $request->input('exchange_status')
         ]);
 
         return response()->json( [
-            'message' =>  'Order Return Status Updated Successfully',
-            'redirect' => route('admin.orders.return')
+            'message' =>  'Order Exchange Status Updated Successfully',
+            'redirect' => route('admin.orders.exchange')
         ] );
 
 

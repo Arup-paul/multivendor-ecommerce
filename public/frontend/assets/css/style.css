@@ -14872,6 +14872,9 @@ user-info-wrapper .user-info .user-avatar {
     line-height: 1.5;
     text-decoration: none;
 }
+.mr-2 {
+    margin: 0 2px;
+}
 
 .d-inline{
     display: inline-block;
@@ -14882,5 +14885,6 @@ user-info-wrapper .user-info .user-avatar {
 .table-wishlist>tbody>tr>td{
     vertical-align: middle;
 }
+
 
 

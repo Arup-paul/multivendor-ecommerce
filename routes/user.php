@@ -14,6 +14,8 @@ Route::group(['middleware' => ['auth']],function (){
     Route::post('orders/cancel/{id}','OrderController@orderCancelProcess')->name('orders.cancel');
     Route::get('orders/return/{id}','OrderController@orderReturn')->name('orders.return');
     Route::post('orders/return/{id}','OrderController@orderReturnProcess')->name('orders.return');
+    Route::get('orders/exchange/{id}','OrderController@orderExchange')->name('orders.exchange');
+    Route::post('orders/exchange/{id}','OrderController@orderExchangeProcess')->name('orders.exchange');
 
     Route::post('review/store','RatingController@store')->name('review.store');
     Route::get('review','RatingController@index')->name('review.index');
@@ -23,5 +25,9 @@ Route::group(['middleware' => ['auth']],function (){
     Route::get('wishlist','WishlistController@index')->name('wishlist.index');
     Route::post('wishlist/delete','WishlistController@destroy')->name('wishlist.destroy');
     Route::post('wishlist/mass-destroy','WishlistController@massDestroy')->name('wishlist.mass-destroy');
+
+    //get product sizes
+    Route::post('/get-product-sizes','OrderController@getProductSizes');
+
 
 });

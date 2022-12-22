@@ -19,7 +19,8 @@
                                    <a  href="{{route('user.orders.cancel',$order->id)}}" class="btn btn-danger pull-right">Cancel Order</a>
                                 @endif
                               @if($order->order_status == 5)
-                                  <a  href="{{route('user.orders.return',$order->id)}}" class="btn btn-danger pull-right">Return Order</a>
+                                  <a  href="{{route('user.orders.return',$order->id)}}" class="btn btn-info pull-right ">Return Order</a>
+                                  <a  href="{{route('user.orders.exchange',$order->id)}}" class="btn btn-primary pull-right mr-5">Exchange Order</a>
                               @endif
                               <table>
 

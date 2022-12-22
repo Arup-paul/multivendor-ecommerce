@@ -324,3 +324,9 @@ $(document).on('click','.removeWishlistALlItem',function (){
 
 
 
+
+
+
+
+
+

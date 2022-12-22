@@ -21,6 +21,7 @@
                             <th>{{ __('Product') }}</th>
                             <th>{{ __('Product Image') }}</th>
                             <th>{{ __('Product Size') }}</th>
+                            <th>{{ __('Required Size') }}</th>
                             <th>{{ __('Reason') }}</th>
                             <th>{{ __('Comment') }}</th>
                             <th>{{ __('Return Status') }}</th>
@@ -35,18 +36,19 @@
                                 <td>  {{$order->product->product_name}} </td>
                                 <td><img src="{{asset($order->product->product_image)}}" width="120px" height="120px" alt=""></td>
                                 <td>{{$order->product_size}}</td>
+                                <td>{{$order->required_product_size}}</td>
                                 <td>{{$order->reason ?? ''}}</td>
                                 <td>{{$order->comment ?? ''}}</td>
-                                <td>{{$order->return_status}}</td>
+                                <td>{{$order->exchange_status}}</td>
                                 <td colspan="2">
-                                    <form action="{{route('admin.orders.return.update',$order->id)}}" method="post" class="ajaxform">
+                                    <form action="{{route('admin.orders.exchange.update',$order->id)}}" method="post" class="ajaxform">
                                         @csrf
                                         <input type="hidden" name="order_id" value="{{$order->order_id}}">
                                         <input type="hidden" name="product_id" value="{{$order->product_id}}">
-                                        <select class="form-control" name="return_status" id="">
-                                            <option  @selected($order->return_status == 'Pending') value="Pending">Pending</option>
-                                            <option  @selected($order->return_status == 'Approved') value="Approved">Approved</option>
-                                            <option  @selected($order->return_status == 'Rejected') value="Rejected">Rejected</option>
+                                        <select class="form-control" name="exchange_status" id="">
+                                            <option  @selected($order->exchange_status == 'Pending') value="Pending">Pending</option>
+                                            <option  @selected($order->exchange_status == 'Approved') value="Approved">Approved</option>
+                                            <option  @selected($order->exchange_status == 'Rejected') value="Rejected">Rejected</option>
                                         </select>
                                         <button class="btn btn-primary  mt-2 basic-btn"  >
                                             <i class="fas fa-save"> </i>
