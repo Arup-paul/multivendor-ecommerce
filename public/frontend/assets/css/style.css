@@ -4978,8 +4978,8 @@ body.open-overlay #overlay{
 .biolife-title-box .main-title::before {
     position: absolute;
     content: '';
-    height: 4px;
-    width: 20%;
+    height: 3px;
+    width: 16%;
     bottom: -20px;
     left: 0;
     background: #fab528;
@@ -4999,7 +4999,7 @@ body.open-overlay #overlay{
     line-height: 1;
     display: block;
     margin: 4px 0 0;
-    font-size: 40px;
+    font-size: 25px;
     color: #222222;
 }
 .biolife-title-box.style-02 .desc{
@@ -14719,6 +14719,9 @@ body.open-quickview-block .biolife-quickview-block{
     border-top: 1px solid #e6e6e6;
     padding-bottom: 10px;
 }
+.order-track-btn{
+    border: none !important;
+}
 .menu-summary .menu-block .title{
     display: inline-block;
     margin: 0;
@@ -14884,6 +14887,25 @@ user-info-wrapper .user-info .user-avatar {
 }
 .table-wishlist>tbody>tr>td{
     vertical-align: middle;
+}
+
+.order-track{
+    vertical-align: middle;
+}
+.p-50{
+    padding-top: 50px;
+}
+.pt-20{
+    padding-top:20px;
+}
+.p-5{
+    padding:5px;
+}
+.h-40{
+    height: 40px !important;
+}
+.border-1{
+    border: 1px solid #ddd;
 }
 
 

@@ -87,13 +87,16 @@
                     <span>{{ __('Category') }}</span>
                 </a>
             </li>
-            @elseif($categoryModule->view || $categoryModule->all)
+             @endif
+            @if(auth()->guard('admin')->user()->type != 'vendor' && auth()->guard('admin')->user()->type != 'superadmin')
+           @if($categoryModule->view || $categoryModule->all)
                 <li class="{{ Request::is('admin/categories*') ? 'active' : '' }}">
                     <a class="nav-link" href="{{route('admin.categories.index')}}">
                         <i class="fa fa-tasks"></i>
                         <span>{{ __('Category') }}</span>
                     </a>
                 </li>
+            @endif
             @endif
 
 

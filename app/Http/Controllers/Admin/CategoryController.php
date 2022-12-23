@@ -125,9 +125,11 @@ class CategoryController extends Controller
 
     public function massDestroy(Request $request)
     {
-        $permissionExist = Role::where('admin_id',auth()->guard('admin')->id())->where('module','categories')->first();
-        if(!$permissionExist->edit &&   !$permissionExist->all){
-            return  response()->json(   __('Permission Restricted'),422 );
+        $permissionExist = Role::where('admin_id', auth()->guard('admin')->id())->where('module', 'categories')->first();
+        if (auth()->guard('admin')->user()->type != 'superadmin'){
+            if (!$permissionExist->edit && !$permissionExist->all) {
+                return response()->json(__('Permission Restricted'), 422);
+            }
         }
         if($request->deleteAction == 'delete') {
             if (isset($request->ids)) {
