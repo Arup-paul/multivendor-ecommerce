@@ -70,6 +70,7 @@ Route::namespace('App\Http\Controllers\Frontend')->group(function(){
 
     //order track
     Route::get('/order/track','OrderTrackController@index')->name('order.track');
+    Route::post('/order/track','OrderTrackController@orderTrack')->name('order.track');
 
 
 
