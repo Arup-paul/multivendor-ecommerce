@@ -12,7 +12,9 @@
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
-        "milon/barcode": "^9.0"
+        "league/omnipay": "^3.2",
+        "milon/barcode": "^9.0",
+        "omnipay/paypal": "^3.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",

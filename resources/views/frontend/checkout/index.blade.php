@@ -108,7 +108,7 @@
 
             <!--checkout progress box-->
             <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
-                <form action="{{route('checkout')}}" method="post" class="ajaxform">
+                <form action="{{route('checkout')}}" method="post" class="ajaxfodrm">
                     @csrf
                    <div class="checkout-progress-wrap">
                     <ul class="steps">
@@ -153,12 +153,18 @@
                             <div class="checkout-act active">
                                 <h3 class="title-box">Pay With </h3>
                                 <div class="row  ">
-                                        <div class="col-md-6 col-12">
+                                        <div class="col-md-3 col-sm-6">
                                             <div class="payment-methods">
                                                 <input type="radio" id="cod" name="payment_gateway" value="COD">
-                                                <img for="cod" src="{{asset('frontend/img/cash-on-delivery.jpg')}}" width="200" height="200" alt="">
+                                                <img for="cod" src="{{asset('frontend/img/cash-on-delivery.jpg')}}" width="150" height="150" alt="">
                                             </div>
                                         </div>
+                                      <div class="col-md-3 col-sm-6">
+                                        <div class="payment-methods">
+                                            <input type="radio" id="Paypal" name="payment_gateway" value="Paypal">
+                                            <img for="cod" src="{{asset('frontend/img/paypal.jpg')}}" width="150" height="150" alt="">
+                                        </div>
+                                    </div>
 
                                 </div>
 

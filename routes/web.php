@@ -77,6 +77,12 @@ Route::namespace('App\Http\Controllers\Frontend')->group(function(){
 
 });
 
+Route::namespace('App\Http\Controllers\Payment')->group(function(){
+    Route::get('paypal/success','PaypalController@success')->name('paypal.success');
+    Route::get('paypal/fail','PaypalController@fail')->name('paypal.fail');
+});
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

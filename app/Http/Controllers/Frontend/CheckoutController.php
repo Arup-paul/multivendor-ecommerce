@@ -3,17 +3,20 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Payment\PaypalController;
 use App\Models\Cart;
 use App\Models\DeliveryAddress;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
 use App\Models\ShippingCharge;
+use App\Services\OrderService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use Omnipay\Omnipay;
 
 class CheckoutController extends Controller
 {
@@ -62,16 +65,6 @@ class CheckoutController extends Controller
          }else{
                 $payment_method = 'Prepaid';
          }
-         if(Session::has('couponAmount')){
-             $couponAmount = Session::get('couponAmount');
-          }else{
-                $couponAmount = 0;
-          }
-        if(Session::has('couponCode')){
-            $couponCode = Session::get('couponCode');
-        }else{
-            $couponCode = null;
-        }
 
 
 
@@ -129,47 +122,37 @@ class CheckoutController extends Controller
             }
         }
 
-        $order = new Order();
-        $order->order_id = Str::random(8).auth()->id().random_int(1,100);
-        $order->user_id = auth()->user()->id;
-        $order->delivery_address_id = $request->delivery_address;
-        $order->shipping_charge = $shippingCharge ?? 0;
-        $order->coupon_code = $couponCode;
-        $order->coupon_discount = $couponAmount;
-        $order->order_status = 0;
-        $order->payment_method = $payment_method;
-        $order->payment_status = 2;
-        $order->payment_gateway = $request->payment_gateway;
-        $order->grand_total = $shippingCharge ? $grandTotal + $shippingCharge : $grandTotal;
-        $order->save();
+        //process Order
+            if($request->payment_gateway == 'COD'){
+              $orderProcess = new OrderService();
+              $deliverAddress = $request->input('delivery_address');
+              $payment_gateway = $request->input('payment_gateway');
+              $orderProcess->orderProcess($deliverAddress,$payment_gateway,$payment_method,$shippingCharge);
+
+                $session_id = Session::get('session_id');
+                Cart::where('user_id',auth()->user()->id)->orWhere('session_id',$session_id)->delete();
+                Session::forget('couponAmount');
+                Session::forget('couponCode');
+                Session::forget('grandTotal');
+                Session::forget('total');
+                Session::forget('total_weight');
+            }else if($request->payment_gateway == 'Paypal'){
+                  $amount = $shippingCharge ? $grandTotal + $shippingCharge : $grandTotal;
+                  Session::put('delivery_address',$request->input('delivery_address'));
+                  Session::put('payment_gateway',$request->input('payment_gateway'));
+                  Session::put('shipping_charge',$shippingCharge);
+                  Session::put('total_amount',$grandTotal);
+                  Session::put('payment_method',$payment_method);
+                  $paypalController = new PaypalController();
+                  $paypalController->makePayment($amount);
+
+            }
 
 
-
-         foreach ($cartItems as $item) {
-             $cartItem = new OrderProduct();
-             $cartItem->order_id = $order->id;
-             $cartItem->product_id = $item->product_id;
-             $cartItem->size = $item->size;
-             $cartItem->qty = $item->quantity;
-             $getDiscountedPrice = Product::getDisCountAttributePrice($item->product_id,$item->size);
-             $cartItem->total = $getDiscountedPrice['total_price'];
-             $cartItem->save();
-
-             //update stock
-             Product::updateProductStock($item->product_id,$item->size,$item->quantity);
-
-         }
-
-         //delete cart items
-         $session_id = Session::get('session_id');
-         Cart::where('user_id',auth()->user()->id)->orWhere('session_id',$session_id)->delete();
-
-            Session::forget('couponAmount');
-            Session::forget('couponCode');
-            Session::forget('grandTotal');
-            Session::forget('total_weight');
 
         DB::commit();
+
+
         return response()->json([
             'message' => __('Thank You, Your Order Successfully Placed'),
             'redirect' => route('cart')
