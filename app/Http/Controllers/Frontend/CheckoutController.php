@@ -90,35 +90,31 @@ class CheckoutController extends Controller
         foreach($cartItems as $item){
 
             if($item->product->status == 0){
-                return response()->json([
-                    'message' => __($item->product->product_name.'('.$item->product->product_code.')'.' is not available. Please remove from cart'),
-                    'redirect' => route('cart')
-                ], 422);
+                $message = $item->product->product_name.'('.$item->product->product_code.')'.' is not available. Please remove from cart';
+                Session::flash('error', $message);
+                return redirect()->route('cart');
             }
             //product stock
             $productStock = Product::getProductStock($item->product_id, $item->size);
             if($productStock < $item->quantity){
-                return response()->json([
-                    'message' => __($item->product->product_name.'('.$item->product->product_code.')'.' stock not available. Available stock is '.$productStock),
-                    'redirect' => route('cart')
-                ], 422);
+                $message = $item->product->product_name.'('.$item->product->product_code.')'.' stock not available. Available stock is '.$productStock;
+                Session::flash('error', $message);
+                return redirect()->route('cart');
             }
 
             //get attribute
             $attribute = Product::getProductAttribute($item->product_id, $item->size);
             if(!$attribute){
-                return response()->json([
-                    'message' => __($item->product->product_name.'('.$item->product->product_code.')'.' is not available. Please remove from cart'),
-                    'redirect' => route('cart')
-                ], 422);
+                $message = $item->product->product_name.'('.$item->product->product_code.')'.' is not available. Please remove from cart';
+                Session::flash('error', $message);
+                return redirect()->route('cart');
             }
 
             $categoryStatus = Product::getCategoryStatus($item->product->category_id);
             if($categoryStatus == 0){
-                return response()->json([
-                    'message' => __($item->product->product_name.'('.$item->product->product_code.')'.' is not available. Please remove from cart'),
-                    'redirect' => route('cart')
-                ], 422);
+                $message = $item->product->product_name.'('.$item->product->product_code.')'.' is not available. Please remove from cart';
+                Session::flash('error', $message);
+                return redirect()->route('cart');
             }
         }
 
@@ -127,7 +123,7 @@ class CheckoutController extends Controller
               $orderProcess = new OrderService();
               $deliverAddress = $request->input('delivery_address');
               $payment_gateway = $request->input('payment_gateway');
-              $orderProcess->orderProcess($deliverAddress,$payment_gateway,$payment_method,$shippingCharge);
+              $order = $orderProcess->orderProcess($deliverAddress,$payment_gateway,$payment_method,$shippingCharge);
 
                 $session_id = Session::get('session_id');
                 Cart::where('user_id',auth()->user()->id)->orWhere('session_id',$session_id)->delete();
@@ -149,23 +145,22 @@ class CheckoutController extends Controller
             }
 
 
-
         DB::commit();
 
+            Session::flash('success', 'Order placed successfully');
+            return redirect()->route('order.success',$order->order_id);
 
-        return response()->json([
-            'message' => __('Thank You, Your Order Successfully Placed'),
-            'redirect' => route('cart')
-         ]);
          } catch (\Exception $e) {
             DB::rollback();
-            return response()->json(__('Something Went Wrong'), 401);
+            Session::flash('error', 'Something went wrong');
+            return redirect()->route('cart');
         }
 
-
-
-
-
-
     }
+
+    public function orderSuccess($orderId){
+        $order = Order::where('order_id',$orderId)->first();
+        return view('frontend.checkout.success',compact('order'));
+    }
+
 }

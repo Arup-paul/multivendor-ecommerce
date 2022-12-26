@@ -48,7 +48,7 @@ class PaypalController extends Controller
 
           if($response->isSuccessful()){
               $orderProcess = new OrderService();
-              $orderProcess->orderProcess();
+              $order =  $orderProcess->orderProcess();
 
               $session_id = Session::get('session_id');
               Cart::where('user_id',auth()->user()->id)->orWhere('session_id',$session_id)->delete();
@@ -60,15 +60,14 @@ class PaypalController extends Controller
               Session::forget('grandTotal');
               Session::forget('total');
               Session::forget('total_weight');
+              Session::flash('success', 'Order placed successfully');
+              return redirect()->route('order.success',$order->order_id);
           }
 
-          return redirect()->route('cart');
       }
     }
     public function fail(){
-        return response()->json([
-            'message' => __('Fail'),
-            'redirect' => route('cart')
-        ]);
+        Session::flash('error', "Payment failed");
+        return redirect()->route('cart');
     }
 }

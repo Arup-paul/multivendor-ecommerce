@@ -14907,6 +14907,9 @@ user-info-wrapper .user-info .user-avatar {
 .border-1{
     border: 1px solid #ddd;
 }
-
+.new-btn{
+    background: #fab528;
+    color: #fff !important;
+}
 
 

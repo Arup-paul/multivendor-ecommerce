@@ -66,5 +66,7 @@ class OrderService
              Product::updateProductStock($item->product_id,$item->size,$item->quantity);
 
          }
+
+         return $order;
      }
 }

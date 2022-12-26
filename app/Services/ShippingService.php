@@ -13,4 +13,6 @@ class ShippingService
        $shippingCharge->above_FiveThousand = $request->above_FiveThousand;
        $shippingCharge->status = $request->status;
    }
+
+
 }

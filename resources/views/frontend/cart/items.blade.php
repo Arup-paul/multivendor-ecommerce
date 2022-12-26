@@ -84,7 +84,7 @@
 
                 <tr class="cart_item wrap-buttons">
                     <td class="wrap-btn-control" colspan="5">
-                        <a class="btn btn-update"  href="{{route('home')}}" >Back To Shop</a>
+                        <a class="btn btn-update "  href="{{route('shop')}}" >Back To Shop</a>
                     </td>
                 </tr>
             </tbody>

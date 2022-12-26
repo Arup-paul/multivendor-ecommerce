@@ -58,6 +58,7 @@ Route::namespace('App\Http\Controllers\Frontend')->group(function(){
 
     Route::get('/checkout','CheckoutController@checkout')->name('checkout');
     Route::post('/checkout','CheckoutController@processCheckout')->name('checkout');
+    Route::get('/order/success/{order_id}','CheckoutController@orderSuccess')->name('order.success');
 
 
 
