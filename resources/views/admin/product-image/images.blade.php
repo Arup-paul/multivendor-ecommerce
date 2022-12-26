@@ -2,7 +2,7 @@
     'prev' => route('admin.products.index')
 ])
 
-@section('title', 'Add/Update Product Attribute')
+@section('title', 'Add/Update Product Images')
 
 @section('content')
     <section class="section">

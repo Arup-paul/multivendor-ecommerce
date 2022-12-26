@@ -68,7 +68,7 @@ Route::group(['middleware' => ['admin']],function (){
 
     //product image
     Route::get('product-images/{id}','ProductImageController@create')->name('product-images.create');
-    Route::post('product-images/','ProductImageController@store')->name('product-images.store');
+    Route::post('product-images','ProductImageController@store')->name('product-images.store');
     Route::post('product-images/update','ProductImageController@update')->name('product-images.update');
 
     //filter
