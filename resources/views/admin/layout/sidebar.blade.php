@@ -140,12 +140,21 @@
                     </a>
                 </li>
 
+                <li class="{{ Request::is('admin/blogs*') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('admin.blogs.index') }}">
+                        <i class="fa fa-blog"></i>
+                        <span>{{ __('Blogs') }}</span>
+                    </a>
+                </li>
+
+
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-cog"></i> <span>Frontend Setting</span></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{route('admin.sliders.index')}}">Slider</a></li>
                     </ul>
                 </li>
+
 
          @endif
 

@@ -76,8 +76,5 @@ class BrandController extends Controller
             return  response()->json(   __('Please Select Action'),422 );
         }
 
-
-
-
     }
 }
