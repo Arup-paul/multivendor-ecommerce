@@ -159,6 +159,7 @@ class CartController extends Controller
     {
         if ($request->ajax()) {
             $code = $request->input('code');
+            $cartItems = Cart::getCartItems();
             $count = Coupon::where('coupon_code', $code)->count();
             if ($count == 0) {
                 return response()->json([
@@ -213,11 +214,7 @@ class CartController extends Controller
                                     'invalid_coupon' => 'This Coupon Code is not valid for this category'
                                 ]);
                             }
-               }else{
-                    return response()->json([
-                        'invalid_coupon' => 'This Coupon Code is not valid for this category'
-                    ]);
-                }
+               }
 
                 //check if user is selected
                 if($couponDetails->users != null){
@@ -227,14 +224,22 @@ class CartController extends Controller
                             'invalid_coupon' => 'This Coupon Code is not valid for you'
                         ]);
                     }
-                }else{
-                    return response()->json([
-                        'invalid_coupon' => 'This Coupon Code is not valid for you'
-                    ]);
                 }
 
-                //product total amount
-                $cartItems = Cart::getCartItems();
+
+                //check vendor wise coupon
+                if($couponDetails->vendor_id != null){
+                    $productIds =  Product::select('id')
+                        ->where('vendor_id',$couponDetails->vendor_id)->pluck('id');
+                    foreach ($cartItems as $item){
+                        if(!in_array($item->product_id,$productIds->toArray())){
+                            return response()->json([
+                                'invalid_coupon' => 'This Coupon Code is not valid for this vendor'
+                            ]);
+                        }
+                    }
+                }
+
                 $total = 0;
                 foreach ($cartItems as $item){
                     $discount = Product::getDiscountPrice($item->product_id);

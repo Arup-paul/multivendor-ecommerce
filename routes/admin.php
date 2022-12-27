@@ -33,7 +33,7 @@ Route::group(['middleware' => ['admin']],function (){
 
 
     Route::get('/send-email/{id}','AdminManagementController@sendEmail')->name('admins.send-email');
-    Route::get('vendor-details/{id}','AdminManagementController@vendorDetails')->name('vendor-details');
+
 
     //role permission
     Route::get('role-permission/{id}','RoleController@rolePermission')->name('role-permission');
@@ -41,6 +41,7 @@ Route::group(['middleware' => ['admin']],function (){
 
 
     //vendor management
+    Route::get('vendor-details/{id}','AdminManagementController@vendorDetails')->name('vendor-details');
     Route::resource('vendors','VendorController');
 
     //section management

@@ -152,7 +152,7 @@
                         <ul class="menu biolife-menu clone-main-menu clone-primary-menu" id="primary-menu" data-menuname="main menu">
                             <li class="menu-item"><a href="{{route('home')}}">Home</a></li>
                             <li class="menu-item"><a href="{{route('shop')}}">Shop</a></li>
-                            <li class="menu-item"><a href="#">Blog</a></li>
+{{--                            <li class="menu-item"><a href="#">Blog</a></li>--}}
                             <li class="menu-item"><a href="{{route('contact')}}">Contact</a></li>
                             @guest
                                 <li class="menu-item"><a href="{{route('login')}}">Signup/Login</a></li>

@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-9">
                     <section class="footer-item">
-                        <a href="index-2.html" class="logo footer-logo"><img src="assets/images/organic-3.png" alt="biolife logo" width="135" height="34"></a>
+                        <a href="{{route('home')}}" class="biolife-logo"><img src="{{asset('frontend/assets/images/organic-3.png')}}" alt="biolife logo" width="135" height="34"></a>
                         <div class="footer-phone-info">
                             <i class="biolife-icon icon-head-phone"></i>
                             <p class="r-info">

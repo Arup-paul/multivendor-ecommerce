@@ -18,7 +18,7 @@ class ProductController extends Controller
     {
         $admin = auth()->guard('admin')->user();
         if($admin->type == 'superadmin'){
-            $products = Product::with('category','brand','vendor')->orderByDesc('id')->paginate(20);
+              $products = Product::with('category','brand','vendor')->orderByDesc('id')->paginate(20);
         }else{
              $vendor = Vendor::find($admin->vendor_id);
              if($vendor->status == 0){
@@ -27,7 +27,7 @@ class ProductController extends Controller
                  return redirect()->route('admin.update-vendor-details', 'business')->with('error', 'Please update your business details');
              }
 
-            $products = Product::with('category','brand','vendor')->where('vendor_id',$admin->vendor_id)->orderByDesc('id')->paginate(20);
+            $products = Product::with('category','brand','vendor',)->where('vendor_id',$admin->vendor_id)->orderByDesc('id')->paginate(20);
         }
 
 

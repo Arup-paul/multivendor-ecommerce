@@ -40,7 +40,7 @@
                                 <input type="number" class="form-control" name="amount">
                             </div>
                             <div class="form-group">
-                                <label for="category_id">{{ __('Category') }} </label>
+                                <label for="category_id">{{ __('Category (all category eligible for if you not select any category)') }} </label>
                                 <select name="categories[]" id="category_id" class="form-control select2" multiple="" >
                                     <option value="">{{ __('Select Category') }}</option>
                                     @foreach($categories as $category)
@@ -52,7 +52,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="users">{{ __('Users') }} </label>
+                                <label for="users">{{ __('Users (all users eligible for if you not select any users)') }} </label>
                                 <select name="users[]" id="users" class="form-control select2" multiple="" >
                                     <option value="">{{ __('Select Users') }}</option>
                                     @foreach($users as $user)

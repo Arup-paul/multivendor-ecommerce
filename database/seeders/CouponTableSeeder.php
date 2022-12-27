@@ -17,6 +17,7 @@ class CouponTableSeeder extends Seeder
     {
         $data = [
             [
+                'vendor_id' => 1,
                 'coupon_option' => 'Fixed',
                 'coupon_code' => 'FIXED10',
                 'categories' => '1,2',
@@ -29,6 +30,7 @@ class CouponTableSeeder extends Seeder
                 'status' => 1,
             ],
             [
+                'vendor_id' => null,
                 'coupon_option' => 'Manual',
                 'coupon_code' => 'Manual10',
                 'categories' => '1,2',

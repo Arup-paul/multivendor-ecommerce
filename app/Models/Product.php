@@ -35,6 +35,8 @@ class Product extends Model
 
 
 
+
+
     public function attributes()
     {
         return $this->hasMany(ProductAttributes::class,'product_id')->where('status',1);

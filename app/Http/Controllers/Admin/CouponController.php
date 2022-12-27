@@ -8,6 +8,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Coupon;
 use App\Models\User;
+use App\Models\Vendor;
 use App\Services\CouponService;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,23 @@ class CouponController extends Controller
 {
     public function index()
     {
-        $coupons = Coupon::orderByDesc('id')->paginate(20);
+        $admin = auth()->guard('admin')->user();
+        if($admin->type == 'vendor') {
+            $vendor = Vendor::find($admin->vendor_id);
+            if($vendor->status == 0){
+                return redirect()->route('admin.update-vendor-details','personal')->with('error','Please update your profile details');
+            }else if($vendor->is_business_details == 0) {
+                return redirect()->route('admin.update-vendor-details', 'business')->with('error', 'Please update your business details');
+            }
+            $coupons = Coupon::where('vendor_id',$admin->vendor_id)->orderByDesc('id')->paginate(20);
+        }else{
+            $coupons = Coupon::orderByDesc('id')->paginate(20);
+        }
+
+
+
+
+
         return view('admin.coupons.index',compact('coupons'));
     }
 
@@ -31,7 +48,7 @@ class CouponController extends Controller
     {
         $coupon = new Coupon();
         $couponService = new CouponService();
-        $couponService->couponCreateUpdate($request,$coupon);
+        $couponService->couponCreateUpdate($request,$coupon,$vendor_id = 1);
         $coupon->save();
 
         return response()->json( [
