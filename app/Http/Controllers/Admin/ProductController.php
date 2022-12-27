@@ -45,7 +45,7 @@ class ProductController extends Controller
     public function store(ProductRequest $request){
         $product = new Product();
         $productService = new ProductService();
-        $productService->productCreateUpdate($request,$product);
+        $productService->productCreateUpdate($request,$product,$vendor_id = 1);
         $product->save();
         return response()->json( [ 'message' =>  'Product created successfully'] );
     }

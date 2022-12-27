@@ -33,6 +33,7 @@ class ProductRequest extends FormRequest
                 'product_image' => 'required',
                 'brand_id' => 'required',
                 'category_id' => 'required',
+                'description' => 'required',
             ];
     }
 

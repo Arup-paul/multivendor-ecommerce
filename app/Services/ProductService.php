@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 
 class ProductService
 {
-   public function productCreateUpdate($request, $product){
+   public function productCreateUpdate($request, $product,$vendor_id = null){
 
        $product->product_name = $request->product_name;
        $product->slug = Str::slug($request->product_name.'-'.time());
@@ -25,10 +25,12 @@ class ProductService
 
        $product->admin_type = auth('admin')->user()->type;
 
-       if(auth('admin')->user()->type == 'vendor'){
-           $product->vendor_id = auth('admin')->user()->vendor_id;
-       }else{
-           $product->vendor_id = null;
+       if ($vendor_id) {
+           if (auth('admin')->user()->type == 'vendor') {
+               $product->vendor_id = auth('admin')->user()->vendor_id;
+           } else {
+               $product->vendor_id = null;
+           }
        }
 
        $product->description = $request->description;
