@@ -19,6 +19,11 @@
                                 <input type="text"  name="title" class="form-control"   >
                             </div>
 
+                            <div class="form-group">
+                                <label for="name" class="required">{{ __('Short Description') }} </label>
+                                <textarea class="form-control" name="short_description" id="" cols="30" rows="10"></textarea>
+                            </div>
+
                             <div class="from-group row mb-2">
                                 <label for="" class="col-lg-12">{{ __('Content :') }} </label>
                                 <div class="col-lg-12">

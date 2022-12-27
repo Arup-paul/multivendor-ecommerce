@@ -24,6 +24,7 @@ class BlogController extends Controller
         $request->validate([
            'title' => 'required',
            'description' => 'required',
+           'short_description' => 'required|max:255',
            'image' => 'required',
         ]);
 
@@ -31,6 +32,7 @@ class BlogController extends Controller
         $blog->title = $request->title;
         $blog->slug = Str::slug($request->title);
         $blog->description = $request->description;
+        $blog->short_description = $request->short_description;
         $blog->image = $request->image;
         $blog->meta_title = $request->meta_title;
         $blog->meta_description = $request->meta_description;
@@ -52,12 +54,14 @@ class BlogController extends Controller
         $request->validate([
            'title' => 'required',
            'description' => 'required',
+           'short_description' => 'required|max:255',
            'image' => 'required',
         ]);
 
         $blog = Blog::findOrFail($id);
         $blog->title = $request->title;
         $blog->description = $request->description;
+        $blog->short_description = $request->short_description;
         $blog->image = $request->image;
         $blog->meta_title = $request->meta_title;
         $blog->meta_description = $request->meta_description;

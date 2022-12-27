@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Option;
@@ -32,6 +33,7 @@ class HomeController extends Controller
         }else{
             $session_id = Session::get('session_id');
         }
-      return view('frontend.index',compact('sliders','newProducts','bestSellerProducts','featuredProducts','discountProducts','bestRatedProducts','categories','brands'));
+        $blogs = Blog::whereStatus(1)->orderBy('id','desc')->take(3)->get();
+      return view('frontend.index',compact('sliders','newProducts','bestSellerProducts','featuredProducts','discountProducts','bestRatedProducts','categories','brands','blogs'));
     }
 }
