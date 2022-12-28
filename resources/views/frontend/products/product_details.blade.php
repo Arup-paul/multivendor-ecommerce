@@ -327,7 +327,7 @@
 @endsection
 
 @push('frontend_scripts')
-    <script async src="https://static.addtoany.com/menu/page.js"></script>
+
 <script>
     $.ajaxSetup({
         headers: {
