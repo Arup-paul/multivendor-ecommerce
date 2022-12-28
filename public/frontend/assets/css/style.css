@@ -13874,6 +13874,7 @@ body.open-quickview-block .biolife-quickview-block{
     .post-item.effect-02 .thumbnail>a,
     .post-item.effect-01 .thumbnail>a{
         display: block;
+        height: 300px;
     }
     .post-item.effect-04 .thumbnail>a::before,
     .post-item.effect-01 .thumbnail>a::before{
@@ -13975,6 +13976,7 @@ body.open-quickview-block .biolife-quickview-block{
     .post-item.effect-03 .thumbnail:hover img{
         -webkit-transform: scale(1.1);
         transform: scale(1.1);
+        height: 300px !important;
     }
     .product-category.grid-style .products-list li{
         padding-left: 5px;

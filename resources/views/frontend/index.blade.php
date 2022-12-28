@@ -176,7 +176,7 @@
                         <li>
                             <div class="post-item effect-01 style-bottom-info layout-02 ">
                                 <div class="thumbnail">
-                                    <a href="#" class="link-to-post"><img src="{{asset($blog->image)}}" width="370" height="270" alt=""></a>
+                                    <a href="{{route('blog.details',$blog->slug)}}" class="link-to-post"><img src="{{asset($blog->image)}}" width="370" height="300" alt=""></a>
 
                                 </div>
                                 <div class="post-content">
@@ -188,7 +188,7 @@
                                     </div>
                                     <p class="excerpt">{{Str::limit($blog->short_description ?? null, 100, $end='.......')}}  </p>
                                     <div class="group-buttons">
-                                        <a href="#" class="btn readmore">Read More</a>
+                                        <a href="{{route('blog.details',$blog->slug)}}" class="btn readmore">Read More</a>
                                     </div>
                                 </div>
                             </div>

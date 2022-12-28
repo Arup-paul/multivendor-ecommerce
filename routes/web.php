@@ -75,6 +75,7 @@ Route::namespace('App\Http\Controllers\Frontend')->group(function(){
 
     //blog
     Route::get('blogs','BlogController@blogs')->name('blogs');
+    Route::get('blog/{slug}','BlogController@blogDetails')->name('blog.details');
 
 
 
