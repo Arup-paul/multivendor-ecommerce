@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -47,7 +48,7 @@ class AuthController extends Controller
              'password' => 'required|confirmed|min:8',
           ]);
 
-           $user = new User();
+            $user = new User();
             $user->name = $request->name;
             $user->mobile = $request->mobile;
             $user->email = $request->email;
@@ -55,9 +56,13 @@ class AuthController extends Controller
             $user->save();
 
 
+            event(new Registered($user));
+
+            Auth::login($user);
+
         return  response()->json([
             'message' => __('Account Created Successfully'),
-            'redirect' => route('login')
+            'redirect' => route('user.dashboard')
         ]);
 
 

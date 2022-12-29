@@ -3,7 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => ['auth']],function (){
+Route::group(['middleware' => ['auth','verified']],function (){
     Route::get('dashboard','DashboardController@dashboard')->name('dashboard');
 
 
