@@ -162,6 +162,7 @@
     <div class="card">
         <div class="card-header">
             <h4>{{ __('Orders') }}</h4>
+
             <form class="card-header-form">
                 <div class="input-group">
                     <input type="text" name="src" value="{{ request('src') }}" class="form-control" placeholder="{{ __('Search by invoice or user') }}"/>
@@ -173,6 +174,7 @@
             <button class="btn btn-sm btn-primary  ml-1" type="button" data-toggle="modal" data-target="#searchmodal">
                 <i class="fe fe-sliders mr-1"></i> {{ __('Filter') }} <span class="badge badge-primary ml-1 d-none">0</span>
             </button>
+            <a href="{{route('admin.orders.export')}}" class="btn btn-success">Export</a>
         </div>
         <div class="card-header">
             <div class="col-sm-12">

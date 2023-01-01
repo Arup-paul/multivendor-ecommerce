@@ -14,6 +14,10 @@
         <a class="list-group-item  {{ Request::is('user/wishlist*') ? 'active' : '' }} " href="{{route('user.wishlist.index')}}"><i class="fa fa-heart-o"></i> Wishlist</a>
         <a class="list-group-item  {{ Request::is('user/delivery-address*') ? 'active' : '' }} " href="{{route('user.delivery-address.index')}}"><i class="fa fa-map-o"></i> Address</a>
         <a class="list-group-item  {{ Request::is('user/review*') ? 'active' : '' }} " href="{{route('user.review.index')}}"><i class="fa fa-star"></i> Review</a>
-        <a class="list-group-item"  href="{{route('logout')}}"><i class="fa fa-sign-out"></i> Logout</a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+        <a class="list-group-item"   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"  href="{{route('logout')}}"><i class="fa fa-sign-out"></i> Logout</a>
     </nav>
 </aside>

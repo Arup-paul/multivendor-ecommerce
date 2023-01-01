@@ -20,7 +20,6 @@
                                   <th># Order</th>
 {{--                                  <th>Order Product</th>--}}
                                   <th>Grand Total</th>
-                                  <th>Pay With</th>
                                   <th>Payment Status</th>
                                   <th>Order Status</th>
                                   <th>Pay With</th>

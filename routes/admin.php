@@ -86,6 +86,7 @@ Route::group(['middleware' => ['admin']],function (){
 
     //customer
     Route::post('customers/mass-destroy','CustomerController@massDestroy')->name('customers.mass-destroy');
+    Route::get('customers/export','CustomerController@export')->name('customers.export');
     Route::resource('customers','CustomerController');
 
     //order
@@ -94,6 +95,7 @@ Route::group(['middleware' => ['admin']],function (){
     Route::get('orders/pdf', 'OrderController@orderPdf')->name('orders.pdf');
     Route::post('orders/payment-status/{id}', 'OrderController@paymentStatusUpdate')->name('orders.payment-status');
     Route::post('orders/order-status/{id}', 'OrderController@orderStatusUpdate')->name('orders.order-status');
+    Route::get('orders/export', 'OrderController@export')->name('orders.export');
     Route::resource('orders', 'OrderController');
 
     //return order

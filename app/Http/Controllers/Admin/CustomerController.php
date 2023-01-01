@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\UserExport;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CustomerController extends Controller
 {
@@ -53,5 +55,9 @@ class CustomerController extends Controller
         $customer->status = $request->status;
         $customer->save();
         return response()->json( [ 'message' =>  'Customer Status Update Successfully'] );
+    }
+
+    public function export(){
+         return Excel::download(new UserExport(), 'users.xlsx');
     }
 }

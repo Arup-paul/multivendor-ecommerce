@@ -55,6 +55,8 @@
     <div class="card">
         <div class="card-header">
             <h4>{{ __('Customer List') }}</h4>
+
+
             <form class="card-header-form">
                 <div class="input-group">
                     <input type="text" name="src" value="{{ request('src') }}" class="form-control" placeholder="{{ __('Search email or mobile') }}"/>
@@ -63,6 +65,7 @@
                     </div>
                 </div>
             </form>
+            <a href="{{route('admin.customers.export')}}" class="btn btn-success">Export</a>
 
         </div>
         <div class="card-body">

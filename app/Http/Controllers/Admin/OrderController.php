@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\OrderExport;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderLog;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OrderController extends Controller
 {
@@ -144,6 +146,11 @@ class OrderController extends Controller
 
     }
 
+
+    public function export()
+    {
+        return Excel::download(new OrderExport, 'orders.xlsx');
+    }
 
 
 }

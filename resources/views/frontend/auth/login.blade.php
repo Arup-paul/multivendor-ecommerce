@@ -29,7 +29,10 @@
                         </p>
                         <p class="form-row wrap-btn">
                             <button class="btn btn-submit btn-bold" type="submit">sign in</button>
-                            <a href="#" class="link-to-help">Forgot your password</a>
+                            @if (Route::has('password.request'))
+                                <a  href="{{ route('password.request') }}" class="link-to-help">Forgot your password</a>
+                            @endif
+
                         </p>
                     </form>
                     </div>
