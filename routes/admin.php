@@ -60,6 +60,7 @@ Route::group(['middleware' => ['admin']],function (){
     //product
     Route::post('products/mass-destroy','ProductController@massDestroy')->name('products.mass-destroy');
     Route::post('category-filter','ProductController@categoryFilter')->name('products.category_filter');
+    Route::get('products/export', 'ProductController@export')->name('products.export');
     Route::resource('products','ProductController');
 
     //product attribute

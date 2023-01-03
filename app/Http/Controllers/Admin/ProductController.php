@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ProductExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Brand;
@@ -11,6 +12,7 @@ use App\Models\Vendor;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -101,9 +103,12 @@ class ProductController extends Controller
             $category_id = $request->input('category_id');
             return response()->json(['view' => (String)View::make('admin.products.filters',compact('category_id'))]);
 
-
-
        }
+    }
+
+    public function export()
+    {
+        return Excel::download(new ProductExport, 'products.xlsx');
     }
 
 }

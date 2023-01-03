@@ -9,6 +9,7 @@
 
     <div class="card">
         <div class="card-body">
+
             <form method="post" action="{{ route('admin.products.mass-destroy') }}" class="ajaxform_with_reload">
                 @csrf
                 <div class="float-left mb-3">
@@ -22,6 +23,8 @@
                         </div>
                     </div>
                 </div>
+                <a href="{{route('admin.products.export')}}" class="btn btn-success float-right">Export</a>
+
                 <div class="clearfix mb-3"></div>
                 <div class="table-responsive">
                     <table class="table table-hover table-nowrap card-table text-center">
