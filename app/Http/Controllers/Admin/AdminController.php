@@ -111,12 +111,18 @@ class AdminController extends Controller
                 }
           }
 
+
         $userCount =  [$currentMonthUser,$beforeOneMonthUser,$beforeTwoMonthUser,$beforeThreeMonthUser,$beforeFourMonthUser,$beforeFiveMonthUser,$beforeSixMonthUser,$beforeSevenMonthUser,$beforeEightMonthUser,$beforeNineMonthUser,$beforeTenMonthUser,$beforeElevenMonthUser];
         $orderCount =  [$currentMonthOrder,$beforeOneMonthOrder,$beforeTwoMonthOrder,$beforeThreeMonthOrder,$beforeFourMonthOrder,$beforeFiveMonthOrder,$beforeSixMonthOrder,$beforeSevenMonthOrder,$beforeEightMonthOrder,$beforeNineMonthOrder,$beforeTenMonthOrder,$beforeElevenMonthOrder];
         $sellerCount =  [$currentMonthSeller,$beforeOneMonthSeller,$beforeTwoMonthSeller,$beforeThreeMonthSeller,$beforeFourMonthSeller,$beforeFiveMonthSeller,$beforeSixMonthSeller,$beforeSevenMonthSeller,$beforeEightMonthSeller,$beforeNineMonthSeller,$beforeTenMonthSeller,$beforeElevenMonthSeller];
         $monthName = [$currentMonthName,$beforeOneMonthName,$beforeTwoMonthName,$beforeThreeMonthName,$beforeFourMonthName,$beforeFiveMonthName,$beforeSixMonthName,$beforeSevenMonthName,$beforeEightMonthName,$beforeNineMonthName,$beforeTenMonthName,$beforeElevenMonthName];
 
-
+        $admin = auth()->guard('admin')->user();
+        if($admin->type == 'superadmin'){
+            $totalProducts = Product::count();
+        }else{
+            $totalProducts = Product::where('vendor_id',$admin->vendor_id)->count();
+        }
         //order
         $orders = Order::with('users')->latest()->limit(10)->get();
 
@@ -128,7 +134,8 @@ class AdminController extends Controller
          $thisMonthEarning = Order::whereMonth('created_at', Carbon::now()->month)
             ->whereYear('created_at',Carbon::now()->year)->sum('grand_total');
         $thisYearEarning = Order::whereYear('created_at',Carbon::now()->year)->sum('grand_total');
-        $totalProducts = Product::count();
+
+
         $totalCategory = Category::count();
         $totalBrand = Brand::count();
         $totalRating = Ratings::count();

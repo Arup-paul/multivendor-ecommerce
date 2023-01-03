@@ -142,6 +142,7 @@
                     </div>
                 </div>
             </div>
+            @if(auth()->guard('admin')->user() == 'superadmin')
             <div class="col-md-3 col-sm-6 col-12">
                 <div class="card card-statistic-1">
                     <div class="card-icon bg-danger text-white">
@@ -187,8 +188,10 @@
                     </div>
                 </div>
             </div>
+            @endif
         </div>
 
+        @if(auth()->guard('admin')->user() == 'superadmin')
         <div class="row">
             <div class="col-12 col-md-6 col-lg-6">
                 <div class="card">
@@ -273,6 +276,7 @@
                 </div>
             </div>
         </div>
+            @endif
     </section>
 
 @endsection
