@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Session;
 class HomeController extends Controller
 {
     public function index(){
+
       $sliders = Option::whereType('slider')->whereStatus(1)->get();
       $newProducts = Product::with('category','brand','attributes')->orderBy('id', 'desc')->whereStatus(1)->take(10)->get();
       $bestSellerProducts = Product::with('category','brand')->whereFeatured('is_best_seller')->whereStatus(1)->inRandomOrder()->take(10)->get();

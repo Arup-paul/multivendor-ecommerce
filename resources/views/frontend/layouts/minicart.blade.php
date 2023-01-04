@@ -5,10 +5,9 @@
     <div class="minicart-contain">
         <a href="javascript:void(0)" class="link-to">
                                         <span class="icon-qty-combine">
-                                            <i class="icon-cart-mini biolife-icon"></i>
+                                            <i class="icon-cart biolife-icon"></i>
                                             <span class="qty totalCartItems" id="totalCartItems">{{total_cart_items()}}</span>
                                         </span>
-            <span class="sub-total">$1.00</span>
         </a>
         <div class="cart-content">
             <div class="cart-inner">

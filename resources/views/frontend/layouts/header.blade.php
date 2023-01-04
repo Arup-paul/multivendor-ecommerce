@@ -68,9 +68,16 @@
                             </div>
                         </div>
                         <div class="wishlist-block hidden-sm hidden-xs">
+                            <a href="{{route('user.compare.index')}}" class="link-to">
+                                    <span class="icon-qty-combine">
+                                         <img src="{{asset('frontend/assets/images/compare.png')}}" height="30" width="30" alt="">
+                                    </span>
+                            </a>
+                        </div>
+                        <div class="wishlist-block hidden-sm hidden-xs">
                             <a href="{{route('user.wishlist.index')}}" class="link-to">
                                     <span class="icon-qty-combine">
-                                        <i class="icon-heart-bold biolife-icon"></i>
+                                        <i class="icon-heart-1 biolife-icon"></i>
                                         <span class="qty" id="totalWishlistItems">{{total_wishlist_items()}}</span>
                                     </span>
                             </a>

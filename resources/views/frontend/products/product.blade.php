@@ -36,7 +36,8 @@
                     <div class="buttons">
                         <button type="button" class="btn new-btn-icon -btn mr-5 addWishlist"    data-productid="{{$product->id}}"><i class="fa fa-heart" aria-hidden="true"></i></button>
                         <button type="submit" class="btn cart-btn new-btn-icon" ><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </button>
-                        <a href="#" class="btn compare-btn new-btn-icon"><i class="fa fa-random" aria-hidden="true"></i></a>
+                        <button type="button" class="btn new-btn-icon -btn mr-5 addCompareProduct"   data-productid="{{$product->id}}"><i class="fa fa-random" aria-hidden="true"></i></button>
+
                     </div>
                 </div>
             </form>
@@ -44,14 +45,4 @@
     </div>
 </li>
 
-@section('frontend_scripts')
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
 
-
-    </script>
-@endsection

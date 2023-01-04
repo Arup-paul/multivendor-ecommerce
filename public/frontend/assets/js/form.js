@@ -232,6 +232,39 @@ $(document).on('click','.removeCartItem',function (){
         }
     })
 });
+$(document).on("click", ".addCompareProduct", function (e) {
+    e.preventDefault();
+
+    let product_id = $(this).data("productid")
+
+    var formData = new FormData();
+    formData.append('product_id',product_id);
+
+
+
+    $.ajax({
+        type: "POST",
+        url: '/user/compare',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: formData,
+        dataType: "json",
+        contentType: false,
+        cache: false,
+        processData: false,
+
+        success: function (response) {
+            Notify("success", response);
+            if (response.redirect) {
+                location.href = response.redirect;
+            }
+        },
+        error: function (xhr, status, error) {
+            Notify("error", xhr.responseText);
+        },
+    });
+});
 
 
 $(document).on("click", ".addWishlist", function (e) {
@@ -319,6 +352,8 @@ $(document).on('click','.removeWishlistALlItem',function (){
         },
     });
 });
+
+
 
 
 

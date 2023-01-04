@@ -309,6 +309,7 @@ select option{
 .icon-left-arrow:before {
     content: "\e910";
 }
+
 .icon-like:before {
     content: "\e911";
 }
@@ -404,6 +405,9 @@ select option{
 }
 .icon-blueberry:before {
     content: "\e930";
+}
+.icon-random:before {
+    content: "\e931";
 }
 /******************************************
 * Animation Effects                       *
@@ -10629,7 +10633,10 @@ body.open-quickview-block .biolife-quickview-block{
 }
 /*-------------------------------*/
 .background-fafafa{
-    background-color: #fafafa;
+    background-color: #fafafa ;
+}
+.background-secondary{
+    background-color: #dddddd42 !important;
 }
 .z-index-20{
     z-index: 20;

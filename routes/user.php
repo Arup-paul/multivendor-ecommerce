@@ -26,10 +26,12 @@ Route::group(['middleware' => ['auth','verified']],function (){
     Route::post('wishlist/delete','WishlistController@destroy')->name('wishlist.destroy');
     Route::post('wishlist/mass-destroy','WishlistController@massDestroy')->name('wishlist.mass-destroy');
 
+
     //get product sizes
     Route::post('/get-product-sizes','OrderController@getProductSizes');
 
-
-
-
 });
+
+//compare
+Route::post('compare','CompareController@compare')->name('compare');
+Route::get('compare','CompareController@index')->name('compare.index');
