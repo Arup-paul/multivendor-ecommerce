@@ -22,6 +22,11 @@ class CartController extends Controller
             'qty' => 'required',
         ]);
 
+        $size = $request->input('size');
+        if($size == 'No Size'){
+            return response()->json(__('Size Not Available'), 422);
+        }
+
         $productStock = ProductAttributes::isStockAvailable($request->product_id, $request->size);
 
         if ($productStock < $request->qty) {

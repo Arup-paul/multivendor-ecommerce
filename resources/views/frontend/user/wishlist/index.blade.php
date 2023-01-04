@@ -50,12 +50,12 @@
                                     <form action="{{route('cart.add')}}" method="post" class="cartForm">
                                         @csrf
 
-                                        <input type="hidden" name="product_id" value="{{$wishlist->product->id}}" class="cart_product_id_{{$wishlist->product->id}}">
+                                        <input type="hidden" name="product_id"   value="{{$wishlist->product->id}}" class="cart_product_id_{{$wishlist->product->id}}">
                                         <input type="hidden" name="qty" value="1"   class="cart_product_price_{{$wishlist->product->id}}">
                                         @if(isset($wishlist->product->attributes[0]))
                                             <input type="hidden" name="size" value="{{$wishlist->product->attributes[0]->size}}"  class="cart_product_size_{{$wishlist->product->id}}">
                                         @else
-                                            <input type="hidden"  value="No Size" class="cart_product_size_{{$wishlist->product->id}}">
+                                            <input type="hidden" name="size" value="No Size" class="cart_product_size_{{$wishlist->product->id}}">
                                         @endif
                                       <button type="submit" class="product-button btn btn-warning btn-sm add_to_single_cart" ><i class="fa fa-shopping-cart" aria-hidden="true"></i> To Cart </button>
                                        <a class="product-button btn btn-danger btn-sm   removeWishlistItem" data-wishlistid="{{$wishlist->id}}" data-url="{{route('user.wishlist.destroy')}}" href="javascript:;"  ><i class="fa fa-trash "></i> </a>

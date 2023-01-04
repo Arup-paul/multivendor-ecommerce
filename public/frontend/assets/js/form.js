@@ -155,6 +155,11 @@ $(".ajaxform_with_reload").on('submit', function (e) {
 $(document).on("submit", ".cartForm", function (e) {
     e.preventDefault();
 
+
+    //formdata values
+    var formData = new FormData(this);
+    console.log(formData.values());
+
     var $this = $(this);
     var basicBtnHtml = $this.find(".basicbtn").html();
 
@@ -258,6 +263,32 @@ $(document).on("click", ".addCompareProduct", function (e) {
             Notify("success", response);
             if (response.redirect) {
                 location.href = response.redirect;
+            }
+        },
+        error: function (xhr, status, error) {
+            Notify("error", xhr.responseText);
+        },
+    });
+});
+
+$(document).on('click','.removeCompareItem',function (){
+    var id = $(this).data('id');
+    var url = $(this).data('url');
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data:{
+            id:id,
+        },
+        type: "POST",
+        url: url,
+        success: function (response) {
+            Notify("success", response);
+            if (response.redirect){
+                window.setTimeout(function () {
+                    location.href = response.redirect;
+                }, 2000)
             }
         },
         error: function (xhr, status, error) {

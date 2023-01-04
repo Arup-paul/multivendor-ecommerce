@@ -10,10 +10,9 @@ use Illuminate\Support\Facades\Session;
 class CompareController extends Controller
 {
     public function index(){
-        $wishlists = Compare::with(['product' => fn($query) =>
-        $query->select(['id','product_name','slug','product_image','product_price']),
-            'product.attributes'   => fn($query) => $query->select(['id','product_id','stock','size'])])->get();
-        return view('frontend.user.compare.index',compact('wishlists'));
+              $compares = Compare::with(['product' => fn($query) =>
+        $query->select(['id','product_name','slug','product_image','product_price','product_color','product_discount','description','category_id','brand_id']),'product.brand','product.category','product.attributes'])->get();
+        return view('frontend.user.compare.index',compact('compares'));
     }
     public function compare(Request $request){
         $product_id = $request->input('product_id');
@@ -26,7 +25,7 @@ class CompareController extends Controller
         }
 
         $totalCompare = Compare::where('session_id',$sessionId)->count();
-        if($totalCompare > 2){
+        if($totalCompare == 2){
             return response()->json(__('Already Added 2  Compare Product'), 422);
         }
 
@@ -37,6 +36,15 @@ class CompareController extends Controller
 
         return response()->json([
             'message' => __('Compare Added Successfully'),
+        ]);
+    }
+
+
+    public function destroy(Request $request){
+        Compare::where('id',$request->input('id'))->delete();
+        return response()->json([
+            'message' => 'Successfully Removed From Compare',
+            'redirect' => url()->previous()
         ]);
     }
 }

@@ -35,3 +35,5 @@ Route::group(['middleware' => ['auth','verified']],function (){
 //compare
 Route::post('compare','CompareController@compare')->name('compare');
 Route::get('compare','CompareController@index')->name('compare.index');
+Route::post('compare/delete','CompareController@destroy')->name('compare.destroy');
+
