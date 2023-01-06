@@ -28,7 +28,6 @@
                     @include('admin.layout.headersection')
                 </section>
             @endif
-
             @yield('content')
         </div>
 

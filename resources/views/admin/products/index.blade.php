@@ -5,6 +5,7 @@
 
 @section('title', 'Products')
 
+
 @section('content')
 
     <div class="card">
