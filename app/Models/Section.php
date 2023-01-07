@@ -9,6 +9,7 @@ class Section extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
     public static function sections()
     {
         $sections = Section::with('categories')->where('status', 1)->get();

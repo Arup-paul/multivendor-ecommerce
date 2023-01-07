@@ -84,7 +84,7 @@ class ProductController extends Controller
                 }
                 return response()->json([
                     'message' =>  __('Products Deleted Successfully'),
-                    'redirect' => route('admin.categories.index')
+                    'redirect' => route('admin.products.index')
                 ]);
             }else{
                 return  response()->json(   __('Please Select Checkbox'),422 );
