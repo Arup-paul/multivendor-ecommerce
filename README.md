@@ -80,6 +80,16 @@ Run the database seeder and you're done
 - `.env` - Environment variables can be set in this file
 
  
+
+##  Future Plan
+
+   - Add More Payment Gateway(now only added paypal & COD)
+   - Role wise permission (vendor and admin panel)
+   - Brand List Page
+   - Campaign Page
+   - Special Offer Page
+   - Social Login
+   - More Feature
  
 
  
