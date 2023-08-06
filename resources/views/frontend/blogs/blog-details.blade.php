@@ -29,7 +29,7 @@
                             <div class="auth-info">
                                 <div class="socials-connection">
                                     <span class="title">Share:</span>
-                                    <ul class="social-list a2a_kit a2a_kit_size_32 a2a_default_style" data-a2a-icon-color="#fab528">
+                                    <ul class="social-list a2a_kit a2a_kit_size_32 a2a_default_style" data-a2a-icon-color="#05f5b5">
                                         <li><a class="socail-link a2a_button_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
                                         <li><a class="socail-link a2a_button_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                                         <li><a class="socail-link a2a_button_linkedin"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>

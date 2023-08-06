@@ -886,7 +886,7 @@ body{
     font-size: 14px;
 }
 .header-top .top-bar .horizontal-menu a:hover{
-    color: #fab528;
+    color: #05f5b5;
 }
 .header-top .left a>i{
     font-size: 15px;
@@ -4986,7 +4986,7 @@ body.open-overlay #overlay{
     width: 16%;
     bottom: -20px;
     left: 0;
-    background: #fab528;
+    background: #05f5b5;
 }
 .biolife-title-box.style-02 .subtitle{
     font-family: 'Cairo', sans-serif;
@@ -14687,7 +14687,7 @@ body.open-quickview-block .biolife-quickview-block{
     margin: 10px 0;
 }
 .delivery_address{
-    border: 1px solid #fab528;
+    border: 1px solid #05f5b5;
     padding: 10px;
     margin:5px 0;
 }
@@ -14707,7 +14707,7 @@ body.open-quickview-block .biolife-quickview-block{
     text-align: center;
     clear: both;
     border-radius: 9999px;
-    background-color: #fab528;
+    background-color: #05f5b5;
     font-weight: 700;
     padding: 10px 20px;
 }
@@ -14741,7 +14741,7 @@ body.open-quickview-block .biolife-quickview-block{
     line-height: 30px;
 }
 .menu-summary .menu-block a:hover{
-    color: #fab528;
+    color: #05f5b5;
 }
 .menu-summary .menu-block a{
     display: inline-block;
@@ -14820,14 +14820,14 @@ user-info-wrapper .user-info .user-avatar {
 }
 .list-group .list-group-item:hover{
     background: #fff;
-    color: #fab528;
+    color: #05f5b5;
     border: 1px solid #ddd;
 }
 
 
 .list-group .active{
     background: #fff;
-    color: #fab528;
+    color: #05f5b5;
     border: 1px solid #ddd;
 }
 
@@ -14836,7 +14836,7 @@ user-info-wrapper .user-info .user-avatar {
     background: none;
 }
 .new-btn-icon{
-    background: #fab528;
+    background: #05f5b5;
     color: #fff !important;
     padding: 2px;
     width: 35px !important;
@@ -14845,7 +14845,7 @@ user-info-wrapper .user-info .user-avatar {
 }
 .new-btn-icon:hover{
     background: #666666 !important;
-    color: #fab528 !important;
+    color: #05f5b5 !important;
 }
 .mr-5{
     margin-right: 5px;
@@ -14917,7 +14917,7 @@ user-info-wrapper .user-info .user-avatar {
     border: 1px solid #ddd;
 }
 .new-btn{
-    background: #fab528;
+    background: #05f5b5;
     color: #fff !important;
 }
 

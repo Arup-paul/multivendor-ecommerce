@@ -1,4 +1,4 @@
-<div class="form-group">
+ <div class="form-group">
     <label for="name"  >{{ __('Category Level') }} </label>
     <select name="parent_id" class="form-control">
         <option value="">Main Category</option>
